@@ -1,5 +1,4 @@
-import * as React from "react";
-import { GameState } from "../../dsptw-common/models/GameState";
+import * as React from 'react';
 import Presenter from './views/Presenter';
 import { openConnection } from './api/localServer';
 import Player from './views/Player';

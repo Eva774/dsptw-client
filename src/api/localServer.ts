@@ -1,18 +1,25 @@
 import { Subject } from 'rxjs';
+import { ConnectionState } from '../models/ConnectionState';
+import { SocketEvent } from '../../../dsptw-common/models/SocketEvent';
 
 const gameStateUpdate = new Subject();
+const connection = new Subject();
 let socket: WebSocket;
 
 export function openConnection() {
     socket = new WebSocket('ws://localhost:8080');
     socket.addEventListener('open', (e) => {
-        console.log(e);
+        console.log('opened connection')
+        connection.next(ConnectionState.Open);
+    });
+    socket.addEventListener('close', (event) => {
+        console.log('The connection has been closed successfully.');
+        connection.next(ConnectionState.Closed);
     });
     socket.addEventListener('message', (e) => {
-        // TODO maybe add a type or something
         const data = JSON.parse(e.data)
-        console.debug("received socket data", data);
-        if (data.event === "gameStateUpdate") {
+        console.debug('received socket data', data);
+        if (data.event === SocketEvent.GameStateUpdate) {
             gameStateUpdate.next(data.data);
         }
     });
@@ -22,6 +29,9 @@ export function getGameStateUpdateStream() {
     return gameStateUpdate;
 }
 
+export function getConnectionStream() {
+
+}
 
 export function startTime() { sendCommand('startTime') };
 export function stopTime() { sendCommand('stopTime') };
