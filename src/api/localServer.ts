@@ -1,6 +1,6 @@
 import { Subject } from 'rxjs';
 import { ConnectionState } from '../models/ConnectionState';
-import { SocketEvent } from '../../../dsptw-common/models/SocketEvent';
+import { SocketEvent } from '../models/SocketEvent';
 
 const gameStateUpdate = new Subject();
 const connection = new Subject();
@@ -13,8 +13,9 @@ export function openConnection() {
         connection.next(ConnectionState.Open);
     });
     socket.addEventListener('close', (event) => {
-        console.log('The connection has been closed successfully.');
+        console.log('The connection was lost. Retrying in 1 second.');
         connection.next(ConnectionState.Closed);
+        setTimeout(openConnection(), 1000)
     });
     socket.addEventListener('message', (e) => {
         const data = JSON.parse(e.data)
@@ -30,7 +31,7 @@ export function getGameStateUpdateStream() {
 }
 
 export function getConnectionStream() {
-
+    return connection;
 }
 
 export function startTime() { sendCommand('startTime') };

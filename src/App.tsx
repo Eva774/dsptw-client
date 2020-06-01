@@ -1,10 +1,12 @@
 import * as React from 'react';
 import Presenter from './views/Presenter';
-import { openConnection } from './api/localServer';
-import Player from './views/Player';
+import { openConnection, getGameStateUpdateStream } from './api/localServer';
+import PlayerView from './views/PlayerView';
+import { GameState } from './models/GameState';
 
 type AppState = {
-  isPresenter: boolean
+  isPresenter: boolean,
+  gameState?: GameState,
 }
 
 export default class Hello extends React.Component<{}, AppState> {
@@ -13,20 +15,28 @@ export default class Hello extends React.Component<{}, AppState> {
   constructor(props: {}) {
     super(props);
     const presenter = new URL(window.location.toString()).searchParams.get('presenter');
-    this.state = { isPresenter: presenter !== null };
+    this.state = { isPresenter: presenter !== null, gameState: undefined };
   }
 
   componentDidMount() {
     // TODO config for connection
     openConnection();
+    // TODO fix type any to GameState
+    getGameStateUpdateStream().subscribe((gameState: any) => {
+      console.log('gameStateUpdate', gameState)
+      this.setState({
+        gameState
+      })
+    })
   }
 
   render() {
     const { isPresenter } = this.state;
+    console.log('state', this.state)
     return (
       <>
         <div>isPresenter: {this.state.isPresenter.toString()}</div>
-        {isPresenter ? <Presenter /> : <Player />}
+        {isPresenter ? <Presenter gameState={this.state.gameState} /> : <PlayerView gameState={this.state.gameState} />}
       </>
     );
   }

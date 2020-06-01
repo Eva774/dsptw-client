@@ -14,24 +14,14 @@ import Puzzel from './rounds/Puzzel';
 import Gallerij from './rounds/Gallerij';
 import CollectiefGeheugen from './rounds/CollectiefGeheugen';
 import Finale from './rounds/Finale';
+import Player from '../components/Player';
 import Players from '../components/Players';
-import SocketStatus from '../components/SocketStatus';
 
-type PresenterProps = {
+type PlayerProps = {
     gameState?: GameState
 }
 
-export default class Presenter extends React.Component<PresenterProps, {}> {
-
-    toggleTimer = () => {
-        if (this.props.gameState?.timerIsRunning) {
-            console.log('stopping timer')
-            stopTime()
-        } else {
-            console.log('starting timer')
-            startTime();
-        }
-    }
+export default class PlayerView extends React.Component<PlayerProps, {}> {
 
     render() {
         if (!this.props.gameState) {
@@ -62,17 +52,9 @@ export default class Presenter extends React.Component<PresenterProps, {}> {
                 break;
         }
 
-        // TODO add lobby "round" before playing the first round 
         return (
             <div>
-                <SocketStatus />
-                <h1>{roundName}</h1>
-                <div>Current Player: {players[currentPlayer].name}</div>
                 <Players players={players} currentPlayer={currentPlayer} />
-                <div>timerIsRunning: {timerIsRunning.toString()}</div>
-                <button onClick={this.toggleTimer}>{timerIsRunning ? 'Stop timer' : 'Start timer'}</button>
-                <button onClick={() => nextPlayer()}>Next Player</button>
-                <button onClick={() => nextRound()}>Next Round</button>
                 {round}
             </div>
         )

@@ -1,6 +1,11 @@
-import * as React from "react";
+import * as React from 'react';
+import { DrieZesNegenState } from '../../models/Rounds/DrieZesNegenState';
 
-export default class DrieZesNegen extends React.Component<{}, {}> {
+type DrieZesNegenProps = {
+    roundState: DrieZesNegenState
+}
+
+export default class DrieZesNegen extends React.Component<DrieZesNegenProps, {}> {
 
     render() {
         return (
