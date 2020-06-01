@@ -1,35 +1,31 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { PlayerState } from '../models/PlayerState';
-import { Theme } from '../Theme'
+import { Time } from './Time';
+import { Name } from './Name';
+import { Dummy } from './Dummy';
+
 
 const Root = styled.div`
-    margin: 10px;
-`
-
-const Name = styled.h1`
-    color: ${(props: { isCurrentPlayer: boolean }) => props.isCurrentPlayer ? Theme.primaryAccent : Theme.primary};
-    text-shadow: 2px 2px rgba(0,0,0,0.75);
-`
-
-const Time = styled.h2`
-    text-shadow: 2px 2px rgba(0,0,0,0.75);
+    width: 480px;
 `
 
 type PlayerProps = {
     playerState: PlayerState,
     isCurrentPlayer: boolean,
+    hideTime: boolean,
 }
 
 export default class Player extends React.Component<PlayerProps, {}> {
 
     render() {
-        const { playerState, isCurrentPlayer } = this.props;
+        const { playerState, isCurrentPlayer, hideTime } = this.props;
         // TODO time running animation
         return (
             <Root>
-                <Name isCurrentPlayer={isCurrentPlayer}>{playerState.name}</Name>
-                <Time>{Math.floor(playerState.time / 1000)}</Time>
+                <Dummy />
+                <Name>{playerState.name}</Name>
+                {hideTime ? null : <Time isCurrentPlayer={isCurrentPlayer}>{Math.floor(playerState.time / 1000)}</Time>}
             </Root>
         );
     }
