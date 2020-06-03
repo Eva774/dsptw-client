@@ -16,12 +16,17 @@ import CollectiefGeheugen from './presenterRounds/CollectiefGeheugen';
 import Finale from './presenterRounds/Finale';
 import Players from '../components/Players';
 import SocketStatus from '../components/SocketStatus';
+import { setScene, openConnection } from '../api/obs';
 
 type PresenterProps = {
     gameState?: GameState
 }
 
 export default class Presenter extends React.Component<PresenterProps, {}> {
+
+    componentDidMount() {
+        openConnection();
+    }
 
     toggleTimer = () => {
         if (this.props.gameState?.timerIsRunning) {
@@ -74,6 +79,8 @@ export default class Presenter extends React.Component<PresenterProps, {}> {
                 <button onClick={() => nextPlayer()}>Next Player</button>
                 <button onClick={() => nextRound()}>Next Round</button>
                 <button onClick={() => nextQuestion()}>Next Question</button>
+                <button onClick={() => setScene(RoundName.DrieZesNegen)}>Switch Scene 3-6-9</button>
+                <button onClick={() => setScene(RoundName.OpenDeur)}>Switch Scene Open-Deur</button>
                 {round}
             </div>
         )

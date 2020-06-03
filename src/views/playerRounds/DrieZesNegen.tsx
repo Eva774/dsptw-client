@@ -53,11 +53,11 @@ export default class DrieZesNegen extends React.Component<DrieZesNegenProps, {}>
 
         const numbers = roundState.questions.map((_, i) => {
             if (currentQuestionIndex > i) {
-                return <AskedNumber>{i + 1}</AskedNumber>
+                return <AskedNumber key={'askedNumber' + i}>{i + 1}</AskedNumber>
             } else if (currentQuestionIndex === i) {
-                return <CurrentNumber>{i + 1}</CurrentNumber>
+                return <CurrentNumber key={'currentNumber' + i}>{i + 1}</CurrentNumber>
             }
-            return <BaseNumber>{i + 1}</BaseNumber>
+            return <BaseNumber key={'baseNumber' + i}>{i + 1}</BaseNumber>
         })
 
         return (

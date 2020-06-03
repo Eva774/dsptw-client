@@ -27,8 +27,11 @@ export default class PlayerView extends React.Component<PlayerProps, {}> {
         if (!this.props.gameState) {
             return <div>No props</div>;
         }
-        const { currentPlayer, roundState, players, timerIsRunning } = this.props.gameState;
+        // TODO Client-side timer
+        const { currentPlayer, roundState, timerIsRunning, currentPlayers } = this.props.gameState;
         const { roundName } = roundState;
+
+        const players = this.props.gameState.players.filter((player, i) => currentPlayers.includes(i));
 
         let round = null;
         switch (roundName) {

@@ -3,6 +3,7 @@ import Presenter from './views/Presenter';
 import { openConnection, getGameStateUpdateStream } from './api/localServer';
 import PlayerView from './views/PlayerView';
 import { GameState } from './models/GameState';
+import { setScene } from './api/obs';
 
 type AppState = {
   isPresenter: boolean,
@@ -27,6 +28,9 @@ export default class Hello extends React.Component<{}, AppState> {
       this.setState({
         gameState
       })
+      if (this.state.isPresenter) {
+        setScene(gameState.roundState.roundName)
+      }
     })
   }
 
