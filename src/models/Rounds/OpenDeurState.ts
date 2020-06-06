@@ -1,4 +1,5 @@
 import { RoundName } from '../RoundName';
+import { ViewType } from '../ViewType';
 
 export type OpenDeurState = {
     roundName: RoundName,
@@ -11,4 +12,5 @@ export type OpenDeurState = {
         }[],
     }[],
     currentQuestionIndex: number,
+    currentView: ViewType,
 };

@@ -28,7 +28,8 @@ const BaseNumber = styled.div`
     font-size: 70px;
     width: 90px;
     height: 90px;
-    text-shadow: 0px 2px 1px rgba(0,0,0,0.5);
+    color: rgba(255,255,250,.5);
+    text-shadow: 0px 2px 1px rgba(0,0,0,0.2);
 `
 
 const AskedNumber = styled(BaseNumber)`
@@ -37,8 +38,10 @@ const AskedNumber = styled(BaseNumber)`
 `
 
 const CurrentNumber = styled(BaseNumber)`
+    color: rgba(255,255,250,1);
     background: ${Theme.primaryAccent};
     border-radius: 50%;
+    text-shadow: 0px 2px 1px rgba(0,0,0,1);
 `
 
 type DrieZesNegenProps = {

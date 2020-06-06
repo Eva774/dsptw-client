@@ -14,7 +14,7 @@ const VideoElement = styled.video`
     width: 600px;
 `
 
-export default class Video extends React.Component<VideoProps, {}> {
+export class Video extends React.Component<VideoProps, {}> {
 
     state = {
         isPlaying: false

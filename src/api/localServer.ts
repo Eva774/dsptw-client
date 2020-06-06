@@ -1,6 +1,7 @@
 import { Subject } from 'rxjs';
 import { ConnectionState } from '../models/ConnectionState';
 import { SocketEvent } from '../models/SocketEvent';
+import { ViewType } from '../models/ViewType';
 
 const gameStateUpdate = new Subject();
 const connection = new Subject();
@@ -18,10 +19,14 @@ export function openConnection() {
         setTimeout(openConnection(), 1000)
     });
     socket.addEventListener('message', (e) => {
-        const data = JSON.parse(e.data)
-        console.debug('received socket data', data);
-        if (data.event === SocketEvent.GameStateUpdate) {
-            gameStateUpdate.next(data.data);
+        try {
+            const data = JSON.parse(e.data)
+            console.debug('received socket data', data);
+            if (data.event === SocketEvent.GameStateUpdate) {
+                gameStateUpdate.next(data.data);
+            }
+        } catch (e) {
+            console.error('couldn\'t parse JSON')
         }
     });
 }
@@ -40,6 +45,8 @@ export function correctAnswer(foundIndex?: number, playerIndex?: number) {
     sendCommand('correctAnswer', { foundIndex, playerIndex })
 };
 export function nextQuestion() { sendCommand('nextQuestion') };
+export function setCurrentQuestion(currentQuestion: number) { sendCommand('setCurrentQuestion', { currentQuestion }) };
+export function setView(view: ViewType) { sendCommand('setView', { view }) };
 export function nextRound() { sendCommand('nextRound') };
 export function nextPlayer() { sendCommand('nextPlayer') };
 export function setPlayerName(playerIndex: number, name: string) { sendCommand('setPlayerName', { playerIndex, name }) };
