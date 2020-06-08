@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { nextRound, startTime, stopTime, nextPlayer, nextQuestion } from '../api/localServer';
+import { nextRound, startTime, stopTime, nextQuestion, nextStartingPlayer, nextPlayerToComplete } from '../api/localServer';
 import { GameState } from '../models/GameState';
 import { DrieZesNegenState } from '../models/Rounds/DrieZesNegenState';
 import { RoundName } from '../models/RoundName';
@@ -82,7 +82,8 @@ export default class Presenter extends React.Component<PresenterProps, {}> {
                 <ul>{playersComponent}</ul>
                 <div>timerIsRunning: {timerIsRunning.toString()}</div>
                 <button onClick={this.toggleTimer}>{timerIsRunning ? 'Stop timer' : 'Start timer'}</button>
-                <button onClick={() => nextPlayer()}>Next Player</button>
+                <button onClick={() => nextStartingPlayer()}>Next Starting player</button>
+                <button onClick={() => nextPlayerToComplete()}>Next complete player</button>
                 <button onClick={() => nextRound()}>Next Round</button>
                 <button onClick={() => nextQuestion()}>Next Question</button>
                 <button onClick={() => setScene(RoundName.DrieZesNegen)}>Switch Scene 3-6-9</button>

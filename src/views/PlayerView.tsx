@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { nextRound, startTime, stopTime, nextPlayer } from '../api/localServer';
 import { GameState } from '../models/GameState';
 import { DrieZesNegenState } from '../models/Rounds/DrieZesNegenState';
 import { RoundName } from '../models/RoundName';
@@ -14,7 +13,6 @@ import Puzzel from './playerRounds/Puzzel';
 import Gallerij from './playerRounds/Gallerij';
 import CollectiefGeheugen from './playerRounds/CollectiefGeheugen';
 import Finale from './playerRounds/Finale';
-import Player from '../components/Player';
 import Players from '../components/Players';
 
 type PlayerProps = {

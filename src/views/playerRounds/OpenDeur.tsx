@@ -60,8 +60,6 @@ export default class OpenDeur extends React.Component<OpenDeurProps, OpenDeurCom
             );
         }
         const answers = questions[currentQuestionIndex].answers.map((answer, i) => <Answer key={answer.text + i} score={20} found={answer.found}>{answer.text}</Answer>);
-        const answersRow1 = answers.slice(0, 2);
-        const answersRow2 = answers.slice(2, 4);
-        return <AnswersWrapper><AnswersRow>{answersRow1}</AnswersRow><AnswersRow>{answersRow2}</AnswersRow></AnswersWrapper>
+        return <AnswersWrapper><AnswersRow>{answers.slice(0, 2)}</AnswersRow><AnswersRow>{answers.slice(2, 4)}</AnswersRow></AnswersWrapper>
     }
 }
