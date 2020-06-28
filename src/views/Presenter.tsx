@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { nextRound, startTime, stopTime, nextQuestion, nextStartingPlayer, nextPlayerToComplete } from '../api/localServer';
+import { nextRound, startTime, stopTime, nextQuestion, nextStartingPlayer, nextPlayerToComplete, showAllAnsers } from '../api/localServer';
 import { GameState } from '../models/GameState';
 import { DrieZesNegenState } from '../models/Rounds/DrieZesNegenState';
 import { RoundName } from '../models/RoundName';
@@ -16,7 +16,7 @@ import Gallerij from './presenterRounds/Gallerij';
 import CollectiefGeheugen from './presenterRounds/CollectiefGeheugen';
 import Finale from './presenterRounds/Finale';
 import SocketStatus from '../components/SocketStatus';
-import { setScene, openConnection } from '../api/obs';
+// import { setScene, openConnection } from '../api/obs';
 
 const Wrapper = styled.div`
     font-size: 2em;
@@ -29,7 +29,7 @@ type PresenterProps = {
 export default class Presenter extends React.Component<PresenterProps, {}> {
 
     componentDidMount() {
-        openConnection();
+        // openConnection();
     }
 
     toggleTimer = () => {
@@ -86,8 +86,7 @@ export default class Presenter extends React.Component<PresenterProps, {}> {
                 <button onClick={() => nextPlayerToComplete()}>Next complete player</button>
                 <button onClick={() => nextRound()}>Next Round</button>
                 <button onClick={() => nextQuestion()}>Next Question</button>
-                <button onClick={() => setScene(RoundName.DrieZesNegen)}>Switch Scene 3-6-9</button>
-                <button onClick={() => setScene(RoundName.OpenDeur)}>Switch Scene Open-Deur</button>
+                <button onClick={() => showAllAnsers()}>Show All Answers</button>
                 {round}
             </Wrapper>
         )

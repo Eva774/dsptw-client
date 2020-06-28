@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { PlayerState } from '../models/PlayerState';
 import { Time } from './Time';
 import { Name } from './Name';
+import { CameraLink } from './CameraLink';
 import { Dummy } from './Dummy';
 
 
@@ -23,7 +24,7 @@ export default class Player extends React.Component<PlayerProps, {}> {
         // TODO time running animation
         return (
             <Root>
-                <Dummy />
+                {playerState.cameraLink ? <CameraLink src={playerState.cameraLink} /> : <Dummy />}
                 <Name>{playerState.name}</Name>
                 {hideTime ? null : <Time isCurrentPlayer={isCurrentPlayer}>{Math.floor(playerState.time / 1000)}</Time>}
             </Root>

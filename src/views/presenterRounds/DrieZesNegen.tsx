@@ -9,9 +9,12 @@ type DrieZesNegenProps = {
 export default class DrieZesNegen extends React.Component<DrieZesNegenProps, {}> {
 
     render() {
+        const { currentQuestionIndex, questions } = this.props.roundState
         return (
             <div>
                 <button onClick={() => correctAnswer()}>Correct Answer</button>
+                <div>{questions[currentQuestionIndex].question}</div>
+                <div>{questions[currentQuestionIndex].answer}</div>
             </div>
         );
     }

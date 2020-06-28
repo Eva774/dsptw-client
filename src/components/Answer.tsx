@@ -31,7 +31,7 @@ const AnswerText = styled.span`
 `
 
 type AnswerProps = {
-    score: number,
+    score?: number,
     found: boolean,
 }
 

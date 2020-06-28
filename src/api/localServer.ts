@@ -1,11 +1,11 @@
-import { Subject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { ConnectionState } from '../models/ConnectionState';
 import { SocketEvent } from '../models/SocketEvent';
 import { ViewType } from '../models/ViewType';
 import { SocketCommand } from '../models/SocketCommand';
 
-const gameStateUpdate = new Subject();
-const connection = new Subject();
+const gameStateUpdate = new ReplaySubject();
+const connection = new ReplaySubject();
 let socket: WebSocket;
 
 export function openConnection() {
@@ -47,6 +47,7 @@ export function correctAnswer(foundIndex?: number, playerIndex?: number) {
 };
 export function nextQuestion() { sendCommand(SocketCommand.NextQuestion) };
 export function setCurrentQuestion(currentQuestion: number) { sendCommand(SocketCommand.SetCurrentQuestion, { currentQuestion }) };
+export function showAllAnsers() { sendCommand(SocketCommand.ShowAllAnswers) };
 export function nextImage() { sendCommand(SocketCommand.NextImage) };
 export function setView(view: ViewType) { sendCommand(SocketCommand.SetView, { view }) };
 export function nextRound() { sendCommand(SocketCommand.NextRound) };
