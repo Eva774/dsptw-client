@@ -31,7 +31,7 @@ const GridItem = styled.td`
     box-shadow: inset 0px 2px 10px 0px rgba(0,0,0,0.75);
     background-clip: padding-box;
     border-radius: 5px;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     text-shadow: 1px 1px rgba(0,0,0,0.75)
 `
 const GridText = styled.span`
@@ -72,6 +72,7 @@ export default class Puzzel extends React.Component<PuzzelProps, {}> {
                         <tr>{gridComponent.slice(0, 3)}</tr>
                         <tr>{gridComponent.slice(3, 6)}</tr>
                         <tr>{gridComponent.slice(6, 9)}</tr>
+                        <tr>{gridComponent.slice(9, 12)}</tr>
                     </tbody>
                 </Grid>
                 <AnswersList>
