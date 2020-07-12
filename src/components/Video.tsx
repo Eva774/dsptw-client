@@ -5,6 +5,7 @@ type VideoProps = {
     src: string,
     onVideoEnd: () => void,
     hasPlayed: boolean,
+    poster?: string,
 }
 
 
@@ -42,7 +43,7 @@ export class Video extends React.Component<VideoProps, {}> {
     render() {
 
         return (
-            <VideoElement src={this.props.src} ref={this.handleRef} onClick={this.start} hasPlayed={this.props.hasPlayed} />
+            <VideoElement poster={this.props.poster} src={this.props.src} ref={this.handleRef} onClick={this.start} hasPlayed={this.props.hasPlayed} />
         );
     }
 }

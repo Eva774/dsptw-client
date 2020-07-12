@@ -85,8 +85,7 @@ export default class Presenter extends React.Component<PresenterProps, {}> {
                 <button onClick={() => nextStartingPlayer()}>Next Starting player</button>
                 <button onClick={() => nextPlayerToComplete()}>Next complete player</button>
                 <button onClick={() => nextRound()}>Next Round</button>
-                <button onClick={() => nextQuestion()}>Next Question</button>
-                <button onClick={() => showAllAnsers()}>Show All Answers</button>
+                <hr />
                 {round}
             </Wrapper>
         )

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FinaleState } from '../../models/Rounds/FinaleState';
-import { correctAnswer, setView } from '../../api/localServer';
+import { correctAnswer, setView, showAllAnsers, nextQuestion } from '../../api/localServer';
 import { PresenterAnswer } from '../../components/PresenterAnswer';
 import { ViewType } from '../../models/ViewType';
 
@@ -25,7 +25,9 @@ export default class Finale extends React.Component<FinaleProps, {}> {
         return (
             <div>
                 Finale
-                <button onClick={() => setView(ViewType.Videos)}>Show videos</button>
+                <div>{questions[currentQuestionIndex].question}</div>
+                <button onClick={showAllAnsers}>show answers</button>
+                <button onClick={nextQuestion}>next question</button>
                 <ul>
                     {presenterAnswers}
                 </ul>

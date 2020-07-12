@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { CollectiefGeheugenState } from '../../models/Rounds/CollectiefGeheugenState';
 import { PresenterAnswer } from '../../components/PresenterAnswer';
-import { setView, correctAnswer } from '../../api/localServer';
+import { setView, correctAnswer, showAllAnsers } from '../../api/localServer';
 import { ViewType } from '../../models/ViewType';
 
 type CollectiefGeheugenProps = {
@@ -25,6 +25,7 @@ export default class CollectiefGeheugen extends React.Component<CollectiefGeheug
             <div>
                 Collectief Geheugen
                 <button onClick={() => setView(ViewType.Videos)}>Show videos</button>
+                <button onClick={() => showAllAnsers()}>Show All Answers</button>
                 <ul>
                     {presenterAnswers}
                 </ul>
