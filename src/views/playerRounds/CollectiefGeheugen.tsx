@@ -25,6 +25,7 @@ const AnswersRow = styled.div`
 
 type CollectiefGeheugenProps = {
     roundState: CollectiefGeheugenState,
+    episode: number,
 }
 
 type CollectiefGeheugenComponentState = {
@@ -34,7 +35,7 @@ type CollectiefGeheugenComponentState = {
 export default class CollectiefGeheugen extends React.Component<CollectiefGeheugenProps, CollectiefGeheugenComponentState> {
 
     state = {
-        // TODO remove -1
+        // TODO remove -1 and replace with correct type
         playerVideoIds: [-1],
     }
 
@@ -49,7 +50,7 @@ export default class CollectiefGeheugen extends React.Component<CollectiefGeheug
     render() {
         const { questions, currentQuestionIndex, currentView } = this.props.roundState
         const videos = questions.map((question, i) =>
-            <Video poster={`/imgs/${i + 1}.png`} key={i} src={`/static/aflevering2/collectiefgeheugen/${i + 1}.mp4`} onVideoEnd={() => this.onVideoEnd(i)} hasPlayed={this.state.playerVideoIds.indexOf(i) !== -1} />
+            <Video poster={`/imgs/${i + 1}.png`} key={i} src={`/static/aflevering${this.props.episode}/collectiefgeheugen/${i + 1}.mp4`} onVideoEnd={() => this.onVideoEnd(i)} hasPlayed={this.state.playerVideoIds.indexOf(i) !== -1} />
         )
         if (currentView === ViewType.Videos) {
             return (

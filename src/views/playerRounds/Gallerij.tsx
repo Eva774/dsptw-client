@@ -3,7 +3,8 @@ import { GallerijState } from '../../models/Rounds/GallerijState';
 import styled from 'styled-components';
 
 type GallerijProps = {
-    roundState: GallerijState
+    roundState: GallerijState,
+    episode: number,
 }
 
 const Wrapper = styled.div`
@@ -28,7 +29,7 @@ export default class Gallerij extends React.Component<GallerijProps, {}> {
         }
         return (
             <Wrapper>
-                {currentImageIndex !== -1 ? <Image height={550} src={`/static/aflevering2/gallerij/${currentQuestionSeriesIndex + 1}/${currentImageIndex + 1}.png`} /> : null}
+                {currentImageIndex !== -1 ? <Image height={550} src={`/static/aflevering${this.props.episode}/gallerij/${currentQuestionSeriesIndex + 1}/${currentImageIndex + 1}.png`} /> : null}
             </Wrapper>
         );
     }

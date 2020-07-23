@@ -25,7 +25,7 @@ export default class PlayerView extends React.Component<PlayerProps, {}> {
         if (!this.props.gameState) {
             return <div>No props</div>;
         }
-        const { currentPlayer, roundState, timerIsRunning, currentPlayers } = this.props.gameState;
+        const { currentPlayer, roundState, timerIsRunning, currentPlayers, episode } = this.props.gameState;
         const { roundName } = roundState;
 
         const players = this.props.gameState.players.filter((player, i) => currentPlayers.includes(i));
@@ -36,16 +36,16 @@ export default class PlayerView extends React.Component<PlayerProps, {}> {
                 round = <DrieZesNegen roundState={roundState as DrieZesNegenState} />;
                 break;
             case RoundName.OpenDeur:
-                round = <OpenDeur roundState={roundState as OpenDeurState} />;
+                round = <OpenDeur roundState={roundState as OpenDeurState} episode={episode} />;
                 break;
             case RoundName.Puzzel:
                 round = <Puzzel roundState={roundState as PuzzelState} />;
                 break;
             case RoundName.Gallerij:
-                round = <Gallerij roundState={roundState as GallerijState} />;
+                round = <Gallerij roundState={roundState as GallerijState} episode={episode} />;
                 break;
             case RoundName.CollectiefGeheugen:
-                round = <CollectiefGeheugen roundState={roundState as CollectiefGeheugenState} />;
+                round = <CollectiefGeheugen roundState={roundState as CollectiefGeheugenState} episode={episode} />;
                 break;
             case RoundName.Finale:
                 round = <Finale roundState={roundState as FinaleState} />;

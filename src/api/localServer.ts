@@ -26,6 +26,8 @@ export function openConnection() {
             console.debug('received socket data', data);
             if (data.event === SocketEvent.GameStateUpdate) {
                 gameStateUpdate.next(data.data);
+            } else if (data.event === SocketEvent.Version) {
+                console.info("Connected with DSPTW server version " + data.data);
             }
         } catch (e) {
             console.error('couldn\'t parse JSON')
