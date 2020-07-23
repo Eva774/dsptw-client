@@ -9,7 +9,8 @@ const connection = new ReplaySubject();
 let socket: WebSocket;
 
 export function openConnection() {
-    socket = new WebSocket('ws://localhost:8080');
+    const port = window.location.port === '' ? "" : ":" + window.location.port;
+    socket = new WebSocket(`ws://${window.location.hostname}${port}`);
     socket.addEventListener('open', (e) => {
         console.log('opened connection')
         connection.next(ConnectionState.Open);
@@ -55,6 +56,7 @@ export function nextStartingPlayer() { sendCommand(SocketCommand.NextStartingPla
 export function nextPlayerToComplete() { sendCommand(SocketCommand.NextPlayerToComplete) };
 export function setPlayerName(playerIndex: number, name: string) { sendCommand(SocketCommand.SetPlayerName, { playerIndex, name }) };
 export function setPlayerTime(playerIndex: number, time: number) { sendCommand(SocketCommand.SetPlayerTime, { playerIndex, time }) };
+export function setPlayerCameraLink(playerIndex: number, cameraLink: string) { sendCommand(SocketCommand.SetPlayerCameraLink, { playerIndex, cameraLink }) };
 
 function sendCommand(command: string, extraData = {}) {
     socket.send(JSON.stringify({ command, ...extraData }));
