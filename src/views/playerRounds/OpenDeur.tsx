@@ -49,8 +49,9 @@ export default class OpenDeur extends React.Component<OpenDeurProps, OpenDeurCom
 
     render() {
         const { questions, currentQuestionIndex, currentView } = this.props.roundState
+        // TODO afleveringnummer in gamestate steken
         const videos = questions.map((question, i) =>
-            <Video key={i} src={question.videoUrl} onVideoEnd={() => this.onVideoEnd(i)} hasPlayed={this.state.playerVideoIds.indexOf(i) !== -1} />
+            <Video key={i} src={`/static/aflevering2/opendeur/${i + 1}.mp4`} onVideoEnd={() => this.onVideoEnd(i)} hasPlayed={this.state.playerVideoIds.indexOf(i) !== -1} />
         )
         if (currentView === ViewType.Videos) {
             return (

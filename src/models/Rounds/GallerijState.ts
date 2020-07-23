@@ -5,7 +5,7 @@ export type GallerijState = {
     currentImageIndex: number,
     currentQuestionSeriesIndex: number,
     questions: {
-        imageUrl: string,
+        imageUrl?: string,
         answer: string,
         found: boolean,
     }[][],

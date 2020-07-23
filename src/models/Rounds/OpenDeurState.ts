@@ -4,7 +4,7 @@ import { ViewType } from '../ViewType';
 export type OpenDeurState = {
     roundName: RoundName,
     questions: {
-        videoUrl: string,
+        videoUrl?: string,
         question: string,
         answers: {
             text: string,

@@ -12,4 +12,5 @@ export enum SocketCommand {
     NextPlayerToComplete = 'nextPlayerToComplete',
     SetPlayerName = 'setPlayerName',
     SetPlayerTime = 'setPlayerTime',
+    SetPlayerCameraLink = 'setPlayerCameraLink',
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { nextRound, startTime, stopTime, nextQuestion, nextStartingPlayer, nextPlayerToComplete, showAllAnsers } from '../api/localServer';
+import { nextRound, startTime, stopTime, nextQuestion, nextStartingPlayer, nextPlayerToComplete, showAllAnsers, setPlayerName, setPlayerTime, setPlayerCameraLink } from '../api/localServer';
 import { GameState } from '../models/GameState';
 import { DrieZesNegenState } from '../models/Rounds/DrieZesNegenState';
 import { RoundName } from '../models/RoundName';
@@ -26,7 +26,33 @@ type PresenterProps = {
     gameState?: GameState
 }
 
-export default class Presenter extends React.Component<PresenterProps, {}> {
+type PresenterState = {
+    playerNames: string[],
+    playerTimes: number[],
+    playerCameraLinks: string[],
+    showEditor: boolean,
+}
+
+export default class Presenter extends React.Component<PresenterProps, PresenterState> {
+
+    state = {
+        playerNames: [
+            "",
+            "",
+            "",
+        ],
+        playerTimes: [
+            60000,
+            60000,
+            60000,
+        ],
+        playerCameraLinks: [
+            "",
+            "",
+            "",
+        ],
+        showEditor: false
+    }
 
     componentDidMount() {
         // openConnection();
@@ -42,6 +68,44 @@ export default class Presenter extends React.Component<PresenterProps, {}> {
         }
     }
 
+    onNameChange = (index: number, name: string) => {
+        this.setState(state => {
+
+            const playerNames = [...state.playerNames];
+            playerNames[index] = name;
+            return { playerNames };
+        });
+    }
+
+    setPlayerName = (index: number) => {
+        setPlayerName(index, this.state.playerNames[index]);
+    }
+
+    onTimeChange = (index: number, timeString: string) => {
+        const time = Number.parseInt(timeString);
+        this.setState(state => {
+            const playerTimes = [...state.playerTimes];
+            playerTimes[index] = time;
+            return { playerTimes };
+        });
+    }
+
+    setPlayerTime = (index: number) => {
+        setPlayerTime(index, this.state.playerTimes[index]);
+    }
+
+    onCameraLinkChange = (index: number, videoLink: string) => {
+        this.setState(state => {
+            const playerCameraLinks = [...state.playerCameraLinks];
+            playerCameraLinks[index] = videoLink;
+            return { playerCameraLinks };
+        });
+    }
+
+    setCameraLink = (index: number) => {
+        setPlayerCameraLink(index, this.state.playerCameraLinks[index]);
+    }
+
     render() {
         if (!this.props.gameState) {
             return <div>No props</div>;
@@ -49,7 +113,20 @@ export default class Presenter extends React.Component<PresenterProps, {}> {
         const { currentPlayer, roundState, players, timerIsRunning } = this.props.gameState;
         const { roundName } = roundState;
 
-        const playersComponent = players.map((player, i) => <li key={player.name + i}>{player.name} - {Math.floor(player.time / 1000)}</li>)
+        const playersComponent = players.map((player, i) => <li key={player.name + i} style={currentPlayer === i ? {
+            textDecoration: 'underline'
+        } : {}}>
+            {player.name} - {Math.floor(player.time / 1000)}
+        </li>)
+
+        const editor = players.map((player, i) => <li key={player.name + i} style={currentPlayer === i ? {
+            textDecoration: 'underline'
+        } : {}}>
+            {player.name} - {Math.floor(player.time / 1000)}
+            <input type="text" value={this.state.playerNames[i]} onChange={(e) => this.onNameChange(i, e.target.value)} /><button onClick={() => this.setPlayerName(i)}>Set name</button>
+            <input type="number" value={this.state.playerTimes[i]} onChange={(e) => this.onTimeChange(i, e.target.value)} /><button onClick={() => this.setPlayerTime(i)}>Set time</button>
+            <input type="text" value={this.state.playerCameraLinks[i]} onChange={(e) => this.onCameraLinkChange(i, e.target.value)} /><button onClick={() => this.setCameraLink(i)}>Set Camera</button>
+        </li>)
 
         let round = null;
         switch (roundName) {
@@ -78,8 +155,9 @@ export default class Presenter extends React.Component<PresenterProps, {}> {
             <Wrapper>
                 <SocketStatus />
                 <h1>{roundName}</h1>
-                <div>Current Player: {players[currentPlayer].name}</div>
                 <ul>{playersComponent}</ul>
+                <button onClick={() => { this.setState(state => ({ showEditor: !state.showEditor })) }}>Toggle editor</button>
+                {this.state.showEditor ? <ul>{editor}</ul> : null}
                 <div>timerIsRunning: {timerIsRunning.toString()}</div>
                 <button onClick={this.toggleTimer}>{timerIsRunning ? 'Stop timer' : 'Start timer'}</button>
                 <button onClick={() => nextStartingPlayer()}>Next Starting player</button>

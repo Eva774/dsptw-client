@@ -28,7 +28,7 @@ export default class Gallerij extends React.Component<GallerijProps, {}> {
         }
         return (
             <Wrapper>
-                {currentImageIndex !== -1 ? <Image height={550} src={questions[currentQuestionSeriesIndex][currentImageIndex].imageUrl} /> : null}
+                {currentImageIndex !== -1 ? <Image height={550} src={`/static/aflevering2/gallerij/${currentQuestionSeriesIndex + 1}/${currentImageIndex + 1}.png`} /> : null}
             </Wrapper>
         );
     }

@@ -7,7 +7,7 @@ export type CollectiefGeheugenState = {
     currentQuestionIndex: number,
     questions:
     {
-        videoUrl: string,
+        videoUrl?: string,
         answers: {
             text: string,
             found: boolean,

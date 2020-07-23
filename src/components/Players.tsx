@@ -28,7 +28,7 @@ export default class Players extends React.Component<PlayersProps, {}> {
             <Root>
                 {playersComponent}
                 <DummyWrapper>
-                    <Dummy />
+                    <Dummy src="https://obs.ninja/?view=" />
                     <Name>Sebastiaan</Name>
                 </DummyWrapper>
             </Root>

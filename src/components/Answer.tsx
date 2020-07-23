@@ -5,6 +5,7 @@ import { Theme } from '../Theme';
 const Wrapper = styled.div`
     margin: 0 50px;
     display: flex;
+    min-width: 300px;
 `
 
 const Time = styled.span`

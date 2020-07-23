@@ -25,7 +25,6 @@ export default class PlayerView extends React.Component<PlayerProps, {}> {
         if (!this.props.gameState) {
             return <div>No props</div>;
         }
-        // TODO Client-side timer
         const { currentPlayer, roundState, timerIsRunning, currentPlayers } = this.props.gameState;
         const { roundName } = roundState;
 

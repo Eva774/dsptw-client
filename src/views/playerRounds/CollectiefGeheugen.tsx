@@ -40,7 +40,6 @@ export default class CollectiefGeheugen extends React.Component<CollectiefGeheug
 
     onVideoEnd = (videoIndex: number) => {
         setCurrentQuestion(videoIndex);
-        console.log('ended');
         this.setState(state => ({
             playerVideoIds: [...state.playerVideoIds, videoIndex],
         }))
@@ -50,7 +49,7 @@ export default class CollectiefGeheugen extends React.Component<CollectiefGeheug
     render() {
         const { questions, currentQuestionIndex, currentView } = this.props.roundState
         const videos = questions.map((question, i) =>
-            <Video poster={`http://localhost:3000/imgs/${i + 1}.png`} key={i} src={question.videoUrl} onVideoEnd={() => this.onVideoEnd(i)} hasPlayed={this.state.playerVideoIds.indexOf(i) !== -1} />
+            <Video poster={`/imgs/${i + 1}.png`} key={i} src={`/static/aflevering2/collectiefgeheugen/${i + 1}.mp4`} onVideoEnd={() => this.onVideoEnd(i)} hasPlayed={this.state.playerVideoIds.indexOf(i) !== -1} />
         )
         if (currentView === ViewType.Videos) {
             return (
