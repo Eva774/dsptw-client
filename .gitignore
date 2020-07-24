@@ -10,8 +10,6 @@
 
 # production
 /build
-/public/videos/*
-/public/imgs/*
 
 # misc
 .DS_Store
