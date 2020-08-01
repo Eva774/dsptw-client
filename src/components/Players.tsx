@@ -15,15 +15,17 @@ const DummyWrapper = styled.div`
 `
 type PlayersProps = {
     players: PlayerState[],
+    currentPlayers: number[],
     currentPlayer: number,
 }
 
 export default class Players extends React.Component<PlayersProps, {}> {
 
     render() {
-        const { currentPlayer, players } = this.props;
+        const { currentPlayer, currentPlayers, players } = this.props;
 
-        const playersComponent = players.map((player, i) => <Player key={player.name} playerState={player} isCurrentPlayer={currentPlayer === i} hideTime={false} />)
+        const playersComponent = players.map((player, i) => <Player key={player.name} playerState={player} isCurrentPlayer={currentPlayer === currentPlayers[i]} hideTime={false} />)
+        // TODO add presenter info in config and gamestate
         return (
             <Root>
                 {playersComponent}

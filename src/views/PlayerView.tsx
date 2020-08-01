@@ -23,7 +23,7 @@ export default class PlayerView extends React.Component<PlayerProps, {}> {
 
     render() {
         if (!this.props.gameState) {
-            return <div>No props</div>;
+            return <div>Not connected to server</div>;
         }
         const { currentPlayer, roundState, timerIsRunning, currentPlayers, episode } = this.props.gameState;
         const { roundName } = roundState;
@@ -54,7 +54,7 @@ export default class PlayerView extends React.Component<PlayerProps, {}> {
 
         return (
             <div>
-                <Players players={players} currentPlayer={currentPlayer} />
+                <Players players={players} currentPlayer={currentPlayer} currentPlayers={currentPlayers} />
                 {round}
             </div>
         )
