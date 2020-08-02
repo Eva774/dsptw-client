@@ -10,12 +10,20 @@ export default class DrieZesNegen extends React.Component<DrieZesNegenProps, {}>
 
     render() {
         const { currentQuestionIndex, questions } = this.props.roundState
+
+        let question = '';
+        let answer = '';
+        if (currentQuestionIndex >= 0 && currentQuestionIndex < questions.length) {
+            question = questions[currentQuestionIndex].question;
+            answer = questions[currentQuestionIndex].answer;
+        }
+
         return (
             <div>
                 <button onClick={() => nextQuestion()}>Next Question</button>
                 <button onClick={() => correctAnswer()}>Correct Answer</button>
-                <div>{questions[currentQuestionIndex].question}</div>
-                <div>{questions[currentQuestionIndex].answer}</div>
+                <div>{question}</div>
+                <div>{answer}</div>
             </div>
         );
     }

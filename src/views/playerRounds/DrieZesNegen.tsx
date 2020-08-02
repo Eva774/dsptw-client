@@ -63,12 +63,17 @@ export default class DrieZesNegen extends React.Component<DrieZesNegenProps, {}>
             return <BaseNumber key={'baseNumber' + i}>{i + 1}</BaseNumber>
         })
 
+        let question = '';
+        if (currentQuestionIndex >= 0 && currentQuestionIndex < roundState.questions.length) {
+            question = roundState.questions[currentQuestionIndex].question;
+        }
+
         return (
             <Root>
                 <NumberWrapper>
                     {numbers}
                 </NumberWrapper>
-                <Question>{roundState.questions[currentQuestionIndex].question}</Question>
+                <Question>{question}</Question>
             </Root>
         );
     }

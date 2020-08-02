@@ -60,6 +60,9 @@ export default class Puzzel extends React.Component<PuzzelProps, {}> {
 
     render() {
         const { puzzles, currentPuzzleIndex } = this.props.roundState;
+        if (currentPuzzleIndex < 0) {
+            return null;
+        }
         const { grid, answers } = puzzles[currentPuzzleIndex];
 
         const gridComponent = grid.map((item, i) => <GridItem key={item.text + item.answerIndex} found={answers[item.answerIndex].found} answerIndex={item.answerIndex}><GridText>{item.text}</GridText></GridItem>)
