@@ -8,4 +8,8 @@ export type GameState = {
     roundState: RoundState,
     players: PlayerState[],
     timerIsRunning: boolean,
+    presenter: {
+        name: string,
+        cameraLink: string,
+    }
 };

@@ -23,9 +23,9 @@ export default class PlayerView extends React.Component<PlayerProps, {}> {
 
     render() {
         if (!this.props.gameState) {
-            return <div>Not connected to server</div>;
+            return <div>Not connected to server, is the server online?</div>;
         }
-        const { currentPlayer, roundState, timerIsRunning, currentPlayers, episode } = this.props.gameState;
+        const { currentPlayer, roundState, timerIsRunning, currentPlayers, episode, presenter } = this.props.gameState;
         const { roundName } = roundState;
 
         const players = this.props.gameState.players.filter((player, i) => currentPlayers.includes(i));
@@ -54,7 +54,13 @@ export default class PlayerView extends React.Component<PlayerProps, {}> {
 
         return (
             <div>
-                <Players players={players} currentPlayer={currentPlayer} currentPlayers={currentPlayers} />
+                <Players
+                    players={players}
+                    currentPlayer={currentPlayer}
+                    currentPlayers={currentPlayers}
+                    presenterName={presenter.name}
+                    presenterCamera={presenter.cameraLink}
+                />
                 {round}
             </div>
         )

@@ -17,12 +17,14 @@ type PlayersProps = {
     players: PlayerState[],
     currentPlayers: number[],
     currentPlayer: number,
+    presenterName: string,
+    presenterCamera: string,
 }
 
 export default class Players extends React.Component<PlayersProps, {}> {
 
     render() {
-        const { currentPlayer, currentPlayers, players } = this.props;
+        const { currentPlayer, currentPlayers, players, presenterName, presenterCamera } = this.props;
 
         const playersComponent = players.map((player, i) => <Player key={player.name} playerState={player} isCurrentPlayer={currentPlayer === currentPlayers[i]} hideTime={false} />)
         // TODO add presenter info in config and gamestate
@@ -30,8 +32,8 @@ export default class Players extends React.Component<PlayersProps, {}> {
             <Root>
                 {playersComponent}
                 <DummyWrapper>
-                    <Dummy src="https://obs.ninja/?view=" />
-                    <Name>Sebastiaan</Name>
+                    <Dummy src={presenterCamera} />
+                    <Name>{presenterName}</Name>
                 </DummyWrapper>
             </Root>
         );

@@ -108,7 +108,7 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
 
     render() {
         if (!this.props.gameState) {
-            return <div>Not connected to server</div>;
+            return <div>Not connected to server, is the server online?</div>;
         }
         const { currentPlayer, roundState, players, timerIsRunning } = this.props.gameState;
         const { roundName } = roundState;

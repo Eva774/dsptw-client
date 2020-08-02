@@ -9,7 +9,14 @@ const connection = new ReplaySubject();
 let socket: WebSocket;
 
 export function openConnection() {
-    const port = window.location.port === '' ? "" : ":" + window.location.port;
+    let port;
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        console.debug("Running client in debug mode. Connecting to default server port of 8080")
+        port = ':8080'
+    } else {
+        console.debug("Running client in production mode. Connecting to same port as the webpage")
+        port = window.location.port === '' ? "" : ":" + window.location.port;
+    }
     socket = new WebSocket(`ws://${window.location.hostname}${port}`);
     socket.addEventListener('open', (e) => {
         console.log('opened connection')
