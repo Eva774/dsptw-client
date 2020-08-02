@@ -14,18 +14,35 @@ import Gallerij from './playerRounds/Gallerij';
 import CollectiefGeheugen from './playerRounds/CollectiefGeheugen';
 import Finale from './playerRounds/Finale';
 import Players from '../components/Players';
+import TitleCard from '../components/TitleCard';
 
-type PlayerProps = {
+type PlayerViewProps = {
     gameState?: GameState
 }
 
-export default class PlayerView extends React.Component<PlayerProps, {}> {
+type PlayerViewState = {
+    showTitleCard: boolean
+}
+
+export default class PlayerView extends React.Component<PlayerViewProps, PlayerViewState> {
+
+    state = {
+        showTitleCard: false,
+    }
+
+    componentDidUpdate(prevProps: PlayerViewProps) {
+        if (prevProps.gameState?.roundState.roundName !== this.props.gameState?.roundState.roundName
+            && this.props.gameState?.roundState.roundName !== RoundName.Overzicht) {
+            this.setState({ showTitleCard: true });
+            setTimeout(() => this.setState({ showTitleCard: false }), 5000);
+        }
+    }
 
     render() {
         if (!this.props.gameState) {
             return <div>Not connected to server, is the server online?</div>;
         }
-        const { currentPlayer, roundState, timerIsRunning, currentPlayers, episode, presenter } = this.props.gameState;
+        const { currentPlayer, roundState, currentPlayers, episode, presenter } = this.props.gameState;
         const { roundName } = roundState;
 
         const players = this.props.gameState.players.filter((player, i) => currentPlayers.includes(i));
@@ -54,6 +71,7 @@ export default class PlayerView extends React.Component<PlayerProps, {}> {
 
         return (
             <div>
+                {this.state.showTitleCard ? <TitleCard roundName={roundName} /> : null}
                 <Players
                     players={players}
                     currentPlayer={currentPlayer}

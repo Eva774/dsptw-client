@@ -20,7 +20,7 @@ const Image = styled.img`
 export default class Gallerij extends React.Component<GallerijProps, {}> {
 
     render() {
-        const { currentImageIndex, questions } = this.props.roundState;
+        const { currentImageIndex } = this.props.roundState;
 
         let currentQuestionSeriesIndex = this.props.roundState.currentQuestionSeriesIndex;
 

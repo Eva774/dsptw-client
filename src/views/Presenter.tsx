@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { nextRound, startTime, stopTime, nextQuestion, nextStartingPlayer, nextPlayerToComplete, showAllAnsers, setPlayerName, setPlayerTime, setPlayerCameraLink } from '../api/localServer';
+import { nextRound, startTime, stopTime, nextStartingPlayer, nextPlayerToComplete, setPlayerName, setPlayerTime, setPlayerCameraLink } from '../api/localServer';
 import { GameState } from '../models/GameState';
 import { DrieZesNegenState } from '../models/Rounds/DrieZesNegenState';
 import { RoundName } from '../models/RoundName';
