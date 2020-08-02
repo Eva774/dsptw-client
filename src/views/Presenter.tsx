@@ -7,12 +7,12 @@ import { RoundName } from '../models/RoundName';
 import DrieZesNegen from './presenterRounds/DrieZesNegen';
 import { OpenDeurState } from '../models/Rounds/OpenDeurState';
 import { PuzzelState } from '../models/Rounds/PuzzelState';
-import { GallerijState } from '../models/Rounds/GallerijState';
+import { GalerijState } from '../models/Rounds/GalerijState';
 import { CollectiefGeheugenState } from '../models/Rounds/CollectiefGeheugenState';
 import { FinaleState } from '../models/Rounds/FinaleState';
 import OpenDeur from './presenterRounds/OpenDeur';
 import Puzzel from './presenterRounds/Puzzel';
-import Gallerij from './presenterRounds/Gallerij';
+import Galerij from './presenterRounds/Galerij';
 import CollectiefGeheugen from './presenterRounds/CollectiefGeheugen';
 import Finale from './presenterRounds/Finale';
 import SocketStatus from '../components/SocketStatus';
@@ -139,8 +139,8 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
             case RoundName.Puzzel:
                 round = <Puzzel roundState={roundState as PuzzelState} />;
                 break;
-            case RoundName.Gallerij:
-                round = <Gallerij roundState={roundState as GallerijState} />;
+            case RoundName.Galerij:
+                round = <Galerij roundState={roundState as GalerijState} />;
                 break;
             case RoundName.CollectiefGeheugen:
                 round = <CollectiefGeheugen roundState={roundState as CollectiefGeheugenState} />;

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { GallerijState } from '../../models/Rounds/GallerijState';
+import { GalerijState } from '../../models/Rounds/GalerijState';
 import { nextImage, correctAnswer, nextQuestion } from '../../api/localServer';
 import styled from 'styled-components';
 
-type GallerijProps = {
-    roundState: GallerijState
+type GalerijProps = {
+    roundState: GalerijState
 }
 
 const Answer = styled.li`
@@ -15,7 +15,7 @@ const FoundAnswer = styled.li`
     text-decoration: line-through;
 `
 
-export default class Gallerij extends React.Component<GallerijProps, {}> {
+export default class Galerij extends React.Component<GalerijProps, {}> {
 
     render() {
         const { currentImageIndex, questions } = this.props.roundState;
@@ -33,7 +33,7 @@ export default class Gallerij extends React.Component<GallerijProps, {}> {
             })
         return (
             <div>
-                Gallerij
+                Galerij
                 <button onClick={() => nextImage()}> Next image</button >
                 <button onClick={() => nextQuestion()}> Next series</button >
                 <ul>

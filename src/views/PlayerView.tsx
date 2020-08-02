@@ -5,12 +5,12 @@ import { RoundName } from '../models/RoundName';
 import DrieZesNegen from './playerRounds/DrieZesNegen';
 import { OpenDeurState } from '../models/Rounds/OpenDeurState';
 import { PuzzelState } from '../models/Rounds/PuzzelState';
-import { GallerijState } from '../models/Rounds/GallerijState';
+import { GalerijState } from '../models/Rounds/GalerijState';
 import { CollectiefGeheugenState } from '../models/Rounds/CollectiefGeheugenState';
 import { FinaleState } from '../models/Rounds/FinaleState';
 import OpenDeur from './playerRounds/OpenDeur';
 import Puzzel from './playerRounds/Puzzel';
-import Gallerij from './playerRounds/Gallerij';
+import Galerij from './playerRounds/Galerij';
 import CollectiefGeheugen from './playerRounds/CollectiefGeheugen';
 import Finale from './playerRounds/Finale';
 import Players from '../components/Players';
@@ -58,8 +58,8 @@ export default class PlayerView extends React.Component<PlayerViewProps, PlayerV
             case RoundName.Puzzel:
                 round = <Puzzel roundState={roundState as PuzzelState} />;
                 break;
-            case RoundName.Gallerij:
-                round = <Gallerij roundState={roundState as GallerijState} episode={episode} />;
+            case RoundName.Galerij:
+                round = <Galerij roundState={roundState as GalerijState} episode={episode} />;
                 break;
             case RoundName.CollectiefGeheugen:
                 round = <CollectiefGeheugen roundState={roundState as CollectiefGeheugenState} episode={episode} />;

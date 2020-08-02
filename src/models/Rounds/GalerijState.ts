@@ -1,6 +1,6 @@
 import { RoundName } from '../RoundName';
 
-export type GallerijState = {
+export type GalerijState = {
     roundName: RoundName,
     currentImageIndex: number,
     currentQuestionSeriesIndex: number,

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { GallerijState } from '../../models/Rounds/GallerijState';
+import { GalerijState } from '../../models/Rounds/GalerijState';
 import styled from 'styled-components';
 
-type GallerijProps = {
-    roundState: GallerijState,
+type GalerijProps = {
+    roundState: GalerijState,
     episode: number,
 }
 
@@ -17,7 +17,7 @@ const Image = styled.img`
     box-shadow: 0px 10px 50px 10px rgba(0,0,0,.5), 0px 20px 50px 10px rgba(0,0,0,.5);
 `
 
-export default class Gallerij extends React.Component<GallerijProps, {}> {
+export default class Galerij extends React.Component<GalerijProps, {}> {
 
     render() {
         const { currentImageIndex } = this.props.roundState;
@@ -29,7 +29,7 @@ export default class Gallerij extends React.Component<GallerijProps, {}> {
         }
         return (
             <Wrapper>
-                {currentImageIndex !== -1 ? <Image height={550} src={`/static/aflevering${this.props.episode}/gallerij/${currentQuestionSeriesIndex + 1}/${currentImageIndex + 1}.png`} /> : null}
+                {currentImageIndex !== -1 ? <Image height={550} src={`/static/aflevering${this.props.episode}/galerij/${currentQuestionSeriesIndex + 1}/${currentImageIndex + 1}.png`} /> : null}
             </Wrapper>
         );
     }
