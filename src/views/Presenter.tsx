@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { nextRound, startTime, stopTime, nextStartingPlayer, nextPlayerToComplete, setPlayerName, setPlayerTime, setPlayerCameraLink } from '../api/localServer';
+import { previousRound, nextRound, startTime, stopTime, nextStartingPlayer, nextPlayerToComplete, setPlayerName, setPlayerTime, setPlayerCameraLink } from '../api/localServer';
 import { GameState } from '../models/GameState';
 import { DrieZesNegenState } from '../models/Rounds/DrieZesNegenState';
 import { RoundName } from '../models/RoundName';
@@ -162,6 +162,7 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
                 <button onClick={this.toggleTimer}>{timerIsRunning ? 'Stop timer' : 'Start timer'}</button>
                 <button onClick={() => nextStartingPlayer()}>Next Starting player</button>
                 <button onClick={() => nextPlayerToComplete()}>Next complete player</button>
+                <button onClick={() => previousRound()}>previous Round</button>
                 <button onClick={() => nextRound()}>Next Round</button>
                 <hr />
                 {round}

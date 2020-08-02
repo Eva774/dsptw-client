@@ -60,6 +60,7 @@ export function setCurrentQuestion(currentQuestion: number) { sendCommand(Socket
 export function showAllAnsers() { sendCommand(SocketCommand.ShowAllAnswers) };
 export function nextImage() { sendCommand(SocketCommand.NextImage) };
 export function setView(view: ViewType) { sendCommand(SocketCommand.SetView, { view }) };
+export function previousRound() { sendCommand(SocketCommand.PreviousRound) };
 export function nextRound() { sendCommand(SocketCommand.NextRound) };
 export function nextStartingPlayer() { sendCommand(SocketCommand.NextStartingPlayer) };
 export function nextPlayerToComplete() { sendCommand(SocketCommand.NextPlayerToComplete) };

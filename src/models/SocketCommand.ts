@@ -7,6 +7,7 @@ export enum SocketCommand {
     ShowAllAnswers = 'showAllAnswers',
     NextImage = 'nextImage',
     SetView = 'setView',
+    PreviousRound = 'previousRound',
     NextRound = 'nextRound',
     NextStartingPlayer = 'nextStartingPlayer',
     NextPlayerToComplete = 'nextPlayerToComplete',
