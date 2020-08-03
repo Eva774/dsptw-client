@@ -11,5 +11,10 @@ export type GameState = {
     presenter: {
         name: string,
         cameraLink: string,
+    },
+    jury: {
+        show: boolean,
+        name: string,
+        cameraLink: string,
     }
 };

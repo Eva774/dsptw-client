@@ -15,6 +15,7 @@ import CollectiefGeheugen from './playerRounds/CollectiefGeheugen';
 import Finale from './playerRounds/Finale';
 import Players from '../components/Players';
 import TitleCard from '../components/TitleCard';
+import Jury from '../components/Jury';
 
 type PlayerViewProps = {
     gameState?: GameState
@@ -42,7 +43,7 @@ export default class PlayerView extends React.Component<PlayerViewProps, PlayerV
         if (!this.props.gameState) {
             return <div>Not connected to server, is the server online?</div>;
         }
-        const { currentPlayer, roundState, currentPlayers, episode, presenter } = this.props.gameState;
+        const { currentPlayer, roundState, currentPlayers, episode, presenter, jury } = this.props.gameState;
         const { roundName } = roundState;
 
         const players = this.props.gameState.players.filter((player, i) => currentPlayers.includes(i));
@@ -72,6 +73,7 @@ export default class PlayerView extends React.Component<PlayerViewProps, PlayerV
         return (
             <div>
                 {this.state.showTitleCard ? <TitleCard roundName={roundName} /> : null}
+                <Jury show={jury.show} cameraLink={jury.cameraLink} name={jury.name} />
                 <Players
                     players={players}
                     currentPlayer={currentPlayer}

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { previousRound, nextRound, startTime, stopTime, nextStartingPlayer, nextPlayerToComplete, setPlayerName, setPlayerTime, setPlayerCameraLink } from '../api/localServer';
+import { previousRound, nextRound, startTime, stopTime, nextStartingPlayer, nextPlayerToComplete, setPlayerName, setPlayerTime, setPlayerCameraLink, showJury, hideJury } from '../api/localServer';
 import { GameState } from '../models/GameState';
 import { DrieZesNegenState } from '../models/Rounds/DrieZesNegenState';
 import { RoundName } from '../models/RoundName';
@@ -150,7 +150,6 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
                 break;
         }
 
-        // TODO add lobby "round" before playing the first round 
         return (
             <Wrapper>
                 <SocketStatus />
@@ -158,12 +157,20 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
                 <ul>{playersComponent}</ul>
                 <button onClick={() => { this.setState(state => ({ showEditor: !state.showEditor })) }}>Toggle editor</button>
                 {this.state.showEditor ? <ul>{editor}</ul> : null}
-                <div>timerIsRunning: {timerIsRunning.toString()}</div>
+                <div>Timer is running: {timerIsRunning.toString()}</div>
                 <button onClick={this.toggleTimer}>{timerIsRunning ? 'Stop timer' : 'Start timer'}</button>
-                <button onClick={() => nextStartingPlayer()}>Next Starting player</button>
-                <button onClick={() => nextPlayerToComplete()}>Next complete player</button>
-                <button onClick={() => previousRound()}>previous Round</button>
-                <button onClick={() => nextRound()}>Next Round</button>
+                <div>
+                    <button onClick={() => showJury()}>Show jury</button>
+                    <button onClick={() => hideJury()}>Hide jury</button>
+                </div>
+                <div>
+                    <button onClick={() => nextStartingPlayer()}>Next starting player</button>
+                    <button onClick={() => nextPlayerToComplete()}>Next complete player</button>
+                </div>
+                <div>
+                    <button onClick={() => previousRound()}>Previous round</button>
+                    <button onClick={() => nextRound()}>Next round</button>
+                </div>
                 <hr />
                 {round}
             </Wrapper>

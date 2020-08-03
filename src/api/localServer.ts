@@ -67,6 +67,8 @@ export function nextPlayerToComplete() { sendCommand(SocketCommand.NextPlayerToC
 export function setPlayerName(playerIndex: number, name: string) { sendCommand(SocketCommand.SetPlayerName, { playerIndex, name }) };
 export function setPlayerTime(playerIndex: number, time: number) { sendCommand(SocketCommand.SetPlayerTime, { playerIndex, time }) };
 export function setPlayerCameraLink(playerIndex: number, cameraLink: string) { sendCommand(SocketCommand.SetPlayerCameraLink, { playerIndex, cameraLink }) };
+export function showJury() { sendCommand(SocketCommand.ShowJury) };
+export function hideJury() { sendCommand(SocketCommand.HideJury) };
 
 function sendCommand(command: string, extraData = {}) {
     socket.send(JSON.stringify({ command, ...extraData }));
