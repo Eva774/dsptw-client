@@ -38,7 +38,8 @@ const GridText = styled.span`
     vertical-align: middle;
 `
 type PuzzelProps = {
-    roundState: PuzzelState
+    roundState: PuzzelState,
+    showAnswers: boolean,
 }
 
 const colors = [
@@ -67,7 +68,8 @@ export default class Puzzel extends React.Component<PuzzelProps, {}> {
 
         const gridComponent = grid.map((item, i) => <GridItem key={item.text + item.answerIndex} found={answers[item.answerIndex].found} answerIndex={item.answerIndex}><GridText>{item.text}</GridText></GridItem>)
 
-        const answersComponent = answers.map((answer, i) => <Answer key={answer.text + i} score={30} found={answer.found}>{answer.text}</Answer>);
+        const answersComponent = answers
+            .map((answer, i) => <Answer key={answer.text + i} score={30} found={answer.found} showAnswer={this.props.showAnswers}>{answer.text}</Answer>);
         return (
             <Wrapper>
                 <Grid>

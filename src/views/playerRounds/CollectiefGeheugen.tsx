@@ -26,6 +26,7 @@ const AnswersRow = styled.div`
 type CollectiefGeheugenProps = {
     roundState: CollectiefGeheugenState,
     episode: number,
+    showAnswers: boolean,
 }
 
 type CollectiefGeheugenComponentState = {
@@ -66,7 +67,8 @@ export default class CollectiefGeheugen extends React.Component<CollectiefGeheug
                 </Videos>
             );
         }
-        const answers = questions[currentQuestionIndex].answers.map((answer, i) => <Answer key={answer.text + i} score={answer.score} found={answer.found}>{answer.text}</Answer>);
+        const answers = questions[currentQuestionIndex].answers
+            .map((answer, i) => <Answer key={answer.text + i} score={answer.score} found={answer.found} showAnswer={this.props.showAnswers}>{answer.text}</Answer>);
         return <AnswersWrapper><AnswersRow>{answers.slice(0, 3)}</AnswersRow><AnswersRow>{answers.slice(3, 5)}</AnswersRow></AnswersWrapper>
     }
 }

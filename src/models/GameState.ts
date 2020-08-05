@@ -16,5 +16,6 @@ export type GameState = {
         show: boolean,
         name: string,
         cameraLink: string,
-    }
+    },
+    showAnswers: boolean,
 };

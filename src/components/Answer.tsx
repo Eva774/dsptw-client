@@ -13,7 +13,7 @@ const Time = styled.span`
     text-align: center;
     font-size: 70px;
     text-shadow: 1px 1px rgba(0,0,0,0.75), 2px 2px rgba(0,0,0,0.75);
-    ${(props: { found: boolean }) => props.found ? `background-color: ${Theme.primaryAccent};` : ''};
+    ${(props: { found: boolean, showAnswer: boolean }) => props.found || props.showAnswer ? `background-color: ${Theme.primaryAccent};` : ''};
     height: 100px;
     width: 100px;
     border-radius: 50%;
@@ -27,23 +27,24 @@ const Time = styled.span`
 
 const AnswerText = styled.span`
     font-size: 70px;
-    color: ${(props: { found: boolean }) => props.found ? Theme.primary : 'transparent'};
-    text-shadow: ${(props: { found: boolean }) => props.found ? '1px 1px rgba(0,0,0,0.75), 2px 2px rgba(0,0,0,0.75)' : '0 0 25px rgba(0,0,0,0.5)'};
+    color: ${(props: { found: boolean, showAnswer: boolean }) => props.found || props.showAnswer ? Theme.primary : 'transparent'};
+    text-shadow: ${(props: { found: boolean, showAnswer: boolean }) => props.found || props.showAnswer ? '1px 1px rgba(0,0,0,0.75), 2px 2px rgba(0,0,0,0.75)' : '0 0 25px rgba(0,0,0,0.5)'};
 `
 
 type AnswerProps = {
     score?: number,
     found: boolean,
+    showAnswer: boolean,
 }
 
 export class Answer extends React.Component<AnswerProps, {}> {
 
     render() {
-        const { score, found } = this.props;
+        const { score, found, showAnswer } = this.props;
         return (
             <Wrapper>
-                <Time found={found}>{found ? score : ''}</Time>
-                <AnswerText found={found}>{this.props.children}</AnswerText>
+                <Time found={found} showAnswer={showAnswer}>{found ? score : ''}</Time>
+                <AnswerText found={found} showAnswer={showAnswer}>{this.props.children}</AnswerText>
             </Wrapper>
         );
     }

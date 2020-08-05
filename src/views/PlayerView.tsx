@@ -50,7 +50,7 @@ export default class PlayerView extends React.Component<PlayerViewProps, PlayerV
         if (!this.props.gameState) {
             return <div>Not connected to server, is the server online?</div>;
         }
-        const { currentPlayer, roundState, currentPlayers, episode, presenter, jury } = this.props.gameState;
+        const { currentPlayer, roundState, currentPlayers, episode, presenter, jury, showAnswers } = this.props.gameState;
         const { roundName } = roundState;
 
         const players = this.props.gameState.players.filter((player, i) => currentPlayers.includes(i));
@@ -61,19 +61,19 @@ export default class PlayerView extends React.Component<PlayerViewProps, PlayerV
                 round = <DrieZesNegen roundState={roundState as DrieZesNegenState} />;
                 break;
             case RoundName.OpenDeur:
-                round = <OpenDeur roundState={roundState as OpenDeurState} episode={episode} />;
+                round = <OpenDeur roundState={roundState as OpenDeurState} episode={episode} showAnswers={showAnswers} />;
                 break;
             case RoundName.Puzzel:
-                round = <Puzzel roundState={roundState as PuzzelState} />;
+                round = <Puzzel roundState={roundState as PuzzelState} showAnswers={showAnswers} />;
                 break;
             case RoundName.Galerij:
                 round = <Galerij roundState={roundState as GalerijState} episode={episode} />;
                 break;
             case RoundName.CollectiefGeheugen:
-                round = <CollectiefGeheugen roundState={roundState as CollectiefGeheugenState} episode={episode} />;
+                round = <CollectiefGeheugen roundState={roundState as CollectiefGeheugenState} episode={episode} showAnswers={showAnswers} />;
                 break;
             case RoundName.Finale:
-                round = <Finale roundState={roundState as FinaleState} />;
+                round = <Finale roundState={roundState as FinaleState} showAnswers={showAnswers} />;
                 break;
         }
 

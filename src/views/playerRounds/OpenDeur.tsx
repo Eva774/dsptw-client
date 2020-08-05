@@ -26,6 +26,7 @@ const AnswersRow = styled.div`
 type OpenDeurProps = {
     roundState: OpenDeurState,
     episode: number,
+    showAnswers: boolean,
 }
 
 type OpenDeurComponentState = {
@@ -66,7 +67,8 @@ export default class OpenDeur extends React.Component<OpenDeurProps, OpenDeurCom
                 </Videos>
             );
         }
-        const answers = questions[currentQuestionIndex].answers.map((answer, i) => <Answer key={answer.text + i} score={20} found={answer.found}>{answer.text}</Answer>);
+        const answers = questions[currentQuestionIndex].answers
+            .map((answer, i) => <Answer key={answer.text + i} score={20} found={answer.found} showAnswer={this.props.showAnswers}>{answer.text}</Answer>);
         return <AnswersWrapper><AnswersRow>{answers.slice(0, 2)}</AnswersRow><AnswersRow>{answers.slice(2, 4)}</AnswersRow></AnswersWrapper>
     }
 }
