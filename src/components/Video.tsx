@@ -45,10 +45,10 @@ export class Video extends React.Component<VideoProps, VideoState> {
     start = () => {
         if (this.videoRef !== null && this.videoRef && !this.props.hasPlayed) {
             this.videoRef.play();
-            this.setState({ fullscreen: true })
+            this.setState({ fullscreen: true });
             this.videoRef.addEventListener('ended', () => {
-                this.setState({ fullscreen: false })
-                this.props.onVideoEnd()
+                this.setState({ fullscreen: false });
+                this.props.onVideoEnd();
             }, false);
         }
     }
