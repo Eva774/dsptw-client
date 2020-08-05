@@ -1,4 +1,4 @@
-import { ReplaySubject } from 'rxjs';
+import { Subject, ReplaySubject } from 'rxjs';
 import { ConnectionState } from '../models/ConnectionState';
 import { SocketEvent } from '../models/SocketEvent';
 import { ViewType } from '../models/ViewType';
@@ -6,8 +6,8 @@ import { SocketCommand } from '../models/SocketCommand';
 
 const gameStateUpdate = new ReplaySubject();
 const connection = new ReplaySubject();
-const eventSubject = new ReplaySubject();
-const playVideoSubject = new ReplaySubject();
+const eventSubject = new Subject();
+const playVideoSubject = new Subject();
 
 let socket: WebSocket;
 
