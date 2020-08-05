@@ -16,7 +16,6 @@ import Galerij from './presenterRounds/Galerij';
 import CollectiefGeheugen from './presenterRounds/CollectiefGeheugen';
 import Finale from './presenterRounds/Finale';
 import SocketStatus from '../components/SocketStatus';
-// import { setScene, openConnection } from '../api/obs';
 
 const Wrapper = styled.div`
     font-size: 2em;
@@ -54,27 +53,27 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
         showEditor: false
     }
 
-    _handleKeyDown = (event: any) => {
-        console.log(event)
-        switch (event.keyCode) {
-            // top number row: 1
-            case 49:
-                startTime();
-                break;
-            // top number row: 2
-            case 50:
-                stopTime();
-                break;
-        }
-    }
+    // _handleKeyDown = (event: any) => {
+    //     console.log(event)
+    //     switch (event.keyCode) {
+    //         // top number row: 1
+    //         case 49:
+    //             startTime();
+    //             break;
+    //         // top number row: 2
+    //         case 50:
+    //             stopTime();
+    //             break;
+    //     }
+    // }
 
-    componentDidMount() {
-        document.addEventListener("keydown", this._handleKeyDown);
-    }
+    // componentDidMount() {
+    //     document.addEventListener("keydown", this._handleKeyDown);
+    // }
 
-    componentWillUnmount() {
-        document.removeEventListener("keydown", this._handleKeyDown);
-    }
+    // componentWillUnmount() {
+    //     document.removeEventListener("keydown", this._handleKeyDown);
+    // }
 
     toggleTimer = () => {
         if (this.props.gameState?.timerIsRunning) {
