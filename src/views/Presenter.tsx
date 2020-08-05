@@ -54,8 +54,26 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
         showEditor: false
     }
 
+    _handleKeyDown = (event: any) => {
+        console.log(event)
+        switch (event.keyCode) {
+            // top number row: 1
+            case 49:
+                startTime();
+                break;
+            // top number row: 2
+            case 50:
+                stopTime();
+                break;
+        }
+    }
+
     componentDidMount() {
-        // openConnection();
+        document.addEventListener("keydown", this._handleKeyDown);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this._handleKeyDown);
     }
 
     toggleTimer = () => {
@@ -116,13 +134,13 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
         const playersComponent = players.map((player, i) => <li key={player.name + i} style={currentPlayer === i ? {
             textDecoration: 'underline'
         } : {}}>
-            {player.name} - {Math.floor(player.time / 1000)}
+            {player.name} - {Math.ceil(player.time / 1000)}
         </li>)
 
         const editor = players.map((player, i) => <li key={player.name + i} style={currentPlayer === i ? {
             textDecoration: 'underline'
         } : {}}>
-            {player.name} - {Math.floor(player.time / 1000)}
+            {player.name} - {Math.ceil(player.time / 1000)}
             <input type="text" value={this.state.playerNames[i]} onChange={(e) => this.onNameChange(i, e.target.value)} /><button onClick={() => this.setPlayerName(i)}>Set name</button>
             <input type="number" value={this.state.playerTimes[i]} onChange={(e) => this.onTimeChange(i, e.target.value)} /><button onClick={() => this.setPlayerTime(i)}>Set time</button>
             <input type="text" value={this.state.playerCameraLinks[i]} onChange={(e) => this.onCameraLinkChange(i, e.target.value)} /><button onClick={() => this.setCameraLink(i)}>Set Camera</button>

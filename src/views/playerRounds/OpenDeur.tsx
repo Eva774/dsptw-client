@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { OpenDeurState } from '../../models/Rounds/OpenDeurState';
 import { Video } from '../../components/Video';
 import { ViewType } from '../../models/ViewType';
-import { setView, setCurrentQuestion } from '../../api/localServer';
+import { setView, setCurrentQuestion, getBaseUrl } from '../../api/localServer';
 import { Answer } from '../../components/Answer';
 
 const Videos = styled.div`
@@ -50,9 +50,14 @@ export default class OpenDeur extends React.Component<OpenDeurProps, OpenDeurCom
 
     render() {
         const { questions, currentQuestionIndex, currentView } = this.props.roundState
-        // TODO afleveringnummer in gamestate steken
-        const videos = questions.map((question, i) =>
-            <Video key={i} src={`/static/aflevering${this.props.episode}/opendeur/${i + 1}.mp4`} onVideoEnd={() => this.onVideoEnd(i)} hasPlayed={this.state.playerVideoIds.indexOf(i) !== -1} />
+        const videos = questions.map((_, i) =>
+            <Video
+                key={i}
+                videoId={i}
+                src={`\\\\${getBaseUrl()}/static/aflevering${this.props.episode}/opendeur/${i + 1}.mp4`}
+                onVideoEnd={() => this.onVideoEnd(i)}
+                hasPlayed={this.state.playerVideoIds.indexOf(i) !== -1}
+            />
         )
         if (currentView === ViewType.Videos) {
             return (

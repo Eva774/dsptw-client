@@ -26,7 +26,7 @@ export default class Player extends React.Component<PlayerProps, {}> {
             <Root>
                 {playerState.cameraLink ? <CameraLink src={playerState.cameraLink} /> : <Dummy />}
                 <Name>{playerState.name}</Name>
-                {hideTime ? null : <Time isCurrentPlayer={isCurrentPlayer}>{Math.floor(playerState.time / 1000)}</Time>}
+                {hideTime ? null : <Time isCurrentPlayer={isCurrentPlayer}>{Math.ceil(playerState.time / 1000)}</Time>}
             </Root>
         );
     }

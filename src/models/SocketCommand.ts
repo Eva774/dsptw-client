@@ -16,4 +16,5 @@ export enum SocketCommand {
     SetPlayerCameraLink = 'setPlayerCameraLink',
     ShowJury = 'showJury',
     HideJury = 'hideJury',
+    PlayVideo = 'playVideo',
 }

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { CollectiefGeheugenState } from '../../models/Rounds/CollectiefGeheugenState';
 import { Video } from '../../components/Video';
 import { ViewType } from '../../models/ViewType';
-import { setView, setCurrentQuestion } from '../../api/localServer';
+import { setView, setCurrentQuestion, getBaseUrl } from '../../api/localServer';
 import { Answer } from '../../components/Answer';
 
 const Videos = styled.div`
@@ -50,7 +50,14 @@ export default class CollectiefGeheugen extends React.Component<CollectiefGeheug
     render() {
         const { questions, currentQuestionIndex, currentView } = this.props.roundState
         const videos = questions.map((question, i) =>
-            <Video poster={`/imgs/${i + 1}.png`} key={i} src={`/static/aflevering${this.props.episode}/collectiefgeheugen/${i + 1}.mp4`} onVideoEnd={() => this.onVideoEnd(i)} hasPlayed={this.state.playerVideoIds.indexOf(i) !== -1} />
+            <Video
+                key={i}
+                videoId={i}
+                poster={`/imgs/${i + 1}.png`}
+                src={`\\\\${getBaseUrl()}/static/aflevering${this.props.episode}/collectiefgeheugen/${i + 1}.mp4`}
+                onVideoEnd={() => this.onVideoEnd(i)}
+                hasPlayed={this.state.playerVideoIds.indexOf(i) !== -1}
+            />
         )
         if (currentView === ViewType.Videos) {
             return (

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { GalerijState } from '../../models/Rounds/GalerijState';
 import styled from 'styled-components';
+import { getBaseUrl } from '../../api/localServer';
 
 type GalerijProps = {
     roundState: GalerijState,
@@ -29,7 +30,7 @@ export default class Galerij extends React.Component<GalerijProps, {}> {
         }
         return (
             <Wrapper>
-                {currentImageIndex !== -1 ? <Image height={550} src={`/static/aflevering${this.props.episode}/galerij/${currentQuestionSeriesIndex + 1}/${currentImageIndex + 1}.png`} /> : null}
+                {currentImageIndex !== -1 ? <Image height={550} src={`\\\\${getBaseUrl()}/static/aflevering${this.props.episode}/galerij/${currentQuestionSeriesIndex + 1}/${currentImageIndex + 1}.png`} /> : null}
             </Wrapper>
         );
     }

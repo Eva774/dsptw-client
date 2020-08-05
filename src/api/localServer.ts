@@ -6,18 +6,27 @@ import { SocketCommand } from '../models/SocketCommand';
 
 const gameStateUpdate = new ReplaySubject();
 const connection = new ReplaySubject();
+const eventSubject = new ReplaySubject();
+const playVideoSubject = new ReplaySubject();
+
 let socket: WebSocket;
 
+let baseUrl: string;
+
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    console.debug("Running client in debug mode. Connecting to default localhost:8080")
+    baseUrl = 'localhost:8080'
+} else {
+    console.debug("Running client in production mode. Connecting to same hostname and port as the webpage")
+    baseUrl = window.location.host;
+}
+
+export function getBaseUrl() {
+    return baseUrl;
+};
+
 export function openConnection() {
-    let port;
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-        console.debug("Running client in debug mode. Connecting to default server port of 8080")
-        port = ':8080'
-    } else {
-        console.debug("Running client in production mode. Connecting to same port as the webpage")
-        port = window.location.port === '' ? "" : ":" + window.location.port;
-    }
-    socket = new WebSocket(`ws://${window.location.hostname}${port}`);
+    socket = new WebSocket(`ws://${getBaseUrl()}`);
     socket.addEventListener('open', (e) => {
         console.log('opened connection')
         connection.next(ConnectionState.Open);
@@ -33,6 +42,10 @@ export function openConnection() {
             console.debug('received socket data', data);
             if (data.event === SocketEvent.GameStateUpdate) {
                 gameStateUpdate.next(data.data);
+            } else if (data.event === SocketEvent.GameEvent) {
+                eventSubject.next(data.data)
+            } else if (data.event === SocketEvent.PlayVideo) {
+                playVideoSubject.next(data.data)
             } else if (data.event === SocketEvent.Version) {
                 console.info("Connected with DSPTW server version " + data.data);
             }
@@ -48,6 +61,14 @@ export function getGameStateUpdateStream() {
 
 export function getConnectionStream() {
     return connection;
+}
+
+export function getEventStream() {
+    return eventSubject;
+}
+
+export function getPlayVideoStream() {
+    return playVideoSubject;
 }
 
 export function startTime() { sendCommand(SocketCommand.StartTime) };
@@ -69,6 +90,7 @@ export function setPlayerTime(playerIndex: number, time: number) { sendCommand(S
 export function setPlayerCameraLink(playerIndex: number, cameraLink: string) { sendCommand(SocketCommand.SetPlayerCameraLink, { playerIndex, cameraLink }) };
 export function showJury() { sendCommand(SocketCommand.ShowJury) };
 export function hideJury() { sendCommand(SocketCommand.HideJury) };
+export function playVideo(videoIndex: number) { sendCommand(SocketCommand.PlayVideo, { videoIndex }) };
 
 function sendCommand(command: string, extraData = {}) {
     socket.send(JSON.stringify({ command, ...extraData }));

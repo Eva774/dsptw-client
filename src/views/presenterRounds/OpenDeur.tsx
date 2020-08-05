@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OpenDeurState } from '../../models/Rounds/OpenDeurState';
 import { ViewType } from '../../models/ViewType';
-import { setView, correctAnswer, showAllAnsers } from '../../api/localServer';
+import { setView, correctAnswer, showAllAnsers, playVideo } from '../../api/localServer';
 import { PresenterAnswer } from '../../components/PresenterAnswer';
 
 type OpenDeurProps = {
@@ -26,8 +26,11 @@ export default class OpenDeur extends React.Component<OpenDeurProps, {}> {
         return (
             <div>
                 OpenDeur
-                <button onClick={() => setView(ViewType.Videos)}>Show videos</button>
                 <button onClick={() => showAllAnsers()}>Show All Answers</button>
+                <button onClick={() => setView(ViewType.Videos)}>Show videos</button>
+                <button onClick={() => playVideo(0)}>Show video 1</button>
+                <button onClick={() => playVideo(1)}>Show video 2</button>
+                <button onClick={() => playVideo(2)}>Show video 3</button>
                 <div>{questions[currentQuestionIndex].question}</div>
                 <ul>
                     {presenterAnswers}

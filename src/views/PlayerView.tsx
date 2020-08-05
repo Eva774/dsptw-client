@@ -16,6 +16,9 @@ import Finale from './playerRounds/Finale';
 import Players from '../components/Players';
 import TitleCard from '../components/TitleCard';
 import Jury from '../components/Jury';
+import AudioPlayer from '../components/Audioplayer';
+import { getEventStream } from '../api/localServer';
+import { GameEvent } from '../models/GameEvent';
 
 type PlayerViewProps = {
     gameState?: GameState
@@ -31,12 +34,16 @@ export default class PlayerView extends React.Component<PlayerViewProps, PlayerV
         showTitleCard: false,
     }
 
-    componentDidUpdate(prevProps: PlayerViewProps) {
-        if (prevProps.gameState?.roundState.roundName !== this.props.gameState?.roundState.roundName
-            && this.props.gameState?.roundState.roundName !== RoundName.Overzicht) {
-            this.setState({ showTitleCard: true });
-            setTimeout(() => this.setState({ showTitleCard: false }), 5000);
-        }
+    componentDidMount() {
+        getEventStream().subscribe((gameEvent: any) => {
+            console.log(gameEvent)
+            switch (gameEvent) {
+                case GameEvent.NextRound:
+                    this.setState({ showTitleCard: true });
+                    setTimeout(() => this.setState({ showTitleCard: false }), 5000);
+                    break;
+            }
+        });
     }
 
     render() {
@@ -72,6 +79,7 @@ export default class PlayerView extends React.Component<PlayerViewProps, PlayerV
 
         return (
             <div>
+                <AudioPlayer />
                 {this.state.showTitleCard ? <TitleCard roundName={roundName} /> : null}
                 <Jury show={jury.show} cameraLink={jury.cameraLink} name={jury.name} />
                 <Players
