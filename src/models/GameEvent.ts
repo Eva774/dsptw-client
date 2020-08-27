@@ -6,4 +6,5 @@ export enum GameEvent {
     NextRound = 'nextRound',
     PlayVideo = 'playVideo',
     ItHasHappened = 'itHasHappened',
+    Applause = 'applause',
 }

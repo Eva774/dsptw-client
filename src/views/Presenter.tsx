@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { previousRound, nextRound, startTime, stopTime, nextStartingPlayer, nextPlayerToComplete, setPlayerName, setPlayerTime, setPlayerCameraLink, showJury, hideJury } from '../api/localServer';
+import { previousRound, nextRound, startTime, stopTime, nextStartingPlayer, nextPlayerToComplete, setPlayerName, setPlayerTime, setPlayerCameraLink, showJury, hideJury, playApplause } from '../api/localServer';
 import { GameState } from '../models/GameState';
 import { DrieZesNegenState } from '../models/Rounds/DrieZesNegenState';
 import { RoundName } from '../models/RoundName';
@@ -179,6 +179,7 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
                 <div>
                     <button onClick={() => showJury()}>Show jury</button>
                     <button onClick={() => hideJury()}>Hide jury</button>
+                    <button onClick={() => playApplause()}>Applause</button>
                 </div>
                 <div>
                     <button onClick={() => nextStartingPlayer()}>Next starting player</button>

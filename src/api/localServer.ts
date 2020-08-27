@@ -91,6 +91,7 @@ export function setPlayerCameraLink(playerIndex: number, cameraLink: string) { s
 export function showJury() { sendCommand(SocketCommand.ShowJury) };
 export function hideJury() { sendCommand(SocketCommand.HideJury) };
 export function playVideo(videoIndex: number) { sendCommand(SocketCommand.PlayVideo, { videoIndex }) };
+export function playApplause() { sendCommand(SocketCommand.playApplause) };
 
 function sendCommand(command: string, extraData = {}) {
     socket.send(JSON.stringify({ command, ...extraData }));

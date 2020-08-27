@@ -17,4 +17,5 @@ export enum SocketCommand {
     ShowJury = 'showJury',
     HideJury = 'hideJury',
     PlayVideo = 'playVideo',
+    playApplause = 'playApplause',
 }

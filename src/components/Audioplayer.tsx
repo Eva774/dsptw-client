@@ -47,6 +47,9 @@ export default class AudioPlayer extends React.Component<{}, {}> {
                     thinkLoopAudio.pause();
                     stopAndPlayAudio(itHasHappenedAudio);
                     break;
+                case GameEvent.Applause:
+                    stopAndPlayAudio(applauseAudio);
+                    break;
             }
         });
     }
