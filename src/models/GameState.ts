@@ -1,21 +1,8 @@
-import { PlayerState } from './PlayerState';
 import { RoundState } from './Rounds/RoundState';
+import { PresenterState } from './PresenterState';
 
 export type GameState = {
-    episode: number,
-    currentPlayers: number[],
-    currentPlayer: number,
+    roundNumber: 0,
     roundState: RoundState,
-    players: PlayerState[],
-    timerIsRunning: boolean,
-    presenter: {
-        name: string,
-        cameraLink: string,
-    },
-    jury: {
-        show: boolean,
-        name: string,
-        cameraLink: string,
-    },
-    showAnswers: boolean,
+    presenters: PresenterState[],
 };
