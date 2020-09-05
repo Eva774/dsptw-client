@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { CollectiefGeheugenState } from '../../models/Rounds/CollectiefGeheugenState';
 import { Video } from '../../components/Video';
 import { ViewType } from '../../models/ViewType';
-import { setView, setCurrentQuestion, getBaseUrl } from '../../api/localServer';
+import { setCurrentQuestion, getBaseUrl } from '../../api/localServer';
 import { Answer } from '../../components/Answer';
 
 const Videos = styled.div`
@@ -45,7 +45,6 @@ export default class CollectiefGeheugen extends React.Component<CollectiefGeheug
         this.setState(state => ({
             playerVideoIds: [...state.playerVideoIds, videoIndex],
         }))
-        setView(ViewType.Answers);
     }
 
     render() {

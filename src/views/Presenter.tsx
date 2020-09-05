@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { previousRound, nextRound, startTime, stopTime, nextStartingPlayer, nextPlayerToComplete, setPlayerName, setPlayerTime, setPlayerCameraLink, showJury, hideJury, playApplause } from '../api/localServer';
+import { previousRound, nextRound } from '../api/localServer';
 import { GameState } from '../models/GameState';
 import { RoundType } from '../models/RoundType';
 

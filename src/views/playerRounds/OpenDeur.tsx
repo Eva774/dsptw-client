@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { OpenDeurState } from '../../models/Rounds/OpenDeurState';
 import { Video } from '../../components/Video';
 import { ViewType } from '../../models/ViewType';
-import { setView, setCurrentQuestion, getBaseUrl } from '../../api/localServer';
+import { setCurrentQuestion, getBaseUrl } from '../../api/localServer';
 import { Answer } from '../../components/Answer';
 
 const Videos = styled.div`
@@ -46,7 +46,6 @@ export default class OpenDeur extends React.Component<OpenDeurProps, OpenDeurCom
         this.setState(state => ({
             playerVideoIds: [...state.playerVideoIds, videoIndex],
         }))
-        setView(ViewType.Answers);
     }
 
     render() {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { GalerijState } from '../../models/Rounds/GalerijState';
-import { nextImage, correctAnswer, nextQuestion } from '../../api/localServer';
+import { nextQuestion } from '../../api/localServer';
 import styled from 'styled-components';
 
 type GalerijProps = {
@@ -24,20 +24,12 @@ export default class Galerij extends React.Component<GalerijProps, {}> {
         if (currentQuestionSeriesIndex < 0) {
             currentQuestionSeriesIndex = 0;
         }
-        const answers =
-            questions[currentQuestionSeriesIndex].map((question, i) => {
-                if (question.found) {
-                    return <FoundAnswer>{question.answer}</FoundAnswer>;
-                }
-                return <Answer current={currentImageIndex === i} onClick={() => correctAnswer(i)}>{question.answer}</Answer>
-            })
         return (
             <div>
                 Galerij
-                <button onClick={() => nextImage()}> Next image</button >
                 <button onClick={() => nextQuestion()}> Next series</button >
                 <ul>
-                    {answers}
+                    {}
                 </ul>
             </div >
         );

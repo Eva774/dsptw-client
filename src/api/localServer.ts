@@ -71,27 +71,11 @@ export function getPlayVideoStream() {
     return playVideoSubject;
 }
 
-export function startTime() { sendCommand(SocketCommand.StartTime) };
-export function stopTime() { sendCommand(SocketCommand.StopTime) };
-export function correctAnswer(foundIndex?: number, playerIndex?: number) {
-    sendCommand(SocketCommand.CorrectAnswer, { foundIndex, playerIndex })
-};
 export function nextQuestion() { sendCommand(SocketCommand.NextQuestion) };
 export function setCurrentQuestion(currentQuestion: number) { sendCommand(SocketCommand.SetCurrentQuestion, { currentQuestion }) };
-export function showAllAnsers() { sendCommand(SocketCommand.ShowAllAnswers) };
-export function nextImage() { sendCommand(SocketCommand.NextImage) };
-export function setView(view: ViewType) { sendCommand(SocketCommand.SetView, { view }) };
 export function previousRound() { sendCommand(SocketCommand.PreviousRound) };
 export function nextRound() { sendCommand(SocketCommand.NextRound) };
-export function nextStartingPlayer() { sendCommand(SocketCommand.NextStartingPlayer) };
-export function nextPlayerToComplete() { sendCommand(SocketCommand.NextPlayerToComplete) };
-export function setPlayerName(playerIndex: number, name: string) { sendCommand(SocketCommand.SetPlayerName, { playerIndex, name }) };
-export function setPlayerTime(playerIndex: number, time: number) { sendCommand(SocketCommand.SetPlayerTime, { playerIndex, time }) };
-export function setPlayerCameraLink(playerIndex: number, cameraLink: string) { sendCommand(SocketCommand.SetPlayerCameraLink, { playerIndex, cameraLink }) };
-export function showJury() { sendCommand(SocketCommand.ShowJury) };
-export function hideJury() { sendCommand(SocketCommand.HideJury) };
 export function playVideo(videoIndex: number) { sendCommand(SocketCommand.PlayVideo, { videoIndex }) };
-export function playApplause() { sendCommand(SocketCommand.PlayApplause) };
 
 function sendCommand(command: string, extraData = {}) {
     socket.send(JSON.stringify({ command, ...extraData }));
