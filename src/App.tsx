@@ -21,8 +21,9 @@ export default class Hello extends React.Component<{}, AppState> {
       gameState: {
         roundNumber: 0,
         roundState: {
+          targetTime: new Date(),
           roundName: RoundName.CollectiefGeheugen,
-          roundType: RoundType.MediaRound,
+          roundType: RoundType.WelcomeRound,
           questions: [
             "Hoe heet is flammable",
             "Hoe grappig is de woordgrap?",
@@ -49,11 +50,18 @@ export default class Hello extends React.Component<{}, AppState> {
   componentDidMount() {
     openConnection();
     getGameStateUpdateStream().subscribe((gameState: any) => {
-      console.log('gameStateUpdate', gameState)
+      console.log('gameStateUpdate', gameState) 
       this.setState({
         gameState
       })
     })
+    // setInterval(()=>{
+    //   const {timeLeft} = this.state
+    //   if (timeLeft > 0) {
+    //     this.setState(({timeLeft}) => ({timeLeft:timeLeft-1}))
+    //   }
+    //   console.log(timeLeft)
+    // },1000)
   }
 
   render() {

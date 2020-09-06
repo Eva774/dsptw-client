@@ -1,6 +1,9 @@
 
 import { TextRoundState } from './TextRoundState';
 import { MediaRoundState } from './MediaRoundState';
-export type RoundState =
-    TextRoundState
-    | MediaRoundState;
+import { WelcomeRoundState } from './WelcomeRoundState';
+
+export type RoundState = TextRoundState
+    | MediaRoundState
+    | WelcomeRoundState;
+
