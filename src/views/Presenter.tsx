@@ -5,6 +5,8 @@ import { GameState } from '../models/GameState';
 import { RoundType } from '../models/RoundType';
 
 import SocketStatus from '../components/SocketStatus';
+import TextRound from './presenterRounds/TextRound';
+import { TextRoundState } from '../models/Rounds/TextRoundState';
 
 const Wrapper = styled.div`
     font-size: 2em;
@@ -14,33 +16,8 @@ type PresenterProps = {
     gameState?: GameState
 }
 
-type PresenterState = {
-    playerNames: string[],
-    playerTimes: number[],
-    playerCameraLinks: string[],
-    showEditor: boolean,
-}
+export default class Presenter extends React.Component<PresenterProps, {}> {
 
-export default class Presenter extends React.Component<PresenterProps, PresenterState> {
-
-    state = {
-        playerNames: [
-            "",
-            "",
-            "",
-        ],
-        playerTimes: [
-            60000,
-            60000,
-            60000,
-        ],
-        playerCameraLinks: [
-            "",
-            "",
-            "",
-        ],
-        showEditor: false
-    }
 
     render() {
         if (!this.props.gameState) {
@@ -53,13 +30,18 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
 
         switch (roundType) {
             case RoundType.TextRound:
+                round = <TextRound gameState={this.props.gameState} roundState={roundState as TextRoundState} />
                 break;
         }
 
         return (
             <Wrapper>
                 <SocketStatus />
-                <h1>{roundName}</h1>
+                <div>
+                    <button onClick={previousRound}>Previous round</button>
+                    <button onClick={nextRound}>Next round</button>
+                </div>
+                <h1>{roundType} - {roundName}</h1>
                 {round}
             </Wrapper>
         )

@@ -59,12 +59,10 @@ export default class Hello extends React.Component<{}, AppState> {
 
   render() {
     const { isPresenter } = this.state;
-    console.log('state', this.state)
-    return <PlayerView gameState={this.state.gameState} />
-    // return (
-    //   <>
-    //     {isPresenter ? <Presenter gameState={this.state.gameState} /> : <PlayerView gameState={this.state.gameState} />}
-    //   </>
-    // );
+    return (
+      <>
+        {isPresenter ? <Presenter gameState={this.state.gameState} /> : <PlayerView gameState={this.state.gameState} />}
+      </>
+    );
   }
 }
