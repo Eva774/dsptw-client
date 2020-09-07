@@ -19,14 +19,14 @@ export default class Hello extends React.Component<{}, AppState> {
     this.state = {
       isPresenter: presenter !== null,
       gameState: {
-        roundNumber: 0,
+        roundNumber: 1,
         roundState: {
-          targetTime: new Date(),
-          roundName: RoundName.CollectiefGeheugen,
+          targetTime: new Date(new Date().getTime() + 100000),
+          roundName: "Filmpjes",
           roundType: RoundType.WelcomeRound,
           questions: [
             "Hoe heet is flammable",
-            "Hoe grappig is de woordgrap?",
+            "Hoe Lang is een chinees met een baard?",
             "Hoe lelijk is Sebastiaan zijn snor?",
             "Hoe kwets je iemand zijn gevoelens?",
             "Hoe grappig zijn inside jokes?",
@@ -36,11 +36,11 @@ export default class Hello extends React.Component<{}, AppState> {
         },
         presenters: [{
           name: "Eva",
-          cameraLink: "https://obs.ninja/",
+          cameraLink: "https://obs.ninja/?view=CJZ2H2X",
         },
         {
           name: "Sebastiaan",
-          cameraLink: "https://obs.ninja/",
+          cameraLink: "https://obs.ninja/?view=CJZ2H2X",
         }
         ]
       }
@@ -50,18 +50,11 @@ export default class Hello extends React.Component<{}, AppState> {
   componentDidMount() {
     openConnection();
     getGameStateUpdateStream().subscribe((gameState: any) => {
-      console.log('gameStateUpdate', gameState) 
+      console.log('gameStateUpdate', gameState)
       this.setState({
         gameState
       })
     })
-    // setInterval(()=>{
-    //   const {timeLeft} = this.state
-    //   if (timeLeft > 0) {
-    //     this.setState(({timeLeft}) => ({timeLeft:timeLeft-1}))
-    //   }
-    //   console.log(timeLeft)
-    // },1000)
   }
 
   render() {

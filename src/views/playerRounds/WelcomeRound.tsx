@@ -2,13 +2,15 @@ import * as React from 'react';
 import { GameState } from '../../models/GameState';
 import Camera from '../../components/Camera';
 import styled from 'styled-components';
-import moment from 'moment'
+import moment, { now } from 'moment'
+import { WelcomeRoundState } from '../../models/Rounds/WelcomeRoundState';
 
 type WelcomeRoundProps = {
     gameState: GameState,
+    roundState: WelcomeRoundState,
 }
 
-type WelcomeRoundState = {
+type WelcomeRoundInternalState = {
     timeLeft: number,
 }
 
@@ -27,32 +29,36 @@ const Titel = styled.div`
     justify-content: space-evenly;
 `
 
+function prefix(input: number) {
+    return input < 10 ? "0" + input.toString() : input.toString();
+}
 
-export default class WelcomeRound extends React.Component<WelcomeRoundProps, WelcomeRoundState> {
+
+export default class WelcomeRound extends React.Component<WelcomeRoundProps, WelcomeRoundInternalState> {
+
+    state = {
+        timeLeft: 0
+    }
 
     componentDidMount() {
-
         setInterval(() => {
-            const targetTime = new moment(this.props.gameState.roundState.targetTime);
-            const currentTime = new moment()
-            const timeLeft = targetTime - currentTime;
+            const targetTime = this.props.roundState.targetTime;
+            const currentTime = new Date();
+            const timeLeft = targetTime.getTime() - currentTime.getTime();
 
-            
             console.log(timeLeft)
             this.setState({
                 timeLeft
             });
-
         }, 1000)
     }
 
     render() {
-        const { timeLeft} = this.state;
-        
-        const minutesLeft = Math.floor((timeLeft/60)).toString()
-        const secondsLeft = timeLeft % 60 < 10 ? "0" + (timeLeft % 60).toString() : (timeLeft % 60).toString()
+        const { timeLeft } = this.state;
 
-        let clock = minutesLeft + ":" + secondsLeft
+        const minutesLeft = Math.floor(timeLeft / 60000);
+        const secondsLeft = Math.floor((timeLeft % 60000 / 1000));
+        let clock = prefix(minutesLeft) + ':' + prefix(secondsLeft);
 
         if (timeLeft === 0) {
             clock = 'We beginnen zo meteen'
@@ -67,10 +73,6 @@ export default class WelcomeRound extends React.Component<WelcomeRoundProps, Wel
                 <Clock>
                     {clock}
                 </Clock>
-
-                <h1> [Hier een tabel met de verdeling van de teams over de babelkanalen?]</h1>
-                <moment fromNow> 2020-06-09T21:00-0000</moment>
-
             </Root>
         );
     }

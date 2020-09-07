@@ -1,8 +1,7 @@
-import { RoundName } from '../RoundName';
 import { RoundType } from '../RoundType';
 
 export type MediaRoundState = {
-    roundName: RoundName,
+    roundName: string,
     roundType: RoundType,
     questions: string[],
     currentQuestionIndex: number,

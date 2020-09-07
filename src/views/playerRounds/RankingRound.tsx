@@ -37,26 +37,27 @@ const RoundName = styled.h1`
 export default class RankingRound extends React.Component<RankingRoundProps, {}> {
 
     render() {
-        const { presenters } = this.props.gameState;
-        const { roundName, questions, currentQuestionIndex } = this.props.gameState.roundState;
+        return <div>PauseRound</div>
+        // const { presenters } = this.props.gameState;
+        // const { roundName, questions, currentQuestionIndex } = this.props.gameState.roundState;
 
-        let tussenStand = "Tabel met tussenstand"
-        //Hoe kan de tabel met de tussenstand worden ingeladen terwijl het programma al opstaat?
+        // let tussenStand = "Tabel met tussenstand"
+        // //Hoe kan de tabel met de tussenstand worden ingeladen terwijl het programma al opstaat?
 
-        return (
-            <Root>
-                <RoundName>{roundName}</RoundName>
+        // return (
+        //     <Root>
+        //         <RoundName>{roundName}</RoundName>
 
-                <Presenter1>
-                    <Camera name={presenters[0].name} cameraLink={presenters[0].cameraLink} />
-                </Presenter1>
-                <Presenter2>
-                    <Camera name={presenters[1].name} cameraLink={presenters[1].cameraLink} />
-                </Presenter2>
-                {/* <Media>
-                    {tussenStand}
-                </Media> */}
-            </Root>
-        );
+        //         <Presenter1>
+        //             <Camera name={presenters[0].name} cameraLink={presenters[0].cameraLink} />
+        //         </Presenter1>
+        //         <Presenter2>
+        //             <Camera name={presenters[1].name} cameraLink={presenters[1].cameraLink} />
+        //         </Presenter2>
+        //         {/* <Media>
+        //             {tussenStand}
+        //         </Media> */}
+        //     </Root>
+        // );
     }
 }

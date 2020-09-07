@@ -1,45 +1,99 @@
 import * as React from 'react';
 import { GameState } from '../../models/GameState';
-import Camera from '../../components/Camera';
+import SmallCamera from '../../components/SmallCamera';
 import styled from 'styled-components';
+import { MediaRoundState } from '../../models/Rounds/MediaRoundState';
+import { Theme } from '../../Theme';
 
 type MediaRoundProps = {
     gameState: GameState,
+    roundState: MediaRoundState
 }
 
 const Root = styled.div`
-    text-align: center;
 `
 
 const Presenter1 = styled.div`
     position: absolute;
-    margin-top: 20px;
-    right: 20px;
-
+    left: 35px;
+    bottom: 170px
 `
 
 const Presenter2 = styled.div`
     position: absolute;
-    left: 20px;
-    bottom: 20px
+    top: 60px;
+    right: 35px;
 `
 
-const QuestionNumber = styled.div`
+const Title = styled.h1`
     position: absolute;
-    font-size: 35px;
-    text-align: center;
-    bottom: 20px;
-    right: 20px
+    top: 50px;
+    left: 62px;
+    max-width: 215px;
+    text-align: left;
+    color: ${Theme.primary};
+    text-shadow: 3px 3px ${Theme.primaryAccent}, 0px 0px 20px ${Theme.primaryAccent};
+    font-family: 'Neon Tubes 2';
+    font-size: 65px;
+    font-weight: normal;
+    font-style: normal;
+    margin: 0;
 `
 
-const RoundName = styled.h1`
-    text-align: center
+const RoundName = styled.h2`
+    position: absolute;
+    top: 410px;
+    left: 62px;
+    margin: 0;
+    font-size 50px;
+    color: ${Theme.primaryAccent};
+    text-transform: uppercase;
+    font-family: 'Avenir LT Std';
+    font-weight: normal;
+    font-style: normal;
 `
+
+const Media = styled.div`
+    width: 1280px;
+    height: 720px;
+    background-color: black;
+`
+
+const MediaWrapper = styled.div`
+    position: absolute;
+    top: 110px;
+    left: 320px;
+    max-width: 1280px;
+    max-height: 720px;
+    padding: 1rem;
+    position: relative;
+    background: linear-gradient(80deg, #F52F95, ${Theme.secondary});
+    padding: 3px;
+`
+
+const Question = styled.div`
+    position: absolute;
+    right: 50px;
+    bottom: 20px;
+    color: ${Theme.primary};
+    font-size: 85px;
+    width: 1400px;
+    font-family: 'Avenir LT Std';
+    font-weight: normal;
+    font-style: normal;
+    text-align: right;
+`
+
+const QuestionNumber = styled.span`
+    color: ${Theme.secondary};
+    margin-right:20px;
+`
+
 export default class MediaRound extends React.Component<MediaRoundProps, {}> {
 
     render() {
-        const { presenters } = this.props.gameState;
-        const { roundName, questions, currentQuestionIndex } = this.props.gameState.roundState;
+        const { presenters, roundNumber } = this.props.gameState;
+        const { roundName, questions, currentQuestionIndex } = this.props.roundState;
 
         let question = ""
         let questionNumber = ""
@@ -48,19 +102,20 @@ export default class MediaRound extends React.Component<MediaRoundProps, {}> {
             questionNumber = (currentQuestionIndex + 1).toString();
         }
 
-
-
         return (
             <Root>
+                <Title>Trivial Time Ronde {roundNumber}</Title>
                 <RoundName>{roundName}</RoundName>
-
+                <MediaWrapper>
+                    <Media></Media>
+                </MediaWrapper>
                 <Presenter1>
-                    <Camera name={presenters[0].name} cameraLink={presenters[0].cameraLink} />
+                    <SmallCamera presenter={presenters[0]} />
                 </Presenter1>
                 <Presenter2>
-                    <Camera name={presenters[1].name} cameraLink={presenters[1].cameraLink} />
+                    <SmallCamera presenter={presenters[1]} />
                 </Presenter2>
-                <QuestionNumber>{questionNumber}</QuestionNumber>
+                <Question><QuestionNumber>Vraag {currentQuestionIndex + 1}:</QuestionNumber>{question}</Question>
             </Root>
         );
     }

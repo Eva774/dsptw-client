@@ -2,34 +2,55 @@ import * as React from 'react';
 import { GameState } from '../../models/GameState';
 import Camera from '../../components/Camera';
 import styled from 'styled-components';
+import { TextRoundState } from '../../models/Rounds/TextRoundState';
+import { Title } from '../../components/Title';
+import { Theme } from '../../Theme';
 
 type TextRoundProps = {
     gameState: GameState,
+    roundState: TextRoundState,
 }
 
 const Root = styled.div`
-text-align: center;
+    text-align: center;
 `
 
 const Presenters = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
 `
 
 const Question = styled.div`
-    font-size: 35px;
-    text-align: center;
+    color: ${Theme.primary};
+    font-size: 85px;
+    width: 1400px;
+    font-family: 'Avenir LT Std';
+    font-weight: normal;
+    font-style: normal;
+    margin: 40px auto;
+`
+
+const QuestionNumber = styled.span`
+    color: ${Theme.secondary};
+    margin-right:20px;
 `
 
 const RoundName = styled.h1`
-    text-align: center
+    color: ${Theme.primaryAccent};
+    font-family: 'Avenir LT Std';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 85px;
+    text-transform: uppercase;
+    margin: 22px 0;
 `
 export default class TextRound extends React.Component<TextRoundProps, {}> {
 
     render() {
-        const { presenters } = this.props.gameState;
-        const { roundName, questions, currentQuestionIndex } = this.props.gameState.roundState;
+        const { gameState, roundState } = this.props;
+        const { presenters, roundNumber } = gameState;
+        const { roundName, questions, currentQuestionIndex } = roundState;
 
         let question = ""
         if (currentQuestionIndex >= 0 && currentQuestionIndex < questions.length) {
@@ -38,13 +59,14 @@ export default class TextRound extends React.Component<TextRoundProps, {}> {
 
         return (
             <Root>
+                <Title>Trivial Time Ronde {roundNumber}</Title>
                 <RoundName>{roundName}</RoundName>
 
                 <Presenters>
-                    <Camera name={presenters[0].name} cameraLink={presenters[0].cameraLink} />
-                    <Camera name={presenters[1].name} cameraLink={presenters[1].cameraLink} />
+                    <Camera presenter={presenters[0]} namePlace="left" />
+                    <Camera presenter={presenters[1]} namePlace="right" />
                 </Presenters>
-                <Question>{question}</Question>
+                <Question><QuestionNumber>Vraag {currentQuestionIndex + 1}:</QuestionNumber>{question}</Question>
             </Root>
         );
     }

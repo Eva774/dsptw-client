@@ -5,8 +5,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: white;
   /* background-color: #981C06; */
-  background: rgb(88,11,15,1);
-  background: radial-gradient(circle, rgba(202,61,54,1) 0%, rgba(88,11,15,1) 100%);
+  background: black;
 }
 
 code {
@@ -17,3 +16,24 @@ code {
 button {
   border-radius: 10px;
 }
+
+@font-face {
+  font-family: 'Neon Tubes 2';
+  src: url('./fonts/NeonTubes2-Regular.woff2') format('woff2'),
+      url('./fonts/NeonTubes2-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir LT Std';
+  src: url('./fonts/AvenirLTStd-Book.woff2') format('woff2'),
+      url('./fonts/AvenirLTStd-Book.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@font-face {font-family: "Avenir Medium"; src: url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.eot"); src: url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.woff") format("woff"), url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.svg#Avenir Medium") format("svg"); } 

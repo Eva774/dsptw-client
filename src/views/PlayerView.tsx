@@ -11,6 +11,10 @@ import WelcomeRound from './playerRounds/WelcomeRound';
 import PauseRound from './playerRounds/PauseRound';
 import styled from 'styled-components';
 import RankingRound from './playerRounds/RankingRound';
+import { TextRoundState } from '../models/Rounds/TextRoundState';
+import { MediaRoundState } from '../models/Rounds/MediaRoundState';
+import { WelcomeRoundState } from '../models/Rounds/WelcomeRoundState';
+import { PauseRoundState } from '../models/Rounds/PauseRoundState';
 
 type PlayerViewProps = {
     gameState?: GameState
@@ -19,6 +23,16 @@ type PlayerViewProps = {
 type PlayerViewState = {
     showTitleCard: boolean
 }
+
+const Root = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #cccccc;
+    background-image: url('/imgs/background${(props: { backgroundType: string }) => props.backgroundType}.png');
+`
 
 const Title = styled.h1`
     text-align: center;
@@ -48,40 +62,37 @@ export default class PlayerView extends React.Component<PlayerViewProps, PlayerV
             return <div>Not connected to server, is the server online?</div>;
         }
         const { gameState } = this.props;
-        const { roundState, roundNumber } = gameState;
+        const { presenters, roundState, roundNumber } = gameState;
         const { roundName, roundType } = roundState;
 
 
         let round = null;
-        let title = null;
         switch (roundType) {
             case RoundType.TextRound:
-                round = <TextRound gameState={gameState} />
-                title = <Title> Trivial Time!!! Ronde {roundNumber + 1}</Title>
+                round = <TextRound gameState={gameState} roundState={roundState as TextRoundState} />
                 break;
             case RoundType.MediaRound:
-                round = <MediaRound gameState={gameState} />
-                title = <Title> Trivial Time!!! Ronde {roundNumber + 1}</Title>
+                round = <MediaRound gameState={gameState} roundState={roundState as MediaRoundState} />
                 break;
             case RoundType.WelcomeRound:
-                round = <WelcomeRound gameState={gameState} />
+                round = <WelcomeRound gameState={gameState} roundState={roundState as WelcomeRoundState} />
                 break;
             case RoundType.PauseRound:
-                round = <PauseRound gameState={gameState} />
+                round = <PauseRound gameState={gameState} roundState={roundState as PauseRoundState} />
                 break;
             case RoundType.RankingRound:
                 round = <RankingRound gameState={gameState} />
                 break;
-
         }
 
+        const backgroundType = roundType === RoundType.WelcomeRound ? '2' : '1';
+
         return (
-            <div>
+            <Root backgroundType={backgroundType}>
                 <AudioPlayer />
-                {title}
                 {this.state.showTitleCard ? <TitleCard roundName={roundName} /> : null}
                 {round}
-            </div>
+            </Root >
         )
 
     }

@@ -2,12 +2,15 @@ import * as React from 'react';
 import { GameState } from '../../models/GameState';
 import Camera from '../../components/Camera';
 import styled from 'styled-components';
+import { PauseRoundState } from '../../models/Rounds/PauseRoundState';
 
 type PauseRoundProps = {
     gameState: GameState,
-
+    roundState: PauseRoundState,
 }
-
+type WelcomeRoundInternalState = {
+    timeLeft: number,
+}
 const Root = styled.div`
 text-align: center;
 `
@@ -24,17 +27,20 @@ justify-content: space-evenly;
 `
 
 
-export default class PauseRound extends React.Component<PauseRoundProps, {}> {
-    
-    render() {      
-        const{ timeLeft } = this.props
+export default class PauseRound extends React.Component<PauseRoundProps, WelcomeRoundInternalState> {
+    state = {
+        timeLeft: 1000
+    }
 
-        var minutesLeft = Math.floor(timeLeft/60).toString()
-        var secondsLeft = timeLeft%60<10 ? "0"+(timeLeft%60).toString() : (timeLeft%60).toString()
-        
-        let klok = minutesLeft+":"+secondsLeft
+    render() {
+        const { timeLeft } = this.state
 
-        if (timeLeft == 0) { 
+        var minutesLeft = Math.floor(timeLeft / 60).toString()
+        var secondsLeft = timeLeft % 60 < 10 ? "0" + (timeLeft % 60).toString() : (timeLeft % 60).toString()
+
+        let klok = minutesLeft + ":" + secondsLeft
+
+        if (timeLeft == 0) {
             klok = 'We beginnen zometeen'
         }
 
@@ -49,7 +55,7 @@ export default class PauseRound extends React.Component<PauseRoundProps, {}> {
                 </Klok>
 
                 <h1> Neem gerust een drankje of een hapje in tussentijd</h1>
-                
+
             </Root>
         );
     }
