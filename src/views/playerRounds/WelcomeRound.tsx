@@ -2,7 +2,6 @@ import * as React from 'react';
 import { GameState } from '../../models/GameState';
 import Camera from '../../components/Camera';
 import styled from 'styled-components';
-import moment, { now } from 'moment'
 import { WelcomeRoundState } from '../../models/Rounds/WelcomeRoundState';
 
 type WelcomeRoundProps = {
@@ -60,7 +59,7 @@ export default class WelcomeRound extends React.Component<WelcomeRoundProps, Wel
         const secondsLeft = Math.floor((timeLeft % 60000 / 1000));
         let clock = prefix(minutesLeft) + ':' + prefix(secondsLeft);
 
-        if (timeLeft === 0) {
+        if (timeLeft <= 0) {
             clock = 'We beginnen zo meteen'
         }
 
