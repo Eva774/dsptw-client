@@ -41,7 +41,7 @@ export default class WelcomeRound extends React.Component<WelcomeRoundProps, Wel
 
     componentDidMount() {
         setInterval(() => {
-            const targetTime = this.props.roundState.targetTime;
+            const targetTime = new Date(this.props.roundState.targetTime);
             const currentTime = new Date();
             const timeLeft = targetTime.getTime() - currentTime.getTime();
 
@@ -53,11 +53,14 @@ export default class WelcomeRound extends React.Component<WelcomeRoundProps, Wel
     }
 
     render() {
+        const targetTime = new Date(this.props.roundState.targetTime);
         const { timeLeft } = this.state;
 
         const minutesLeft = Math.floor(timeLeft / 60000);
         const secondsLeft = Math.floor((timeLeft % 60000 / 1000));
         let clock = prefix(minutesLeft) + ':' + prefix(secondsLeft);
+
+        const printTime = `${prefix(targetTime.getHours())}:${prefix(targetTime.getMinutes())}`;
 
         if (timeLeft <= 0) {
             clock = 'We beginnen zo meteen'
@@ -67,7 +70,7 @@ export default class WelcomeRound extends React.Component<WelcomeRoundProps, Wel
             <Root>
                 <Titel>
                     <h1> Trivial time!!</h1>
-                    <h1> We beginnen om 19u</h1>
+                    <h1> We beginnen om {printTime}</h1>
                 </Titel>
                 <Clock>
                     {clock}

@@ -23,12 +23,12 @@ const Presenters = styled.div`
 
 const Question = styled.div`
     color: ${Theme.primary};
-    font-size: 85px;
-    width: 1400px;
+    font-size: 70px;
+    width: 1500px;
     font-family: 'Avenir LT Std';
     font-weight: normal;
     font-style: normal;
-    margin: 40px auto;
+    margin: 40px auto 0 auto;
 `
 
 const QuestionNumber = styled.span`

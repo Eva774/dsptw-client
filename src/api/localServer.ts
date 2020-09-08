@@ -71,12 +71,17 @@ export function getPlayVideoStream() {
     return playVideoSubject;
 }
 
+export function previousQuestion() { sendCommand(SocketCommand.PreviousQuestion) };
 export function nextQuestion() { sendCommand(SocketCommand.NextQuestion) };
 export function setCurrentQuestion(currentQuestion: number) { sendCommand(SocketCommand.SetCurrentQuestion, { currentQuestion }) };
 export function previousRound() { sendCommand(SocketCommand.PreviousRound) };
 export function nextRound() { sendCommand(SocketCommand.NextRound) };
+export function setPauseTargetTime(targetTime: string) { sendCommand(SocketCommand.SetPauseTargetTime, { targetTime }) };
+export function setWelcomeTargetTime(targetTime: string) { sendCommand(SocketCommand.SetWelcomeTargetTime, { targetTime }) };
 export function playVideo(videoIndex: number) { sendCommand(SocketCommand.PlayVideo, { videoIndex }) };
 
 function sendCommand(command: string, extraData = {}) {
-    socket.send(JSON.stringify({ command, ...extraData }));
+    if (socket) {
+        socket.send(JSON.stringify({ command, ...extraData }));
+    }
 }

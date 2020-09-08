@@ -1,8 +1,7 @@
-import { RoundName } from '../RoundName';
 import { RoundType } from '../RoundType';
 
 export type PauseRoundState = {
-    roundName: RoundName,
+    roundName: string,
     roundType: RoundType,
     targetTime: Date,
 };

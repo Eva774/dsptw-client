@@ -1,3 +1,5 @@
 export enum ObsScene {
-    Lobby = 'Lobby',
+    TextRound = 'TextRound',
+    MediaRound = 'MediaRound',
+    Blank = 'Blank',
 }
