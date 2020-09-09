@@ -133,12 +133,13 @@ export default class MediaRound extends React.Component<MediaRoundProps, {}> {
         }
 
         let media = null;
-        if (mediaRoundType === MediaRoundType.Picture) {
-            const image = "https://i.imgur.com/rlXSjQb.jpg";
-            media = <Media><BackgroundImage backgroundImage={image} /><Image src={image} /></Media>;
-        } else {
-            media = <Media><Video poster={`https://via.placeholder.com/1920x108${currentQuestionIndex}`} src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4" /></Media>
-        }
+        if (currentQuestionIndex)
+            if (mediaRoundType === MediaRoundType.Picture) {
+                const image = `http://localhost:8080/static/fotos/${currentQuestionIndex}.jpg`;
+                media = <Media><BackgroundImage backgroundImage={image} /><Image src={image} /></Media>;
+            } else {
+                media = <Media><Video poster={`https://via.placeholder.com/1920x108${currentQuestionIndex}`} src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4" /></Media>
+            }
 
         return (
             <Root>
