@@ -9,12 +9,15 @@ import TextRound from './playerRounds/TextRound';
 import MediaRound from './playerRounds/MediaRound';
 import WelcomeRound from './playerRounds/WelcomeRound';
 import PauseRound from './playerRounds/PauseRound';
+import TalkingRound from './playerRounds/TalkingRound';
 import styled from 'styled-components';
 import RankingRound from './playerRounds/RankingRound';
 import { TextRoundState } from '../models/Rounds/TextRoundState';
 import { MediaRoundState } from '../models/Rounds/MediaRoundState';
 import { WelcomeRoundState } from '../models/Rounds/WelcomeRoundState';
 import { PauseRoundState } from '../models/Rounds/PauseRoundState';
+import { TalkingRoundState } from '../models/Rounds/TalkingRoundState';
+
 
 type PlayerViewProps = {
     gameState?: GameState
@@ -83,6 +86,8 @@ export default class PlayerView extends React.Component<PlayerViewProps, PlayerV
             case RoundType.RankingRound:
                 round = <RankingRound gameState={gameState} />
                 break;
+            case RoundType.TalkingRound:
+                round = <TalkingRound gameState={gameState} roundState={roundState as TalkingRoundState}/>
         }
 
         const backgroundType = roundType === RoundType.WelcomeRound ? '2' : '1';
