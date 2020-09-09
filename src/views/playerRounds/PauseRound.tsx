@@ -3,6 +3,7 @@ import { GameState } from '../../models/GameState';
 import Camera from '../../components/Camera';
 import styled from 'styled-components';
 import { PauseRoundState } from '../../models/Rounds/PauseRoundState';
+import { Theme } from '../../Theme';
 
 type PauseRoundProps = {
     gameState: GameState,
@@ -12,50 +13,92 @@ type WelcomeRoundInternalState = {
     timeLeft: number,
 }
 const Root = styled.div`
-text-align: center;
+    text-align: center;
 `
-const Klok = styled.p`
-text-align: center;
-font-size: 80px;
-top-margin:40px
+const Clock = styled.p`
+    position: absolute;
+    top: 60px;
+    left: 1200px;
+    max-width: 215px;
+    text-align: left;
+    color: ${Theme.primary};
+    text-shadow: 3px 3px ${Theme.primaryAccent}, 0px 0px 20px ${Theme.primaryAccent};
+    font-family: 'Neon Tubes 2';
+    font-size: 140px;
+    font-weight: normal;
+    font-style: normal;
 `
-const Titel = styled.div`
-margin: 120px;
-display: flex;
-align-items: center;
-justify-content: space-evenly;
+const Titel = styled.h2`
+    position: absolute;
+    top: 70px;
+    left: 200px;
+    max-width: 800px;
+    text-align: left;
+    font-size: 65px;
+    color: ${Theme.primaryAccent};
+    text-transform: uppercase;
+    font-family: 'Avenir LT Std';
+    font-weight: normal;
+    font-style: normal;
 `
 
+const StartTimeWrapper = styled.h2`
+    position: absolute;
+    max-width: 900px;
+    text-align: left;
+    top: 230px;
+    left: 200px;
+    color: ${Theme.primary};
+    font-size: 65px;
+    text-transform: uppercase;
+    font-family: 'Avenir LT Std';
+    font-weight: normal;
+    font-style: normal;
+    text-align: right;
+`
+function prefix(input: number) {
+    return input < 10 ? "0" + input.toString() : input.toString();
+}
 
 export default class PauseRound extends React.Component<PauseRoundProps, WelcomeRoundInternalState> {
     state = {
-        timeLeft: 1000
+        timeLeft: 0
+    }
+
+    componentDidMount() {
+        setInterval(() => {
+            const targetTime = new Date(this.props.roundState.targetTime);
+            const currentTime = new Date();
+            const timeLeft = targetTime.getTime() - currentTime.getTime();
+
+            console.log(timeLeft)
+            this.setState({
+                timeLeft
+            });
+        }, 1000)
     }
 
     render() {
-        const { timeLeft } = this.state
+        const targetTime = new Date(this.props.roundState.targetTime);
+        const { timeLeft } = this.state;
 
-        var minutesLeft = Math.floor(timeLeft / 60).toString()
-        var secondsLeft = timeLeft % 60 < 10 ? "0" + (timeLeft % 60).toString() : (timeLeft % 60).toString()
+        const minutesLeft = Math.floor(timeLeft / 60000);
+        const secondsLeft = Math.floor((timeLeft % 60000 / 1000));
+        let clock = prefix(minutesLeft) + ':' + prefix(secondsLeft);
 
-        let klok = minutesLeft + ":" + secondsLeft
+        const printTime = `${prefix(targetTime.getHours())}:${prefix(targetTime.getMinutes())}`;
 
-        if (timeLeft == 0) {
-            klok = 'We beginnen zometeen'
+        if (timeLeft <= 0) {
+            clock = 'NU'
         }
 
         return (
             <Root>
-                <Titel>
-                    <h1> Trivial time!!</h1>
-                    <h1> We herbeginnen om 20u</h1>
-                </Titel>
-                <Klok>
-                    {klok}
-                </Klok>
-
-                <h1> Neem gerust een drankje of een hapje in tussentijd</h1>
-
+                <Titel>Pakt u een hapje en een drankje</Titel>
+                <StartTimeWrapper>we herbeginnen om {printTime}</StartTimeWrapper>
+                <Clock>
+                    {clock}
+                </Clock>
             </Root>
         );
     }

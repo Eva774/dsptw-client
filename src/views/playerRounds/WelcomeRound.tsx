@@ -3,6 +3,7 @@ import { GameState } from '../../models/GameState';
 import Camera from '../../components/Camera';
 import styled from 'styled-components';
 import { WelcomeRoundState } from '../../models/Rounds/WelcomeRoundState';
+import { Theme } from '../../Theme';
 
 type WelcomeRoundProps = {
     gameState: GameState,
@@ -17,15 +18,45 @@ const Root = styled.div`
     text-align: center;
 `
 const Clock = styled.p`
-    text-align: center;
-    font-size: 80px;
-    top-margin:40px
+    position: absolute;
+    top: 60px;
+    left: 1200px;
+    max-width: 215px;
+    text-align: left;
+    color: ${Theme.primary};
+    text-shadow: 3px 3px ${Theme.primaryAccent}, 0px 0px 20px ${Theme.primaryAccent};
+    font-family: 'Neon Tubes 2';
+    font-size: 140px;
+    font-weight: normal;
+    font-style: normal;
 `
-const Titel = styled.div`
-    margin: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+const Titel = styled.h2`
+    position: absolute;
+    top: 70px;
+    left: 200px;
+    max-width: 800px;
+    text-align: left;
+    font-size: 65px;
+    color: ${Theme.primaryAccent};
+    text-transform: uppercase;
+    font-family: 'Avenir LT Std';
+    font-weight: normal;
+    font-style: normal;
+`
+
+const StartTimeWrapper = styled.h2`
+    position: absolute;
+    max-width: 800px;
+    text-align: left;
+    top: 230px;
+    left: 200px;
+    color: ${Theme.primary};
+    font-size: 65px;
+    text-transform: uppercase;
+    font-family: 'Avenir LT Std';
+    font-weight: normal;
+    font-style: normal;
+    text-align: right;
 `
 
 function prefix(input: number) {
@@ -63,18 +94,17 @@ export default class WelcomeRound extends React.Component<WelcomeRoundProps, Wel
         const printTime = `${prefix(targetTime.getHours())}:${prefix(targetTime.getMinutes())}`;
 
         if (timeLeft <= 0) {
-            clock = 'We beginnen zo meteen'
+            clock = 'NU'
         }
 
         return (
             <Root>
-                <Titel>
-                    <h1> Trivial time!!</h1>
-                    <h1> We beginnen om {printTime}</h1>
-                </Titel>
+                <Titel>Zet u nu ne keer klaar voor diene quiz</Titel>
+                <StartTimeWrapper>we beginnen om {printTime}</StartTimeWrapper>
                 <Clock>
                     {clock}
                 </Clock>
+                
             </Root>
         );
     }
