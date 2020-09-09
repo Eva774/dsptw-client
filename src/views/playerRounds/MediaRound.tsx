@@ -4,6 +4,7 @@ import SmallCamera from '../../components/SmallCamera';
 import styled from 'styled-components';
 import { MediaRoundState } from '../../models/Rounds/MediaRoundState';
 import { Theme } from '../../Theme';
+import { MediaRoundType } from '../../models/Rounds/MediaRoundType';
 
 type MediaRoundProps = {
     gameState: GameState,
@@ -58,6 +59,34 @@ const Media = styled.div`
     width: 1280px;
     height: 720px;
     background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const BackgroundImage = styled.div`
+    position: absolute;
+    top: 2.5%;
+    left: 1%;
+    width: 98%;
+    height: 95%;
+    ${(props: { backgroundImage: string }) => `background-image: url('${props.backgroundImage}');`}
+    background-size: cover;
+    z-index: 1;
+    filter: blur(15px);
+`
+
+const Image = styled.img`
+    max-width: 100%;
+    max-height: 100%;
+    display: block; 
+    z-index: 2;
+`
+
+const Video = styled.video`
+    max-width: 100%;
+    max-height: 100%;
+    display: block; 
 `
 
 const MediaWrapper = styled.div`
@@ -71,7 +100,6 @@ const MediaWrapper = styled.div`
     background: linear-gradient(80deg, #F52F95, ${Theme.secondary});
     padding: 3px;
 `
-
 const Question = styled.div`
     position: absolute;
     right: 50px;
@@ -94,7 +122,7 @@ export default class MediaRound extends React.Component<MediaRoundProps, {}> {
 
     render() {
         const { presenters } = this.props.gameState;
-        const { roundName, questions, currentQuestionIndex, roundNumber } = this.props.roundState;
+        const { roundName, questions, currentQuestionIndex, roundNumber, mediaRoundType } = this.props.roundState;
 
         let question = ""
         let questionNumber = ""
@@ -104,12 +132,20 @@ export default class MediaRound extends React.Component<MediaRoundProps, {}> {
             questionNumber = (currentQuestionIndex + 1).toString();
         }
 
+        let media = null;
+        if (mediaRoundType === MediaRoundType.Picture) {
+            const image = "https://i.imgur.com/rlXSjQb.jpg";
+            media = <Media><BackgroundImage backgroundImage={image} /><Image src={image} /></Media>;
+        } else {
+            media = <Media><Video poster={`https://via.placeholder.com/1920x108${currentQuestionIndex}`} src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4" /></Media>
+        }
+
         return (
             <Root>
                 <Title>Trivial Time Ronde {roundNumber}</Title>
                 <RoundName>{roundName}</RoundName>
                 <MediaWrapper>
-                    <Media></Media>
+                    {media}
                 </MediaWrapper>
                 <Presenter1>
                     <SmallCamera presenter={presenters[0]} />
