@@ -62,7 +62,7 @@ export default class PlayerView extends React.Component<PlayerViewProps, PlayerV
             return <div>Not connected to server, is the server online?</div>;
         }
         const { gameState } = this.props;
-        const { presenters, roundState, roundNumber } = gameState;
+        const { presenters, roundState } = gameState;
         const { roundName, roundType } = roundState;
 
 

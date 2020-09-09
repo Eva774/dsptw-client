@@ -45,14 +45,55 @@ const RoundName = styled.h1`
     text-transform: uppercase;
     margin: 22px 0;
 `
+
+const Timer = styled.div`
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    background-image: linear-gradient(${Theme.primaryAccent}, ${Theme.secondary});
+    animation : drop 30s infinite, pulse 30s infinite;
+    animation-timing-function : linear;
+
+    @keyframes drop {
+        0%   { height: 100% }
+        100% { height: 0%    }
+     }
+
+     @keyframes pulse {
+        0%   { -webkit-transform: scale(1)   ; opacity: 1;    }
+        80%  { -webkit-transform: scale(1); opacity: 1; }
+        82%  { -webkit-transform: scale(1); opacity: 0.25; }
+        84%  { -webkit-transform: scale(1); opacity: 1; }
+        86%  { -webkit-transform: scale(1); opacity: 0.25; }
+        88%  { -webkit-transform: scale(1); opacity: 1; }
+        90%  { -webkit-transform: scale(1); opacity: 0.25; }
+        92%  { -webkit-transform: scale(1); opacity: 1; }
+        94%  { -webkit-transform: scale(1); opacity: 0.25; }
+        96%  { -webkit-transform: scale(1); opacity: 1; }
+        98%  { -webkit-transform: scale(1); opacity: 0.25; }
+        100% { -webkit-transform: scale(1)   ; opacity: 1;    }
+     }
+`
+
+const TimerWrapper = styled.div`
+    position: relative;
+    width: 120px;
+    height: 400px;
+    border: 5px solid ${Theme.primary};
+    margin: 0 50px;
+`
+
 export default class TextRound extends React.Component<TextRoundProps, {}> {
 
     render() {
         const { gameState, roundState } = this.props;
-        const { presenters, roundNumber } = gameState;
-        const { roundName, questions, currentQuestionIndex } = roundState;
+        const { presenters } = gameState;
+        const { roundName, questions, currentQuestionIndex, roundNumber } = roundState;
 
         let question = ""
+        const showQuestion = currentQuestionIndex >= 0 && currentQuestionIndex < questions.length;
         if (currentQuestionIndex >= 0 && currentQuestionIndex < questions.length) {
             question = questions[currentQuestionIndex];
         }
@@ -64,9 +105,10 @@ export default class TextRound extends React.Component<TextRoundProps, {}> {
 
                 <Presenters>
                     <Camera presenter={presenters[0]} namePlace="left" />
+                    <TimerWrapper>{showQuestion && <Timer className={question} />}</TimerWrapper>
                     <Camera presenter={presenters[1]} namePlace="right" />
                 </Presenters>
-                <Question><QuestionNumber>Vraag {currentQuestionIndex + 1}:</QuestionNumber>{question}</Question>
+                {showQuestion && <Question><QuestionNumber>Vraag {currentQuestionIndex + 1}:</QuestionNumber>{question}</Question>}
             </Root>
         );
     }

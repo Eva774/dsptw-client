@@ -44,6 +44,7 @@ const RoundName = styled.h2`
     position: absolute;
     top: 410px;
     left: 62px;
+    max-width: 215px;
     margin: 0;
     font-size 50px;
     color: ${Theme.primaryAccent};
@@ -92,12 +93,13 @@ const QuestionNumber = styled.span`
 export default class MediaRound extends React.Component<MediaRoundProps, {}> {
 
     render() {
-        const { presenters, roundNumber } = this.props.gameState;
-        const { roundName, questions, currentQuestionIndex } = this.props.roundState;
+        const { presenters } = this.props.gameState;
+        const { roundName, questions, currentQuestionIndex, roundNumber } = this.props.roundState;
 
         let question = ""
         let questionNumber = ""
-        if (currentQuestionIndex >= 0 && currentQuestionIndex < questions.length) {
+        const showQuestion = currentQuestionIndex >= 0 && currentQuestionIndex < questions.length;
+        if (showQuestion) {
             question = questions[currentQuestionIndex];
             questionNumber = (currentQuestionIndex + 1).toString();
         }
@@ -115,7 +117,7 @@ export default class MediaRound extends React.Component<MediaRoundProps, {}> {
                 <Presenter2>
                     <SmallCamera presenter={presenters[1]} />
                 </Presenter2>
-                <Question><QuestionNumber>Vraag {currentQuestionIndex + 1}:</QuestionNumber>{question}</Question>
+                {showQuestion && <Question><QuestionNumber>Vraag {currentQuestionIndex + 1}:</QuestionNumber>{question}</Question>}
             </Root>
         );
     }

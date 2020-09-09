@@ -16,7 +16,7 @@ export default class TextRound extends React.Component<TextRoundProps, {}> {
 
     render() {
         const { gameState, roundState } = this.props;
-        const { presenters, roundNumber } = gameState;
+        const { presenters } = gameState;
         const { roundName, questions, currentQuestionIndex } = roundState;
 
         let question = ""
