@@ -1,17 +1,14 @@
 import * as React from 'react';
-import { GameState } from '../models/GameState';
-import { RoundType } from '../models/RoundType';
-import TitleCard from '../components/TitleCard';
+import styled from 'styled-components';
 import AudioPlayer from '../components/Audioplayer';
-import { getEventStream } from '../api/localServer';
-import { GameEvent } from '../models/GameEvent';
 import TextRound from './playerRounds/TextRound';
 import MediaRound from './playerRounds/MediaRound';
 import WelcomeRound from './playerRounds/WelcomeRound';
 import PauseRound from './playerRounds/PauseRound';
 import TalkingRound from './playerRounds/TalkingRound';
-import styled from 'styled-components';
 import RankingRound from './playerRounds/RankingRound';
+import { GameState } from '../models/GameState';
+import { RoundType } from '../models/RoundType';
 import { TextRoundState } from '../models/Rounds/TextRoundState';
 import { MediaRoundState } from '../models/Rounds/MediaRoundState';
 import { WelcomeRoundState } from '../models/Rounds/WelcomeRoundState';
@@ -21,10 +18,6 @@ import { TalkingRoundState } from '../models/Rounds/TalkingRoundState';
 
 type PlayerViewProps = {
     gameState?: GameState
-}
-
-type PlayerViewState = {
-    showTitleCard: boolean
 }
 
 const Root = styled.div`
@@ -37,37 +30,15 @@ const Root = styled.div`
     background-image: url('/imgs/background${(props: { backgroundType: string }) => props.backgroundType}.png');
 `
 
-const Title = styled.h1`
-    text-align: center;
-    font-size: 50px
-`
-
-export default class PlayerView extends React.Component<PlayerViewProps, PlayerViewState> {
-
-    state = {
-        showTitleCard: false,
-    }
-
-    componentDidMount() {
-        getEventStream().subscribe((gameEvent: any) => {
-            console.log(gameEvent)
-            switch (gameEvent) {
-                case GameEvent.NextRound:
-                    this.setState({ showTitleCard: true });
-                    setTimeout(() => this.setState({ showTitleCard: false }), 5000);
-                    break;
-            }
-        });
-    }
+export default class PlayerView extends React.Component<PlayerViewProps, {}> {
 
     render() {
         if (!this.props.gameState) {
             return <div>Not connected to server, is the server online?</div>;
         }
         const { gameState } = this.props;
-        const { presenters, roundState } = gameState;
-        const { roundName, roundType } = roundState;
-
+        const { roundState } = gameState;
+        const { roundType } = roundState;
 
         let round = null;
         switch (roundType) {
@@ -87,7 +58,7 @@ export default class PlayerView extends React.Component<PlayerViewProps, PlayerV
                 round = <RankingRound gameState={gameState} />
                 break;
             case RoundType.TalkingRound:
-                round = <TalkingRound gameState={gameState} roundState={roundState as TalkingRoundState}/>
+                round = <TalkingRound gameState={gameState} roundState={roundState as TalkingRoundState} />
         }
 
         const backgroundType = roundType === RoundType.WelcomeRound ? '2' : '1';
@@ -95,7 +66,6 @@ export default class PlayerView extends React.Component<PlayerViewProps, PlayerV
         return (
             <Root backgroundType={backgroundType}>
                 <AudioPlayer />
-                {this.state.showTitleCard ? <TitleCard roundName={roundName} /> : null}
                 {round}
             </Root >
         )

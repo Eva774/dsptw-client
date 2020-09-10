@@ -31,14 +31,12 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
     }
 
     setWelcomeTargetTimeState = (e: any) => {
-        console.log(e.target.value)
         this.setState({
             welcomeTargetTime: e.target.value
         });
     }
 
     setPauseTargetTimeState = (e: any) => {
-        console.log(e.target.value)
         this.setState({
             pauseTargetTime: e.target.value
         });

@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { GameState } from '../../models/GameState';
-import Camera from '../../components/Camera';
-import styled from 'styled-components';
 import { TextRoundState } from '../../models/Rounds/TextRoundState';
-import { Title } from '../../components/Title';
-import { Theme } from '../../Theme';
 import { nextQuestion, previousQuestion } from '../../api/localServer';
 
 type TextRoundProps = {
@@ -15,9 +11,8 @@ type TextRoundProps = {
 export default class TextRound extends React.Component<TextRoundProps, {}> {
 
     render() {
-        const { gameState, roundState } = this.props;
-        const { presenters } = gameState;
-        const { roundName, questions, currentQuestionIndex } = roundState;
+        const { roundState } = this.props;
+        const { questions, currentQuestionIndex } = roundState;
 
         let question = ""
         if (currentQuestionIndex >= 0 && currentQuestionIndex < questions.length) {

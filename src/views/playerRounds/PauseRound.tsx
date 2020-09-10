@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { GameState } from '../../models/GameState';
-import Camera from '../../components/Camera';
 import styled from 'styled-components';
 import { PauseRoundState } from '../../models/Rounds/PauseRoundState';
 import { Theme } from '../../Theme';
@@ -65,17 +64,24 @@ export default class PauseRound extends React.Component<PauseRoundProps, Welcome
         timeLeft: 0
     }
 
+    timer: number | undefined;
+
     componentDidMount() {
-        setInterval(() => {
+        this.timer = setInterval(() => {
             const targetTime = new Date(this.props.roundState.targetTime);
             const currentTime = new Date();
             const timeLeft = targetTime.getTime() - currentTime.getTime();
 
-            console.log(timeLeft)
             this.setState({
                 timeLeft
             });
         }, 1000)
+    }
+
+    componentWillUnmount() {
+        if (this.timer) {
+            clearInterval(this.timer);
+        }
     }
 
     render() {

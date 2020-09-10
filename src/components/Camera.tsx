@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { PresenterState } from '../models/PresenterState';
 import { Theme } from '../Theme'
 
-
 const Root = styled.div`
     display: flex;
     width: 960px;
@@ -20,7 +19,7 @@ const CameraLinkWrapper = styled.div`
     padding: 5px;
 `
 
-const CameraLink = styled.iframe`
+const CameraLink = styled.div`
     height: 400px;
     width: 350px;
     box-sizing: border-box;
@@ -52,14 +51,13 @@ type CameraProps = {
 export default class Camera extends React.Component<CameraProps, {}> {
 
     render() {
-        const { name, cameraLink } = this.props.presenter;
-        // const { namePlace } = this.props;
+        const { name } = this.props.presenter;
         const namePlace = this.props.namePlace ? this.props.namePlace : 'center';
         return (
             <Root namePlace={namePlace}>
                 {namePlace === 'left' ? <Name>{name}</Name> : null}
                 <CameraLinkWrapper>
-                    <CameraLink src={cameraLink} frameBorder="0" />
+                    <CameraLink />
                 </CameraLinkWrapper>
                 {namePlace === 'right' ? <Name>{name}</Name> : null}
             </Root>

@@ -188,7 +188,7 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
         let duration = 0;
         if (showQuestion) {
             if (mediaRoundType === MediaRoundType.Picture) {
-                const image = `//${getBaseUrl()}/static/fotos/${currentQuestionIndex + 1}.jpg`;
+                const image = `//${getBaseUrl()}/static/photos/${currentQuestionIndex + 1}.jpg`;
                 media = <><BackgroundImage backgroundImage={image} /><Image src={image} /></>;
                 duration = questionDuration;
             } else {

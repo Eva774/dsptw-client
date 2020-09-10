@@ -11,7 +11,7 @@ type MediaRoundProps = {
 export default class MediaRound extends React.Component<MediaRoundProps, {}> {
 
     render() {
-        const { gameState, roundState } = this.props;
+        const { roundState } = this.props;
         const { questions, currentQuestionIndex } = roundState;
 
         let question = ""

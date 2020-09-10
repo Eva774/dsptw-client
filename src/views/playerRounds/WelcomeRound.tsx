@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { GameState } from '../../models/GameState';
-import Camera from '../../components/Camera';
 import styled from 'styled-components';
 import { WelcomeRoundState } from '../../models/Rounds/WelcomeRoundState';
 import { Theme } from '../../Theme';
@@ -70,17 +69,24 @@ export default class WelcomeRound extends React.Component<WelcomeRoundProps, Wel
         timeLeft: 0
     }
 
+    timer: number | undefined;
+
     componentDidMount() {
-        setInterval(() => {
+        this.timer = setInterval(() => {
             const targetTime = new Date(this.props.roundState.targetTime);
             const currentTime = new Date();
             const timeLeft = targetTime.getTime() - currentTime.getTime();
 
-            console.log(timeLeft)
             this.setState({
                 timeLeft
             });
         }, 1000)
+    }
+
+    componentWillUnmount() {
+        if (this.timer) {
+            clearInterval(this.timer);
+        }
     }
 
     render() {
@@ -104,7 +110,7 @@ export default class WelcomeRound extends React.Component<WelcomeRoundProps, Wel
                 <Clock>
                     {clock}
                 </Clock>
-                
+
             </Root>
         );
     }
