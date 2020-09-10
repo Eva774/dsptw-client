@@ -10,7 +10,7 @@ const CameraLinkWrapper = styled.div`
     padding: 1rem;
     position: relative;
     background: linear-gradient(80deg, #F52F95, ${Theme.secondary});
-    padding: 3px;
+    padding: 5px;
 `
 
 const CameraLink = styled.iframe`

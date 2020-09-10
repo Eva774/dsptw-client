@@ -5,10 +5,16 @@ import styled from 'styled-components';
 import { MediaRoundState } from '../../models/Rounds/MediaRoundState';
 import { Theme } from '../../Theme';
 import { MediaRoundType } from '../../models/Rounds/MediaRoundType';
+import { Timer } from '../../components/Timer';
+import { getPlayVideoStream, getBaseUrl } from '../../api/localServer';
 
 type MediaRoundProps = {
     gameState: GameState,
     roundState: MediaRoundState
+}
+
+type MediaRoundComponentState = {
+    videoDuration: number,
 }
 
 const Root = styled.div`
@@ -118,10 +124,56 @@ const QuestionNumber = styled.span`
     margin-right:20px;
 `
 
-export default class MediaRound extends React.Component<MediaRoundProps, {}> {
+const TimerWrapper = styled.div`
+    position: absolute;
+    bottom: 243px;
+    right: 125px;
+    width: 100px;
+    height: 440px;
+    border: 5px solid ${Theme.primary};
+    margin: 0 50px;
+`
+
+export default class MediaRound extends React.Component<MediaRoundProps, MediaRoundComponentState> {
+
+    videoRef: any;
+
+    state = {
+        videoDuration: 0,
+    }
+
+    componentDidMount() {
+        getPlayVideoStream().subscribe(() => {
+            console.log("Video start")
+            const { questions, currentQuestionIndex } = this.props.roundState;
+            if (currentQuestionIndex >= 0 && currentQuestionIndex < questions.length) {
+                this.startVideo();
+            }
+        });
+    }
+
+    handleRef = (video: HTMLVideoElement) => {
+        this.videoRef = video;
+        if (this.videoRef !== null && this.videoRef) {
+            this.videoRef.addEventListener('loadedmetadata', () => {
+                this.setState({ videoDuration: this.videoRef.duration })
+            });
+            this.videoRef.addEventListener('ended', () => {
+                this.videoRef.load();
+            }, false);
+        }
+    };
+
+    startVideo = () => {
+        if (this.videoRef !== null && this.videoRef) {
+            this.videoRef.pause();
+            this.videoRef.currentTime = 0;
+            this.videoRef.play();
+        }
+    }
 
     render() {
-        const { presenters } = this.props.gameState;
+        const { presenters, questionDuration } = this.props.gameState;
         const { roundName, questions, currentQuestionIndex, roundNumber, mediaRoundType } = this.props.roundState;
 
         let question = ""
@@ -133,20 +185,28 @@ export default class MediaRound extends React.Component<MediaRoundProps, {}> {
         }
 
         let media = null;
-        if (currentQuestionIndex)
+        let duration = 0;
+        if (showQuestion) {
             if (mediaRoundType === MediaRoundType.Picture) {
-                const image = `http://localhost:8080/static/fotos/${currentQuestionIndex}.jpg`;
-                media = <Media><BackgroundImage backgroundImage={image} /><Image src={image} /></Media>;
+                const image = `//${getBaseUrl()}/static/fotos/${currentQuestionIndex + 1}.jpg`;
+                media = <><BackgroundImage backgroundImage={image} /><Image src={image} /></>;
+                duration = questionDuration;
             } else {
-                media = <Media><Video poster={`https://via.placeholder.com/1920x108${currentQuestionIndex}`} src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4" /></Media>
+                media = <Video
+                    ref={this.handleRef}
+                    poster={`/imgs/blank.png`}
+                    src={`//${getBaseUrl()}/static/videos/${currentQuestionIndex + 1}.mp4`}
+                />
+                duration = this.state.videoDuration;
             }
+        }
 
         return (
             <Root>
                 <Title>Trivial Time Ronde {roundNumber}</Title>
                 <RoundName>{roundName}</RoundName>
                 <MediaWrapper>
-                    {media}
+                    <Media>{media}</Media>
                 </MediaWrapper>
                 <Presenter1>
                     <SmallCamera presenter={presenters[0]} />
@@ -154,7 +214,8 @@ export default class MediaRound extends React.Component<MediaRoundProps, {}> {
                 <Presenter2>
                     <SmallCamera presenter={presenters[1]} />
                 </Presenter2>
-                {showQuestion && <Question><QuestionNumber>Vraag {currentQuestionIndex + 1}:</QuestionNumber>{question}</Question>}
+                {showQuestion && <TimerWrapper><Timer key={"mediaquestion" + currentQuestionIndex} duration={duration} /></TimerWrapper>}
+                {showQuestion && <Question><QuestionNumber>Vraag {questionNumber}:</QuestionNumber>{question}</Question>}
             </Root>
         );
     }

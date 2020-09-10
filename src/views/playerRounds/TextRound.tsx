@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { TextRoundState } from '../../models/Rounds/TextRoundState';
 import { Title } from '../../components/Title';
 import { Theme } from '../../Theme';
+import { Timer } from '../../components/Timer';
 
 type TextRoundProps = {
     gameState: GameState,
@@ -46,37 +47,6 @@ const RoundName = styled.h1`
     margin: 22px 0;
 `
 
-const Timer = styled.div`
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 10%;
-    background-image: linear-gradient(${Theme.primaryAccent}, ${Theme.secondary});
-    animation : drop 30s infinite, pulse 30s infinite;
-    animation-timing-function : linear;
-
-    @keyframes drop {
-        0%   { height: 100% }
-        100% { height: 0%    }
-     }
-
-     @keyframes pulse {
-        0%   { -webkit-transform: scale(1)   ; opacity: 1;    }
-        80%  { -webkit-transform: scale(1); opacity: 1; }
-        82%  { -webkit-transform: scale(1); opacity: 0.25; }
-        84%  { -webkit-transform: scale(1); opacity: 1; }
-        86%  { -webkit-transform: scale(1); opacity: 0.25; }
-        88%  { -webkit-transform: scale(1); opacity: 1; }
-        90%  { -webkit-transform: scale(1); opacity: 0.25; }
-        92%  { -webkit-transform: scale(1); opacity: 1; }
-        94%  { -webkit-transform: scale(1); opacity: 0.25; }
-        96%  { -webkit-transform: scale(1); opacity: 1; }
-        98%  { -webkit-transform: scale(1); opacity: 0.25; }
-        100% { -webkit-transform: scale(1)   ; opacity: 1;    }
-     }
-`
-
 const TimerWrapper = styled.div`
     position: relative;
     width: 120px;
@@ -89,7 +59,7 @@ export default class TextRound extends React.Component<TextRoundProps, {}> {
 
     render() {
         const { gameState, roundState } = this.props;
-        const { presenters } = gameState;
+        const { presenters, questionDuration } = gameState;
         const { roundName, questions, currentQuestionIndex, roundNumber } = roundState;
 
         let question = ""
@@ -102,10 +72,9 @@ export default class TextRound extends React.Component<TextRoundProps, {}> {
             <Root>
                 <Title>Trivial Time Ronde {roundNumber}</Title>
                 <RoundName>{roundName}</RoundName>
-
                 <Presenters>
                     <Camera presenter={presenters[0]} namePlace="left" />
-                    <TimerWrapper>{showQuestion && <Timer className={question} />}</TimerWrapper>
+                    <TimerWrapper>{showQuestion && <Timer key={"question" + currentQuestionIndex} className={question} duration={questionDuration} />}</TimerWrapper>
                     <Camera presenter={presenters[1]} namePlace="right" />
                 </Presenters>
                 {showQuestion && <Question><QuestionNumber>Vraag {currentQuestionIndex + 1}:</QuestionNumber>{question}</Question>}
