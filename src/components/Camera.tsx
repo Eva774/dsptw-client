@@ -18,14 +18,24 @@ const CameraLinkWrapper = styled.div`
     background: linear-gradient(80deg, #F52F95, ${Theme.secondary});
     padding: 5px;
 `
-
-const CameraLink = styled.div`
-    height: 400px;
+const CameraLinkDiv = styled.div`
     width: 350px;
-    box-sizing: border-box;
-    background-color:black;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    left: 0px;
+    top: 0px;
 `
 
+const CameraLink = styled.iframe`
+    height: 420px;
+    width: 720px;
+    box-sizing: border-box;
+    position: relative;
+    left: -185px;
+    top: -10px;
+    
+`
 const Name = styled.span`
     font-size: 80px;
     font-family: 'Avenir LT Std';
@@ -51,13 +61,15 @@ type CameraProps = {
 export default class Camera extends React.Component<CameraProps, {}> {
 
     render() {
-        const { name } = this.props.presenter;
+        const { name,cameraLink } = this.props.presenter;
         const namePlace = this.props.namePlace ? this.props.namePlace : 'center';
         return (
             <Root namePlace={namePlace}>
                 {namePlace === 'left' ? <Name>{name}</Name> : null}
                 <CameraLinkWrapper>
-                    <CameraLink />
+                    <CameraLinkDiv>
+                    <CameraLink src = {cameraLink}/>
+                    </CameraLinkDiv>
                 </CameraLinkWrapper>
                 {namePlace === 'right' ? <Name>{name}</Name> : null}
             </Root>

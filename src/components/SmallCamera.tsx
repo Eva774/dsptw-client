@@ -13,23 +13,39 @@ const CameraLinkWrapper = styled.div`
     padding: 5px;
 `
 
-const CameraLink = styled.div`
+const CameraLinkDiv = styled.div`
     width: 240px;
     height: 275px;
+    overflow: hidden;
+    position: relative;
+    left: 0px;
+    top: 0px;
+`
+
+const CameraLink = styled.iframe`
+    height: 295px;
+    width: 505px;
     box-sizing: border-box;
-    background-color:black;
+    position: relative;
+    left: -132px;
+    top: -10px;
+    
 `
 
 type CameraProps = {
     presenter: PresenterState,
 }
 
+
 export default class SmallCamera extends React.Component<CameraProps, {}> {
 
     render() {
+        const { name, cameraLink } = this.props.presenter;
         return (
             <CameraLinkWrapper>
-                <CameraLink />
+                <CameraLinkDiv>
+                <CameraLink src = {cameraLink}/>
+                </CameraLinkDiv>
             </CameraLinkWrapper>
         );
     }
