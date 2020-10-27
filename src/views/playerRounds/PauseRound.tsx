@@ -21,8 +21,7 @@ const Clock = styled.p`
     max-width: 215px;
     text-align: left;
     color: ${Theme.primary};
-    text-shadow: 3px 3px ${Theme.primaryAccent}, 0px 0px 20px ${Theme.primaryAccent};
-    font-family: 'Neon Tubes 2';
+    font-family: 'Spooky Skeleton';
     font-size: 140px;
     font-weight: normal;
     font-style: normal;

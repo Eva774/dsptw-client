@@ -9,7 +9,7 @@ const CameraLinkWrapper = styled.div`
     max-height: 275px;
     padding: 1rem;
     position: relative;
-    background: linear-gradient(80deg, #F52F95, ${Theme.secondary});
+    background: linear-gradient(80deg, ${Theme.primary}, ${Theme.primaryAccent});
     padding: 5px;
 `
 

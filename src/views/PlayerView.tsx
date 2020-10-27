@@ -28,6 +28,7 @@ const Root = styled.div`
     height: 100vh;
     background-color: #cccccc;
     background-image: url('/imgs/background${(props: { backgroundType: string }) => props.backgroundType}.png');
+    background-size: contain;
 `
 
 export default class PlayerView extends React.Component<PlayerViewProps, {}> {
@@ -61,11 +62,13 @@ export default class PlayerView extends React.Component<PlayerViewProps, {}> {
                 round = <TalkingRound gameState={gameState} roundState={roundState as TalkingRoundState} />
         }
 
-        const backgroundType = roundType === RoundType.WelcomeRound ? '2' : '1';
+
+        const backgroundType = roundType === RoundType.WelcomeRound ? '2' : roundType === RoundType.MediaRound ? '3' : '1';
 
         return (
             <Root backgroundType={backgroundType}>
                 <AudioPlayer />
+
                 {round}
             </Root >
         )

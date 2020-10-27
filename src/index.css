@@ -35,5 +35,25 @@ button {
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Scary Halloween';
+  src: url('./fonts/ScaryHalloweenFont.woff2') format('woff2'),
+      url('./fonts/ScaryHalloweenFont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Spooky Skeleton';
+  src: url('./fonts/SpookySkeleton.woff2') format('woff2'),
+      url('./fonts/SpookySkeleton.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
 
 @font-face {font-family: "Avenir Medium"; src: url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.eot"); src: url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.woff") format("woff"), url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.svg#Avenir Medium") format("svg"); } 

@@ -23,7 +23,7 @@ const Presenters = styled.div`
 
 const RoundName = styled.h1`
     color: ${Theme.primaryAccent};
-    font-family: 'Avenir LT Std';
+    font-family: 'Spooky Skeleton';
     font-weight: normal;
     font-style: normal;
     font-size: 85px;

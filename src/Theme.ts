@@ -1,8 +1,8 @@
 // import { ThemeModel } from './models/ThemeModel'
 
 export const Theme = {
-    primary: '#FEC4DE',
-    primaryAccent: '#BB1E70',
-    secondary: '#00B9F2',
+    primary: '#ff6b00',
+    primaryAccent: '#ffccbf',
+    secondary: '#94f200',
     secondaryAccent: '#000000',
 }

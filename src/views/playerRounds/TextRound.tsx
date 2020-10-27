@@ -24,7 +24,7 @@ const Presenters = styled.div`
 
 const Question = styled.div`
     color: ${Theme.primary};
-    font-size: 70px;
+    font-size: 65px;
     width: 1500px;
     font-family: 'Avenir LT Std';
     font-weight: normal;
@@ -39,7 +39,7 @@ const QuestionNumber = styled.span`
 
 const RoundName = styled.h1`
     color: ${Theme.primaryAccent};
-    font-family: 'Avenir LT Std';
+    font-family: 'Spooky Skeleton';
     font-weight: normal;
     font-style: normal;
     font-size: 85px;

@@ -39,9 +39,8 @@ const Title = styled.h1`
     max-width: 215px;
     text-align: left;
     color: ${Theme.primary};
-    text-shadow: 3px 3px ${Theme.primaryAccent}, 0px 0px 20px ${Theme.primaryAccent};
-    font-family: 'Neon Tubes 2';
-    font-size: 65px;
+    font-family: 'Scary Halloween';
+    font-size: 60px;
     font-weight: normal;
     font-style: normal;
     margin: 0;
@@ -56,7 +55,7 @@ const RoundName = styled.h2`
     font-size 50px;
     color: ${Theme.primaryAccent};
     text-transform: uppercase;
-    font-family: 'Avenir LT Std';
+    font-family: 'Spooky Skeleton';
     font-weight: normal;
     font-style: normal;
 `
@@ -103,7 +102,7 @@ const MediaWrapper = styled.div`
     max-height: 720px;
     padding: 1rem;
     position: relative;
-    background: linear-gradient(80deg, #F52F95, ${Theme.secondary});
+    background: linear-gradient(80deg, ${Theme.primary}, ${Theme.primaryAccent});
     padding: 3px;
 `
 const Question = styled.div`

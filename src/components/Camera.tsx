@@ -15,7 +15,7 @@ const CameraLinkWrapper = styled.div`
     max-height: 400px;
     padding: 1rem;
     position: relative;
-    background: linear-gradient(80deg, #F52F95, ${Theme.secondary});
+    background: linear-gradient(80deg, ${Theme.primary}, ${Theme.primaryAccent});
     padding: 5px;
 `
 const CameraLinkDiv = styled.div`
@@ -43,8 +43,8 @@ const Name = styled.span`
     font-style: normal;
     margin: 40px 20px;
     color: ${Theme.primary};
-    background-color: #f3ec78;
-    background-image: linear-gradient(70deg, #F52F95, ${Theme.secondary});
+    background-color: ${Theme.primary};//#f3ec78;
+    // background-image: linear-gradient(70deg, #F52F95, ${Theme.secondary});
     background-size: 100%;
     background-clip: text;
     -webkit-background-clip: text;
