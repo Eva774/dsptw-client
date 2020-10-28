@@ -6,4 +6,5 @@ export enum RoundType {
     RankingRound = 'rankingRound',
     TalkingRound = 'talkingRound',
     EndRound = 'endRound',
+    MixRound = 'mixRound',
 }

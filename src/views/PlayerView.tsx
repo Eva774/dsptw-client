@@ -14,6 +14,8 @@ import { MediaRoundState } from '../models/Rounds/MediaRoundState';
 import { WelcomeRoundState } from '../models/Rounds/WelcomeRoundState';
 import { PauseRoundState } from '../models/Rounds/PauseRoundState';
 import { TalkingRoundState } from '../models/Rounds/TalkingRoundState';
+import { MixRoundState } from '../models/Rounds/MixRoundState';
+import MixRound from './playerRounds/MixRound';
 
 
 type PlayerViewProps = {
@@ -60,6 +62,11 @@ export default class PlayerView extends React.Component<PlayerViewProps, {}> {
                 break;
             case RoundType.TalkingRound:
                 round = <TalkingRound gameState={gameState} roundState={roundState as TalkingRoundState} />
+                break;
+            case RoundType.MixRound: 
+                round = <MixRound gameState={gameState} roundState={roundState as MixRoundState} />
+                break;
+
         }
 
 

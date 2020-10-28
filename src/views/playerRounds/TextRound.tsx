@@ -25,7 +25,7 @@ const Presenters = styled.div`
 const Question = styled.div`
     color: ${Theme.primary};
     font-size: 65px;
-    width: 1500px;
+    width: 1300px;
     font-family: 'Avenir LT Std';
     font-weight: normal;
     font-style: normal;

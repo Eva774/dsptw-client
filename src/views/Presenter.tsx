@@ -9,6 +9,8 @@ import TextRound from './presenterRounds/TextRound';
 import { TextRoundState } from '../models/Rounds/TextRoundState';
 import MediaRound from './presenterRounds/MediaRound';
 import { MediaRoundState } from '../models/Rounds/MediaRoundState';
+import { MixRoundState } from '../models/Rounds/MixRoundState';
+import MixRound from './presenterRounds/MixRound';
 
 const Wrapper = styled.div`
     font-size: 2em;
@@ -67,6 +69,9 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
                 break;
             case RoundType.MediaRound:
                 round = <MediaRound gameState={this.props.gameState} roundState={roundState as MediaRoundState} />
+                break;
+            case RoundType.MixRound:
+                round = <MixRound gameState={this.props.gameState} roundState={roundState as MixRoundState} />
                 break;
         }
 
