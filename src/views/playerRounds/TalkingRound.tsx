@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { TalkingRoundState } from '../../models/Rounds/TalkingRoundState';
 import { Title } from '../../components/Title';
 import { Theme } from '../../Theme';
+import Presenters from '../../components/Presenters';
 
 type TalkingRoundProps = {
     gameState: GameState,
@@ -15,11 +16,6 @@ const Root = styled.div`
     text-align: center;
 `
 
-const Presenters = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`
 
 const RoundName = styled.h1`
     color: ${Theme.primaryAccent};
@@ -42,12 +38,11 @@ export default class TalkingRound extends React.Component<TalkingRoundProps, {}>
             <Root>
                 <Title>Trivial Time</Title>
                 <RoundName>{roundName}</RoundName>
-
-                <Presenters>
+                {/* <Presenters>
                     <Camera presenter={presenters[0]} namePlace="left" />
 
                     <Camera presenter={presenters[1]} namePlace="right" />
-                </Presenters>
+                </Presenters> */}
             </Root>
         );
     }

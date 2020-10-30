@@ -16,6 +16,7 @@ import { PauseRoundState } from '../models/Rounds/PauseRoundState';
 import { TalkingRoundState } from '../models/Rounds/TalkingRoundState';
 import { MixRoundState } from '../models/Rounds/MixRoundState';
 import MixRound from './playerRounds/MixRound';
+import Presenters from '../components/Presenters';
 
 
 type PlayerViewProps = {
@@ -44,39 +45,50 @@ export default class PlayerView extends React.Component<PlayerViewProps, {}> {
         const { roundType } = roundState;
 
         let round = null;
+        let smallCamera = false;
+        let showCamera = false;
         switch (roundType) {
             case RoundType.TextRound:
-                round = <TextRound gameState={gameState} roundState={roundState as TextRoundState} />
+                round = <TextRound gameState={gameState} roundState={roundState as TextRoundState} />;
+                showCamera = true;
                 break;
             case RoundType.MediaRound:
-                round = <MediaRound gameState={gameState} roundState={roundState as MediaRoundState} />
+                round = <MediaRound gameState={gameState} roundState={roundState as MediaRoundState} />;
+                showCamera = true;
+                smallCamera = true;
                 break;
             case RoundType.WelcomeRound:
-                round = <WelcomeRound gameState={gameState} roundState={roundState as WelcomeRoundState} />
+                round = <WelcomeRound gameState={gameState} roundState={roundState as WelcomeRoundState} />;
                 break;
             case RoundType.PauseRound:
-                round = <PauseRound gameState={gameState} roundState={roundState as PauseRoundState} />
+                round = <PauseRound gameState={gameState} roundState={roundState as PauseRoundState} />;
                 break;
             case RoundType.RankingRound:
-                round = <RankingRound gameState={gameState} />
+                round = <RankingRound gameState={gameState} />;
+                showCamera = true;
+                smallCamera = true;
                 break;
             case RoundType.TalkingRound:
-                round = <TalkingRound gameState={gameState} roundState={roundState as TalkingRoundState} />
+                round = <TalkingRound gameState={gameState} roundState={roundState as TalkingRoundState} />;
+                showCamera = true;
                 break;
             case RoundType.MixRound: 
-                round = <MixRound gameState={gameState} roundState={roundState as MixRoundState} />
+                round = <MixRound gameState={gameState} roundState={roundState as MixRoundState} />;
+                showCamera = true;
                 break;
 
         }
 
 
         const backgroundType = roundType === RoundType.WelcomeRound ? '2' : roundType === RoundType.MediaRound ? '3' : '1';
+        const show = true;
+        const presenterCameras = <Presenters smallCamera = {smallCamera} gameState = {gameState} show = {showCamera}/>;
 
         return (
             <Root backgroundType={backgroundType}>
                 <AudioPlayer />
-
                 {round}
+                {presenterCameras}
             </Root >
         )
 

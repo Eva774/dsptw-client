@@ -7,6 +7,8 @@ import { Theme } from '../../Theme';
 import { MediaRoundType } from '../../models/Rounds/MediaRoundType';
 import { Timer } from '../../components/Timer';
 import { getPlayVideoStream, getBaseUrl } from '../../api/localServer';
+import { transpileModule } from 'typescript';
+import Presenters from '../../components/Presenters';
 
 type MediaRoundProps = {
     gameState: GameState,
@@ -23,7 +25,7 @@ const Root = styled.div`
 const Presenter1 = styled.div`
     position: absolute;
     left: 35px;
-    bottom: 170px
+    bottom: 170px;
 `
 
 const Presenter2 = styled.div`
@@ -126,8 +128,8 @@ const QuestionNumber = styled.span`
 const TimerWrapper = styled.div`
     position: absolute;
     bottom: 243px;
-    right: 125px;
-    width: 100px;
+    right: 135px;
+    width: 80px;
     height: 440px;
     border: 5px solid ${Theme.primary};
     margin: 0 50px;
@@ -207,12 +209,12 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
                 <MediaWrapper>
                     <Media>{media}</Media>
                 </MediaWrapper>
-                <Presenter1>
+                {/* <Presenter1>
                     <SmallCamera presenter={presenters[0]} />
                 </Presenter1>
                 <Presenter2>
                     <SmallCamera presenter={presenters[1]} />
-                </Presenter2>
+                </Presenter2> */}
                 {showQuestion && <TimerWrapper><Timer key={"mediaquestion" + currentQuestionIndex} duration={duration} /></TimerWrapper>}
                 {showQuestion && <Question><QuestionNumber>Vraag {questionNumber}:</QuestionNumber>{question}</Question>}
             </Root>

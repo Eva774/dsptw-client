@@ -6,6 +6,7 @@ import { TextRoundState } from '../../models/Rounds/TextRoundState';
 import { Title } from '../../components/Title';
 import { Theme } from '../../Theme';
 import { Timer } from '../../components/Timer';
+import Presenters from '../../components/Presenters';
 
 type TextRoundProps = {
     gameState: GameState,
@@ -16,11 +17,6 @@ const Root = styled.div`
     text-align: center;
 `
 
-const Presenters = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`
 
 const Question = styled.div`
     color: ${Theme.primary};
@@ -29,7 +25,9 @@ const Question = styled.div`
     font-family: 'Avenir LT Std';
     font-weight: normal;
     font-style: normal;
-    margin: 40px auto 0 auto;
+    position: absolute;
+    top: 800px;
+    left: 310px;
 `
 
 const QuestionNumber = styled.span`
@@ -48,11 +46,12 @@ const RoundName = styled.h1`
 `
 
 const TimerWrapper = styled.div`
-    position: relative;
+    position: absolute;
     width: 120px;
     height: 400px;
     border: 5px solid ${Theme.primary};
-    margin: 0 50px;
+    left: 900px;
+    top: 350px;
 `
 
 export default class TextRound extends React.Component<TextRoundProps, {}> {
@@ -72,11 +71,7 @@ export default class TextRound extends React.Component<TextRoundProps, {}> {
             <Root>
                 <Title>Trivial Time Ronde {roundNumber}</Title>
                 <RoundName>{roundName}</RoundName>
-                <Presenters>
-                    <Camera presenter={presenters[0]} namePlace="left" />
-                    <TimerWrapper>{showQuestion && <Timer key={"question" + currentQuestionIndex} className={question} duration={questionDuration} />}</TimerWrapper>
-                    <Camera presenter={presenters[1]} namePlace="right" />
-                </Presenters>
+                <TimerWrapper>{showQuestion && <Timer key={"question" + currentQuestionIndex} className={question} duration={questionDuration} />}</TimerWrapper>
                 {showQuestion && <Question><QuestionNumber>Vraag {currentQuestionIndex + 1}:</QuestionNumber>{question}</Question>}
             </Root>
         );

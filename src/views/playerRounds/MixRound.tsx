@@ -8,6 +8,7 @@ import { Theme } from '../../Theme';
 import { Timer } from '../../components/Timer';
 import { getBaseUrl } from '../../api/localServer';
 
+
 type MixRoundProps = {
     gameState: GameState,
     roundState: MixRoundState,
@@ -17,12 +18,6 @@ const Root = styled.div`
     text-align: center;
 `
 
-const Presenters = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`
-
 const Question = styled.div`
     color: ${Theme.primary};
     font-size: 65px;
@@ -30,7 +25,9 @@ const Question = styled.div`
     font-family: 'Avenir LT Std';
     font-weight: normal;
     font-style: normal;
-    margin: 40px auto 0 auto;
+    position: absolute;
+    top: 800px;
+    left: 310px;    
 `
 
 const QuestionNumber = styled.span`
@@ -49,11 +46,13 @@ const RoundName = styled.h1`
 `
 
 const TimerWrapper = styled.div`
-    position: relative;
-    width: 120px;
+    position: absolute;
+    width: 80px;
     height: 400px;
     border: 5px solid ${Theme.primary};
-    margin: 0 50px;
+    right: ${(props: {isMedia: boolean}) => props.isMedia ? '370px' : '910px'};
+    top: 350px;
+    z-index: 3;
 `
 
 const BackgroundImage = styled.div`
@@ -76,7 +75,7 @@ const Image = styled.img`
 `
 
 const Media = styled.div`
-    width: 750px;
+    width: 900px;
     height: 400px;
     background-color: black;
     display: flex;
@@ -85,12 +84,15 @@ const Media = styled.div`
 `
 
 const MediaWrapper = styled.div`
-    position: relative;
-    max-width: 750px;
-    max-height: 400px;
+    position: absolute;
+    top: 350px;
+    left: 500px;
+    max-width: 900px;
+    max-height: 410px;
     padding: 1rem;
     background: linear-gradient(80deg, ${Theme.primary}, ${Theme.primaryAccent});
-    padding: 3px;
+    padding: 5px;
+    z-index: 3;
 `
 
 export default class MixRound extends React.Component<MixRoundProps, {}> {
@@ -109,46 +111,30 @@ export default class MixRound extends React.Component<MixRoundProps, {}> {
 
         
         let toShow = null;
-        console.log(question.text)
-        if (question.image != "") { 
+        let media = false;
+        const smallCamera = false;
+        if (currentQuestionIndex > 0 && question.image != "" ) { 
 
             const image = `//${getBaseUrl()}/static/${roundName}/${question.image}.jpg`;
-            console.log(image)
-            toShow = 
-            <Presenters>            
+            media = true;
+            toShow =      
+            <Root>
             <MediaWrapper>
             <Media><><BackgroundImage backgroundImage={image} /><Image src={image} /></></Media>
             </MediaWrapper>
-            <TimerWrapper>{showQuestion && <Timer key={"question" + currentQuestionIndex} className={question} duration={questionDuration} />}</TimerWrapper>
-            </Presenters>;
-
+            </Root>;
+            
         } 
-        else {
-            toShow =
-            <Presenters>
-                <Camera presenter={presenters[0]} namePlace="left" />
-                <TimerWrapper>{showQuestion && <Timer key={"question" + currentQuestionIndex} className={question} duration={questionDuration} />}</TimerWrapper>
-                <Camera presenter={presenters[1]} namePlace="right" />
-            </Presenters>;
-            console.log(currentQuestionIndex)
-
-        };
 
 
 
-        // const media = <><BackgroundImage backgroundImage={image} /><Image src={image} /></>;
-        // const duration = questionDuration;
 
         return (
             <Root>
                 <Title>Trivial Time Ronde {roundNumber}</Title>
                 <RoundName>{roundName}</RoundName>
                 {toShow}
-                {/* <Presenters>
-                    <Camera presenter={presenters[0]} namePlace="left" />
-                    <TimerWrapper>{showQuestion && <Timer key={"question" + currentQuestionIndex} className={question} duration={questionDuration} />}</TimerWrapper>
-                    <Camera presenter={presenters[1]} namePlace="right" />
-                </Presenters> */}
+                <TimerWrapper isMedia = {media}>{showQuestion && <Timer key={"question" + currentQuestionIndex} className={question} duration={questionDuration} />}</TimerWrapper>
                 {showQuestion && <Question><QuestionNumber>Vraag {currentQuestionIndex + 1}:</QuestionNumber>{question.text}</Question>}
             </Root>
         );
