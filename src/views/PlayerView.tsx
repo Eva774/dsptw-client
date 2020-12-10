@@ -17,6 +17,10 @@ import { TalkingRoundState } from '../models/Rounds/TalkingRoundState';
 import { MixRoundState } from '../models/Rounds/MixRoundState';
 import MixRound from './playerRounds/MixRound';
 import Presenters from '../components/Presenters';
+import { EndRoundState } from '../models/Rounds/EndRoundState';
+import EndRound from './playerRounds/EndRound';
+import AnswerRound from './playerRounds/AnswerRound';
+import { AnswerRoundState } from '../models/Rounds/AnswerRoundState';
 
 
 type PlayerViewProps = {
@@ -63,6 +67,9 @@ export default class PlayerView extends React.Component<PlayerViewProps, {}> {
             case RoundType.PauseRound:
                 round = <PauseRound gameState={gameState} roundState={roundState as PauseRoundState} />;
                 break;
+            case RoundType.EndRound:
+                round = <EndRound />;
+                break;
             case RoundType.RankingRound:
                 round = <RankingRound gameState={gameState} />;
                 showCamera = true;
@@ -76,11 +83,16 @@ export default class PlayerView extends React.Component<PlayerViewProps, {}> {
                 round = <MixRound gameState={gameState} roundState={roundState as MixRoundState} />;
                 showCamera = true;
                 break;
+            case RoundType.AnswerRound:
+                round = <AnswerRound gameState = {gameState} roundState={roundState as AnswerRoundState} />;
+                showCamera = true;
+                smallCamera = true;
+                break;
 
         }
 
 
-        const backgroundType = roundType === RoundType.WelcomeRound ? '2' : roundType === RoundType.MediaRound ? '3' : '1';
+        const backgroundType = roundType === RoundType.WelcomeRound ? '2' : roundType === RoundType.MediaRound || roundType === RoundType.EndRound ? '3' : '1';
         const show = true;
         const presenterCameras = <Presenters smallCamera = {smallCamera} gameState = {gameState} show = {showCamera}/>;
 

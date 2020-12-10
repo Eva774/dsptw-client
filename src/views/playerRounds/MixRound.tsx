@@ -50,7 +50,7 @@ const TimerWrapper = styled.div`
     width: 80px;
     height: 400px;
     border: 5px solid ${Theme.primary};
-    right: ${(props: {isMedia: boolean}) => props.isMedia ? '370px' : '910px'};
+    right: ${(props: {isMedia: boolean}) => props.isMedia ? '370px' : '915px'};
     top: 350px;
     z-index: 3;
 `
@@ -113,7 +113,7 @@ export default class MixRound extends React.Component<MixRoundProps, {}> {
         let toShow = null;
         let media = false;
         const smallCamera = false;
-        if (currentQuestionIndex > 0 && question.image != "" ) { 
+        if (currentQuestionIndex > 0 && currentQuestionIndex < questions.length && question.image != "" ) { 
 
             const image = `//${getBaseUrl()}/static/${roundName}/${question.image}.jpg`;
             media = true;

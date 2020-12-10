@@ -47,10 +47,10 @@ const RoundName = styled.h1`
 
 const TimerWrapper = styled.div`
     position: absolute;
-    width: 120px;
+    width: 80px;
     height: 400px;
     border: 5px solid ${Theme.primary};
-    left: 900px;
+    left: 915px;
     top: 350px;
 `
 

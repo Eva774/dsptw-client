@@ -73,6 +73,10 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
             case RoundType.MixRound:
                 round = <MixRound gameState={this.props.gameState} roundState={roundState as MixRoundState} />
                 break;
+            case RoundType.AnswerRound:
+                round = <TextRound gameState={this.props.gameState} roundState={roundState as TextRoundState} />
+                break;
+
         }
 
         return (

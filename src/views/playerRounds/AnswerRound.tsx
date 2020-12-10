@@ -2,7 +2,7 @@ import * as React from 'react';
 import { GameState } from '../../models/GameState';
 import SmallCamera from '../../components/SmallCamera';
 import styled from 'styled-components';
-import { MediaRoundState } from '../../models/Rounds/MediaRoundState';
+import { AnswerRoundState } from '../../models/Rounds/AnswerRoundState';
 import { Theme } from '../../Theme';
 import { MediaRoundType } from '../../models/Rounds/MediaRoundType';
 import { Timer } from '../../components/Timer';
@@ -10,13 +10,9 @@ import { getPlayVideoStream, getBaseUrl } from '../../api/localServer';
 import { transpileModule } from 'typescript';
 import Presenters from '../../components/Presenters';
 
-type MediaRoundProps = {
+type AnswerRoundProps = {
     gameState: GameState,
-    roundState: MediaRoundState
-}
-
-type MediaRoundComponentState = {
-    videoDuration: number,
+    roundState: AnswerRoundState
 }
 
 const Root = styled.div`
@@ -85,7 +81,7 @@ const BackgroundImage = styled.div`
 
 const Image = styled.img`
     max-width: 100%;
-    max-height: 100%;
+    height: 100%;
     display: block; 
     z-index: 2;
 `
@@ -109,21 +105,16 @@ const MediaWrapper = styled.div`
 `
 const Question = styled.div`
     position: absolute;
-    right: 50px;
     bottom: 20px;
     color: ${Theme.primary};
     font-size: 85px;
-    width: 1400px;
+    width: 1920px;
     font-family: 'Avenir LT Std';
     font-weight: normal;
     font-style: normal;
-    text-align: right;
+    text-align: center;
 `
 
-const QuestionNumber = styled.span`
-    color: ${Theme.secondary};
-    margin-right:20px;
-`
 
 const TimerWrapper = styled.div`
     position: absolute;
@@ -136,49 +127,13 @@ const TimerWrapper = styled.div`
     
 `
 
-export default class MediaRound extends React.Component<MediaRoundProps, MediaRoundComponentState> {
-
-    videoRef: any;
-
-    state = {
-        videoDuration: 0,
-    }
-
-    componentDidMount() {
-        getPlayVideoStream().subscribe(() => {
-            console.log("Video start")
-            const { questions, currentQuestionIndex } = this.props.roundState;
-            if (currentQuestionIndex >= 0 && currentQuestionIndex < questions.length) {
-                this.startVideo();
-            }
-        });
-    }
-
-    handleRef = (video: HTMLVideoElement) => {
-        this.videoRef = video;
-        if (this.videoRef !== null && this.videoRef) {
-            this.videoRef.addEventListener('loadedmetadata', () => {
-                this.setState({ videoDuration: this.videoRef.duration })
-            });
-            this.videoRef.addEventListener('ended', () => {
-                this.videoRef.load();
-            }, false);
-        }
-    };
-
-    startVideo = () => {
-        if (this.videoRef !== null && this.videoRef) {
-            this.videoRef.pause();
-            this.videoRef.currentTime = 0;
-            this.videoRef.play();
-        }
-    }
+export default class AnswerRound extends React.Component<AnswerRoundProps, {}> {
 
     render() {
         const { presenters, questionDuration } = this.props.gameState;
-        const { roundName, questions, currentQuestionIndex, roundNumber } = this.props.roundState;
+        const { roundName, questions, currentQuestionIndex } = this.props.roundState;
 
-        let question = Object()
+        let question = ""
         let questionNumber = ""
         const showQuestion = currentQuestionIndex >= 0 && currentQuestionIndex < questions.length;
         if (showQuestion) {
@@ -187,31 +142,18 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
         }
 
         let media = null;
-        let duration = 0;
         if (showQuestion) {
-            if (question.type === MediaRoundType.Picture) {
-                const image = `//${getBaseUrl()}/static/photos/${currentQuestionIndex + 1}.jpg`;
+                const image = `//${getBaseUrl()}/static/${roundName}/${currentQuestionIndex + 1}.jpg`;
                 media = <><BackgroundImage backgroundImage={image} /><Image src={image} /></>;
-                duration = questionDuration;
-            } else {
-                media = <Video
-                    ref={this.handleRef}
-                    poster={`/imgs/blank.png`}
-                    src={`//${getBaseUrl()}/static/videos/${currentQuestionIndex + 1}.mp4`}
-                />
-                duration = questionDuration;
-            }
         }
 
         return (
             <Root>
-                <Title>Trivial Time Ronde {roundNumber}</Title>
-                <RoundName>{roundName}</RoundName>
+                <Title>Trivial Time</Title>
                 <MediaWrapper>
                     <Media>{media}</Media>
                 </MediaWrapper>
-                {showQuestion && <TimerWrapper><Timer key={"mediaquestion" + currentQuestionIndex} duration={duration} /></TimerWrapper>}
-                {showQuestion && <Question><QuestionNumber>Vraag {questionNumber}:</QuestionNumber>{question.text}</Question>}
+                {showQuestion && <Question>{question}</Question>}
             </Root>
         );
     }

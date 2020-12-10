@@ -27,6 +27,32 @@ const RoundName = styled.h1`
     margin: 22px 0;
 `
 
+const NameLeft = styled.div`
+    position: absolute;
+    top: 750px;
+    left: 500px;
+    width: 350px;
+    text-align: center;
+    font-size: 70px;
+    font-family: 'Avenir LT Std';
+    font-weight: normal;
+    font-style: normal;
+    margin: 30px 20px;
+    color: ${Theme.primary};
+`
+const NameRight = styled.div`
+    position: absolute;
+    top: 750px;
+    right: 500px;
+    width: 350px;
+    text-align: center;
+    font-size: 70px;
+    font-family: 'Avenir LT Std';
+    font-weight: normal;
+    font-style: normal;
+    margin: 30px 20px;
+    color: ${Theme.primary};
+`
 export default class TalkingRound extends React.Component<TalkingRoundProps, {}> {
 
     render() {
@@ -38,11 +64,8 @@ export default class TalkingRound extends React.Component<TalkingRoundProps, {}>
             <Root>
                 <Title>Trivial Time</Title>
                 <RoundName>{roundName}</RoundName>
-                {/* <Presenters>
-                    <Camera presenter={presenters[0]} namePlace="left" />
-
-                    <Camera presenter={presenters[1]} namePlace="right" />
-                </Presenters> */}
+                <NameLeft>{presenters[0].name}</NameLeft>
+                <NameRight>{presenters[1].name}</NameRight>
             </Root>
         );
     }
