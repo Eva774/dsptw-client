@@ -99,8 +99,8 @@ export default class PauseRound extends React.Component<PauseRoundProps, Welcome
 
         return (
             <Root>
-                <Titel>Pakt u een hapje en een drankje</Titel>
-                <StartTimeWrapper>we herbeginnen om {printTime}</StartTimeWrapper>
+                <Titel>Pakt u een hapje en een drankje!</Titel>
+                <StartTimeWrapper>We herbeginnen om {printTime}</StartTimeWrapper>
                 <Clock>
                     {clock}
                 </Clock>
