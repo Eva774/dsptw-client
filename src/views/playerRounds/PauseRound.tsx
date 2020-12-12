@@ -16,24 +16,24 @@ const Root = styled.div`
 `
 const Clock = styled.p`
     position: absolute;
-    top: 60px;
+    bottom: 150px;
     left: 1200px;
     max-width: 215px;
     text-align: left;
-    color: ${Theme.primary};
-    font-family: 'Spooky Skeleton';
+    color: ${Theme.primaryAccent};
+    font-family: 'Phosphate';
     font-size: 140px;
     font-weight: normal;
     font-style: normal;
 `
 const Titel = styled.h2`
     position: absolute;
-    top: 70px;
+    top: 450px;
     left: 200px;
     max-width: 800px;
     text-align: left;
     font-size: 65px;
-    color: ${Theme.primaryAccent};
+    color: ${Theme.primary};
     text-transform: uppercase;
     font-family: 'Avenir LT Std';
     font-weight: normal;
@@ -44,7 +44,7 @@ const StartTimeWrapper = styled.h2`
     position: absolute;
     max-width: 900px;
     text-align: left;
-    top: 230px;
+    bottom: 250px;
     left: 200px;
     color: ${Theme.primary};
     font-size: 65px;

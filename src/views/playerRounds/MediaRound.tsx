@@ -40,8 +40,8 @@ const Title = styled.h1`
     left: 62px;
     max-width: 215px;
     text-align: left;
-    color: ${Theme.primary};
-    font-family: 'Scary Halloween';
+    color: ${Theme.primaryAccent};
+    font-family: 'Phosphate';
     font-size: 60px;
     font-weight: normal;
     font-style: normal;
@@ -57,7 +57,7 @@ const RoundName = styled.h2`
     font-size 50px;
     color: ${Theme.primaryAccent};
     text-transform: uppercase;
-    font-family: 'Spooky Skeleton';
+    font-family: 'Futura';
     font-weight: normal;
     font-style: normal;
 `
@@ -121,7 +121,7 @@ const Question = styled.div`
 `
 
 const QuestionNumber = styled.span`
-    color: ${Theme.secondary};
+    color: ${Theme.primaryAccent};
     margin-right:20px;
 `
 
@@ -176,9 +176,9 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
 
     render() {
         const { presenters, questionDuration } = this.props.gameState;
-        const { roundName, questions, currentQuestionIndex, roundNumber } = this.props.roundState;
+        const { roundName, questions, currentQuestionIndex, roundNumber,mediaRoundType } = this.props.roundState;
 
-        let question = Object()
+        let question = ""
         let questionNumber = ""
         const showQuestion = currentQuestionIndex >= 0 && currentQuestionIndex < questions.length;
         if (showQuestion) {
@@ -189,7 +189,7 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
         let media = null;
         let duration = 0;
         if (showQuestion) {
-            if (question.type === MediaRoundType.Picture) {
+            if (mediaRoundType === MediaRoundType.Picture) {
                 const image = `//${getBaseUrl()}/static/photos/${currentQuestionIndex + 1}.jpg`;
                 media = <><BackgroundImage backgroundImage={image} /><Image src={image} /></>;
                 duration = questionDuration;
@@ -205,13 +205,13 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
 
         return (
             <Root>
-                <Title>Trivial Time Ronde {roundNumber}</Title>
+                <Title>TRIVIAL TIME RONDE {roundNumber}</Title>
                 <RoundName>{roundName}</RoundName>
                 <MediaWrapper>
                     <Media>{media}</Media>
                 </MediaWrapper>
                 {showQuestion && <TimerWrapper><Timer key={"mediaquestion" + currentQuestionIndex} duration={duration} /></TimerWrapper>}
-                {showQuestion && <Question><QuestionNumber>Vraag {questionNumber}:</QuestionNumber>{question.text}</Question>}
+                {showQuestion && <Question><QuestionNumber>Vraag {questionNumber}:</QuestionNumber>{question}</Question>}
             </Root>
         );
     }

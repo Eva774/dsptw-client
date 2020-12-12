@@ -18,24 +18,24 @@ const Root = styled.div`
 `
 const Clock = styled.p`
     position: absolute;
-    top: 60px;
+    bottom: 150px;
     left: 1200px;
     max-width: 215px;
     text-align: left;
-    color: ${Theme.primary};
-    font-family: 'Spooky Skeleton';
+    color: ${Theme.primaryAccent};
+    font-family: 'Phosphate';
     font-size: 140px;
     font-weight: normal;
     font-style: normal;
 `
 const Titel = styled.h2`
     position: absolute;
-    top: 70px;
+    top: 450px;
     left: 200px;
     max-width: 800px;
     text-align: left;
     font-size: 65px;
-    color: ${Theme.primaryAccent};
+    color: ${Theme.primary};
     text-transform: uppercase;
     font-family: 'Avenir LT Std';
     font-weight: normal;
@@ -46,8 +46,8 @@ const StartTimeWrapper = styled.h2`
     position: absolute;
     max-width: 800px;
     text-align: left;
-    top: 230px;
-    left: 200px;
+    top: 450px;
+    left: 1200px;
     color: ${Theme.primary};
     font-size: 65px;
     text-transform: uppercase;
@@ -56,7 +56,19 @@ const StartTimeWrapper = styled.h2`
     font-style: normal;
     text-align: right;
 `
-
+const Text = styled.h2`
+    position: absolute;
+    bottom: 250px;
+    left: 200px;
+    max-width: 800px;
+    text-align: left;
+    font-size: 65px;
+    color: ${Theme.primary};
+    text-transform: uppercase;
+    font-family: 'Avenir LT Std';
+    font-weight: normal;
+    font-style: normal;
+    `
 function prefix(input: number) {
     return input < 10 ? "0" + input.toString() : input.toString();
 }
@@ -105,7 +117,8 @@ export default class WelcomeRound extends React.Component<WelcomeRoundProps, Wel
         return (
             <Root>
                 <Titel>Zet u nu ne keer klaar voor diene quiz</Titel>
-                <StartTimeWrapper>we beginnen om {printTime}</StartTimeWrapper>
+                <StartTimeWrapper>Startuur {printTime}</StartTimeWrapper>
+                <Text>We beginnen over ...</Text>
                 <Clock>
                     {clock}
                 </Clock>

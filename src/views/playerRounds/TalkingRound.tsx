@@ -19,7 +19,7 @@ const Root = styled.div`
 
 const RoundName = styled.h1`
     color: ${Theme.primaryAccent};
-    font-family: 'Spooky Skeleton';
+    font-family: 'Futura';
     font-weight: normal;
     font-style: normal;
     font-size: 85px;
@@ -62,7 +62,7 @@ export default class TalkingRound extends React.Component<TalkingRoundProps, {}>
 
         return (
             <Root>
-                <Title>Trivial Time</Title>
+                <Title>TRIVIAL TIME</Title>
                 <RoundName>{roundName}</RoundName>
                 <NameLeft>{presenters[0].name}</NameLeft>
                 <NameRight>{presenters[1].name}</NameRight>

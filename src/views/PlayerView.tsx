@@ -92,7 +92,7 @@ export default class PlayerView extends React.Component<PlayerViewProps, {}> {
         }
 
 
-        const backgroundType = roundType === RoundType.WelcomeRound ? '2' : roundType === RoundType.MediaRound || roundType === RoundType.EndRound ? '3' : '1';
+        const backgroundType = roundType === RoundType.WelcomeRound || roundType === RoundType.PauseRound ? '2' : '1';
         const show = true;
         const presenterCameras = <Presenters smallCamera = {smallCamera} gameState = {gameState} show = {showCamera}/>;
 

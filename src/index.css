@@ -53,6 +53,23 @@ button {
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Phosphate';
+  src: url('./fonts/PhosphateInline.woff2') format('woff2'),
+      url('./fonts/PhosphateInline.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Futura';
+  src: url('./fonts/Futura_Medium.woff2') format('woff2'),
+      url('./fonts/Futura_Medium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 
 
 

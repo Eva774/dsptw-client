@@ -31,13 +31,13 @@ const Question = styled.div`
 `
 
 const QuestionNumber = styled.span`
-    color: ${Theme.secondary};
+    color: ${Theme.primaryAccent};
     margin-right:20px;
 `
 
 const RoundName = styled.h1`
     color: ${Theme.primaryAccent};
-    font-family: 'Spooky Skeleton';
+    font-family: 'Futura';
     font-weight: normal;
     font-style: normal;
     font-size: 85px;
@@ -69,7 +69,7 @@ export default class TextRound extends React.Component<TextRoundProps, {}> {
 
         return (
             <Root>
-                <Title>Trivial Time Ronde {roundNumber}</Title>
+                <Title>TRIVIAL TIME RONDE {roundNumber}</Title>
                 <RoundName>{roundName}</RoundName>
                 <TimerWrapper>{showQuestion && <Timer key={"question" + currentQuestionIndex} className={question} duration={questionDuration} />}</TimerWrapper>
                 {showQuestion && <Question><QuestionNumber>Vraag {currentQuestionIndex + 1}:</QuestionNumber>{question}</Question>}

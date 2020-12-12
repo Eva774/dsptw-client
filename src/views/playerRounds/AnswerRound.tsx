@@ -36,8 +36,8 @@ const Title = styled.h1`
     left: 62px;
     max-width: 215px;
     text-align: left;
-    color: ${Theme.primary};
-    font-family: 'Scary Halloween';
+    color: ${Theme.primaryAccent};
+    font-family: 'Phosphate';
     font-size: 60px;
     font-weight: normal;
     font-style: normal;
@@ -149,7 +149,7 @@ export default class AnswerRound extends React.Component<AnswerRoundProps, {}> {
 
         return (
             <Root>
-                <Title>Trivial Time</Title>
+                <Title>TRIVIAL TIME</Title>
                 <MediaWrapper>
                     <Media>{media}</Media>
                 </MediaWrapper>
