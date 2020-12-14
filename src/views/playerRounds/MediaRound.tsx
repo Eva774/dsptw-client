@@ -176,28 +176,34 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
 
     render() {
         const { presenters, questionDuration } = this.props.gameState;
-        const { roundName, questions, currentQuestionIndex, roundNumber,mediaRoundType } = this.props.roundState;
+        const { roundName, questions, currentQuestionIndex, roundNumber,mediaRoundType, displayQuestion } = this.props.roundState;
 
         let question = ""
         let questionNumber = ""
         const showQuestion = currentQuestionIndex >= 0 && currentQuestionIndex < questions.length;
-        if (showQuestion) {
+
+        if (showQuestion && mediaRoundType == MediaRoundType.Picture) {
             question = questions[currentQuestionIndex];
-            questionNumber = (currentQuestionIndex + 1).toString();
+            questionNumber = "Vraag " + (currentQuestionIndex + 1).toString() +": ";
+        }
+
+        if (showQuestion && roundNumber == 5 && displayQuestion) {
+            question = questions[currentQuestionIndex];
+            questionNumber = "Vraag " + (currentQuestionIndex + 1).toString() +": ";
         }
 
         let media = null;
         let duration = 0;
         if (showQuestion) {
             if (mediaRoundType === MediaRoundType.Picture) {
-                const image = `//${getBaseUrl()}/static/photos/${currentQuestionIndex + 1}.jpg`;
+                const image = `//${getBaseUrl()}/static/${roundName}/${currentQuestionIndex + 1}.jpg`;
                 media = <><BackgroundImage backgroundImage={image} /><Image src={image} /></>;
                 duration = questionDuration;
             } else {
                 media = <Video
                     ref={this.handleRef}
                     poster={`/imgs/blank.png`}
-                    src={`//${getBaseUrl()}/static/videos/${currentQuestionIndex + 1}.mp4`}
+                    src={`//${getBaseUrl()}/static/videos/${roundNumber}_${currentQuestionIndex + 1}.mp4`}
                 />
                 duration = questionDuration;
             }
@@ -211,7 +217,7 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
                     <Media>{media}</Media>
                 </MediaWrapper>
                 {showQuestion && <TimerWrapper><Timer key={"mediaquestion" + currentQuestionIndex} duration={duration} /></TimerWrapper>}
-                {showQuestion && <Question><QuestionNumber>Vraag {questionNumber}:</QuestionNumber>{question}</Question>}
+                {showQuestion && <Question><QuestionNumber> {questionNumber}</QuestionNumber>{question}</Question>}
             </Root>
         );
     }

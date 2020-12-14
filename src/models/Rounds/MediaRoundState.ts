@@ -8,4 +8,5 @@ export type MediaRoundState = {
     mediaRoundType: MediaRoundType,
     questions: string[],
     currentQuestionIndex: number,
+    displayQuestion: boolean,
 };

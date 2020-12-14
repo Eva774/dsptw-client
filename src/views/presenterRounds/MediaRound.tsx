@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { GameState } from '../../models/GameState';
-import { nextQuestion, previousQuestion, playVideo } from '../../api/localServer';
+import { nextQuestion, previousQuestion, playVideo, displayQuestion } from '../../api/localServer';
 import { MediaRoundState } from '../../models/Rounds/MediaRoundState';
 
 type MediaRoundProps = {
@@ -25,6 +25,7 @@ export default class MediaRound extends React.Component<MediaRoundProps, {}> {
                 <button onClick={previousQuestion}>Previous question</button>
                 <button onClick={nextQuestion}>Next question</button>
                 <button onClick={playVideo}>Play Video</button>
+                <button onClick={displayQuestion}>Show question</button>
             </div>
         );
     }

@@ -7,5 +7,6 @@ export enum SocketCommand {
     PlayVideo = 'playVideo',
     PlayApplause = 'playApplause',
     SetPauseTargetTime = 'setPauseTargetTime',
-    SetWelcomeTargetTime = 'setWelcomeTargetTime'
+    SetWelcomeTargetTime = 'setWelcomeTargetTime',
+    DisplayQuestion = 'displayQuestion',
 }
