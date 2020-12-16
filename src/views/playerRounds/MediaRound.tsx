@@ -149,6 +149,7 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
             console.log("Video start")
             const { questions, currentQuestionIndex } = this.props.roundState;
             if (currentQuestionIndex >= 0 && currentQuestionIndex < questions.length) {
+
                 this.startVideo();
             }
         });

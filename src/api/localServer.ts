@@ -77,6 +77,7 @@ export function previousRound() { sendCommand(SocketCommand.PreviousRound) };
 export function nextRound() { sendCommand(SocketCommand.NextRound) };
 export function setPauseTargetTime(targetTime: string) { sendCommand(SocketCommand.SetPauseTargetTime, { targetTime }) };
 export function setWelcomeTargetTime(targetTime: string) { sendCommand(SocketCommand.SetWelcomeTargetTime, { targetTime }) };
+export function setInputRanking(inputRanking: string) { sendCommand(SocketCommand.SetInputRanking, { inputRanking })};
 export function playVideo() { sendCommand(SocketCommand.PlayVideo) };
 export function displayQuestion() {sendCommand(SocketCommand.DisplayQuestion)}
 

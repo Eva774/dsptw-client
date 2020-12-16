@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { previousRound, nextRound, setWelcomeTargetTime, setPauseTargetTime } from '../api/localServer';
+import { previousRound, nextRound, setWelcomeTargetTime, setPauseTargetTime, setInputRanking } from '../api/localServer';
 import { GameState } from '../models/GameState';
 import { RoundType } from '../models/RoundType';
 
@@ -11,6 +11,8 @@ import MediaRound from './presenterRounds/MediaRound';
 import { MediaRoundState } from '../models/Rounds/MediaRoundState';
 import { MixRoundState } from '../models/Rounds/MixRoundState';
 import MixRound from './presenterRounds/MixRound';
+import RankingRound from './presenterRounds/RankingRound';
+import { RankingRoundState } from '../models/Rounds/RankingRoundState';
 
 const Wrapper = styled.div`
     font-size: 2em;
@@ -23,6 +25,7 @@ type PresenterProps = {
 type PresenterState = {
     pauseTargetTime: string,
     welcomeTargetTime: string,
+    inputRanking: string,
 }
 
 export default class Presenter extends React.Component<PresenterProps, PresenterState> {
@@ -30,6 +33,7 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
     state = {
         welcomeTargetTime: "",
         pauseTargetTime: "",
+        inputRanking: "",
     }
 
     setWelcomeTargetTimeState = (e: any) => {
@@ -44,6 +48,12 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
         });
     }
 
+    setInputRankingState = (e: any) => {
+        this.setState({
+            inputRanking: e.target.value
+        });
+    }
+    
     setWelcomeTargetTime = () => {
         setWelcomeTargetTime(this.state.welcomeTargetTime);
     }
@@ -52,6 +62,9 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
         setPauseTargetTime(this.state.pauseTargetTime);
     }
 
+    setInputRanking = () => {
+        setInputRanking(this.state.inputRanking);
+    }
     render() {
         if (!this.props.gameState) {
             return <div>Not connected to server, is the server online?</div>;
@@ -76,6 +89,9 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
             case RoundType.AnswerRound:
                 round = <TextRound gameState={this.props.gameState} roundState={roundState as TextRoundState} />
                 break;
+            case RoundType.RankingRound:
+                round = <RankingRound gameState={this.props.gameState} roundState = {roundState as RankingRoundState} />
+                break;
 
         }
 
@@ -96,6 +112,11 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
                     <button onClick={nextRound}>Next round</button>
                 </div>
                 {round}
+                <div>
+                    Current ranking: <input type="textarea" onChange={this.setInputRankingState} />
+                    <button onClick={this.setInputRanking}>Submit ranking</button>
+                </div>
+
             </Wrapper>
         )
     }
