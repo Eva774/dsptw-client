@@ -15,7 +15,7 @@ const Titel = styled.h2`
     margin-bottom: 25px;
 
     max-width: 1820px;
-    font-size: 85px;
+    font-size: 95px;
     color: ${Theme.primaryAccent};
     text-transform: uppercase;
     font-family: 'Phosphate';
@@ -40,8 +40,8 @@ const Title1 = styled.div`
     font-family: 'Futura';
     font-size: 45px;
     position: absolute;
-    top: 390px;
-    left: 680px;
+    top: 300px;
+    left: 580px;
     text-align: left;
     color: ${Theme.primaryAccent}
 `
@@ -59,12 +59,12 @@ const Title2 = styled.div`
 
 const Kolom1 = styled.span`
     display: table;
-    width: 400px;
+    width: 500px;
     font-family: 'Avenir LT Std';
     font-size: 40px;
     position: absolute;
-    top: 450px;
-    left: 680px;
+    top: 380px;
+    left: 580px;
     text-align: left;
     color: ${Theme.primary}
 `
@@ -74,7 +74,7 @@ const Kolom2 = styled.span`
     font-family: 'Avenir LT Std';
     font-size: 40px;
     position: absolute;
-    top: 450px;
+    top: 380px;
     left: 1010px;
     text-align: left;
     color: ${Theme.primary}
@@ -128,32 +128,30 @@ export default class EndRound extends React.Component<{}, {}> {
                 <StartTimeWrapper>We zien/horen jullie in #babbelen met z'n allen</StartTimeWrapper>
                 <Title1>Met dank aan: </Title1>
                 <Kolom1>
-                Kim <br />
-                Stephanie <br />
-                    Jezus<br/>
-                    Thiadrik<br />
-                    Omar<br />
-                    Diede<br />
-                    
-                    Xavier <br />
-                    Hanaï <br />
-                    Robert Jan <br />
-                    Annelies <br />
+                Schermkerstbal links <br />
+                Schermkerstbal West <br />
+                    Redactielampie<br/>
+                    Redactiecadeautje<br />
+                    Redactiester<br />
+                    Redactieslinger<br />
+                    Redactiesneeuw<br />
+                    Redactiespar<br />
+                    Redactiepiek<br />
+                    TechniekklaAaAs <br />
                     
                 </Kolom1>
                 <Kolom2>
                     Kwimmel<br />
                     Vobtex<br />
-                    Fibo<br/>
-                    Maart3n<br />
                     Bobvdv<br />
-                    @CastingDino - LoL caster<br />
-                    
-                    @CasterXsodus - LoL caster<br />
-                    @mowglitch - deskhost<br />
-                    @RJcasts - CS:GO caster<br />
-                    @BubbleLizzy - showhost <br />
-                    
+                    Fibo<br/>
+                    Flammable<br/>
+                    Jelmen<br/>
+                    Lizalzia <br/>
+                    Maart3n<br/>
+                    Slider <br/>
+                    Eva <br/>
+
 
                 </Kolom2>
                 <Laatste>En uiteraard ook de Nerdland crew en alle Nerdland inwoners om dit mogelijk te maken! </Laatste>

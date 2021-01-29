@@ -61,7 +61,7 @@ const RoundName = styled.h2`
 const Media = styled.div`
     width: 1280px;
     height: 720px;
-    background-color: black;
+    background-color: #201d2c;
     display: flex;
     justify-content: center;
     align-items: center;

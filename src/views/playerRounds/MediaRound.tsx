@@ -65,7 +65,7 @@ const RoundName = styled.h2`
 const Media = styled.div`
     width: 1280px;
     height: 720px;
-    background-color: black;
+    background-color: #201d2c;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -181,23 +181,31 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
 
         let question = ""
         let questionNumber = ""
+        let showTimer = false
         const showQuestion = currentQuestionIndex >= 0 && currentQuestionIndex < questions.length;
 
         if (showQuestion && mediaRoundType == MediaRoundType.Picture) {
             question = questions[currentQuestionIndex];
             questionNumber = "Vraag " + (currentQuestionIndex + 1).toString() +": ";
+            showTimer = true
         }
 
         if (showQuestion && roundNumber == 5 && displayQuestion) {
             question = questions[currentQuestionIndex];
             questionNumber = "Vraag " + (currentQuestionIndex + 1).toString() +": ";
+            showTimer = true
         }
 
+        if (showQuestion && roundNumber != 5 && MediaRoundType.Movie) {
+            question = questions[currentQuestionIndex];
+            questionNumber = "Vraag " + (currentQuestionIndex + 1).toString() +": ";
+            showTimer = true
+        }
         let media = null;
         let duration = 0;
         if (showQuestion) {
             if (mediaRoundType === MediaRoundType.Picture) {
-                const image = `//${getBaseUrl()}/static/${roundName}/${currentQuestionIndex + 1}.jpg`;
+                const image = `//${getBaseUrl()}/static/${roundNumber}/${currentQuestionIndex + 1}.jpg`;
                 media = <><BackgroundImage backgroundImage={image} /><Image src={image} /></>;
                 duration = questionDuration;
             } else {
@@ -209,7 +217,7 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
                 duration = questionDuration;
             }
         }
-
+        // const showTimer = showQuestion && roundNumber !=5
         return (
             <Root>
                 <Title>TRIVIAL TIME RONDE {roundNumber}</Title>
@@ -217,7 +225,7 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
                 <MediaWrapper>
                     <Media>{media}</Media>
                 </MediaWrapper>
-                {showQuestion && <TimerWrapper><Timer key={"mediaquestion" + currentQuestionIndex} duration={duration} /></TimerWrapper>}
+                {showTimer && <TimerWrapper><Timer key={"mediaquestion" + currentQuestionIndex} duration={duration} /></TimerWrapper>}
                 {showQuestion && <Question><QuestionNumber> {questionNumber}</QuestionNumber>{question}</Question>}
             </Root>
         );

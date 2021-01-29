@@ -14,8 +14,17 @@ import MixRound from './presenterRounds/MixRound';
 import RankingRound from './presenterRounds/RankingRound';
 import { RankingRoundState } from '../models/Rounds/RankingRoundState';
 
+
 const Wrapper = styled.div`
     font-size: 2em;
+`
+const RankingWrapper = styled.div`
+    display: flex;
+    font-size:25px;
+`
+const RankingDiv = styled.div`
+    width:200px;
+
 `
 
 type PresenterProps = {
@@ -65,6 +74,30 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
     setInputRanking = () => {
         setInputRanking(this.state.inputRanking);
     }
+
+    splitRanking(inputRanking: string){
+        const splitRanking = inputRanking.split(";");
+    
+        let Ranking = new Array(splitRanking.length-1);
+        for (let i = 0;i<splitRanking.length-1;i++) {
+            var teamName =  splitRanking[i].split("\t")[0];
+            if (teamName.length >=15) {
+                teamName = teamName.slice(0,12) + "..."
+            } 
+            Ranking[i] = {
+                teamName: teamName,
+                teamNumber: splitRanking[i].split("\t")[1],
+                points: Number(splitRanking[i].split("\t")[2])
+        };
+        }
+    
+        Ranking = Ranking.sort((a,b) => a.points < b.points ? -1 : a.points > b.points ? 1 : 0)
+        for (let i = 0; i<Ranking.length;i++) {
+            Ranking[i].place = Ranking.length - i
+        }
+        
+        return Ranking
+    }
     render() {
         if (!this.props.gameState) {
             return <div>Not connected to server, is the server online?</div>;
@@ -72,8 +105,9 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
         const { roundState } = this.props.gameState;
         const { roundName, roundType } = roundState;
 
-        const { welcomeTargetTime, pauseTargetTime } = this.state;
+        const { welcomeTargetTime, pauseTargetTime, inputRanking } = this.state;
 
+        const Ranking = this.splitRanking(inputRanking)
         let round = null;
 
         switch (roundType) {
@@ -116,6 +150,26 @@ export default class Presenter extends React.Component<PresenterProps, Presenter
                     Current ranking: <input type="textarea" onChange={this.setInputRankingState} />
                     <button onClick={this.setInputRanking}>Submit ranking</button>
                 </div>
+                <div>
+                    Ingevoerde ranking:
+                </div>
+                <RankingWrapper>
+                    <RankingDiv>
+                        Plaats {Ranking.map((item => 
+                            <tr key={item.teamName}>{item.place}</tr>
+                            ))}
+                    </RankingDiv>
+                    <RankingDiv>                        
+                        Teamnaam {Ranking.map((item => 
+                            <tr key={item.teamName}>{item.teamName}</tr>
+                            ))}
+                    </RankingDiv>
+                    <RankingDiv> 
+                        Punten {Ranking.map((item => 
+                            <tr key={item.teamName}>    {item.points}</tr>
+                            ))}
+                    </RankingDiv>
+                </RankingWrapper>
 
             </Wrapper>
         )
