@@ -117,9 +117,7 @@ const Header4 = styled.div`
     text-align: center;
     color: ${Theme.primaryAccent}   
 `
-const RoundName = styled.h1`
-    text-align: center
-`
+
 var pixelWidth = require('string-pixel-width')
 
 function splitRanking(inputRanking: string, currentQuestionIndex: number){
@@ -166,10 +164,7 @@ export default class RankingRound extends React.Component<RankingRoundProps, {}>
     render() {
 
         const { inputRanking, currentQuestionIndex } = this.props.roundState;
-        const width = pixelWidth('test the width fff', {font: 'avenir',size:24})
-        console.log(width)
         const RankingShow = splitRanking(inputRanking, currentQuestionIndex)
-        console.log(inputRanking)
         return (
             <Root>
                 <Title>TRIVIAL TIME</Title>

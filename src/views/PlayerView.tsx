@@ -18,7 +18,6 @@ import { MixRoundState } from '../models/Rounds/MixRoundState';
 import { RankingRoundState } from '../models/Rounds/RankingRoundState';
 import MixRound from './playerRounds/MixRound';
 import Presenters from '../components/Presenters';
-import { EndRoundState } from '../models/Rounds/EndRoundState';
 import EndRound from './playerRounds/EndRound';
 import AnswerRound from './playerRounds/AnswerRound';
 import { AnswerRoundState } from '../models/Rounds/AnswerRoundState';
@@ -94,7 +93,6 @@ export default class PlayerView extends React.Component<PlayerViewProps, {}> {
 
 
         const backgroundType = roundType === RoundType.WelcomeRound || roundType === RoundType.PauseRound ? '2' : '1';
-        const show = true;
         const presenterCameras = <Presenters smallCamera = {smallCamera} gameState = {gameState} show = {showCamera}/>;
 
         return (

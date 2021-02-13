@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { PresenterState } from '../models/PresenterState';
 import { Theme } from '../Theme'
 
-const keyOrder = ['smallLeft', 'smallRight','bigLeft','bigLeft']
+// const keyOrder = ['smallLeft', 'smallRight','bigLeft','bigLeft']
 
 const cameraHeight = ['295px','295px', '420px','420px'];
 const cameraWidth = ['505px','505px', '720px','720px'];
@@ -17,10 +17,6 @@ const cameraVerticalOffset = ['-10px','-10px', '-10px','-10px'];
 const cameraHorizontalPosition = ['left: 35px', 'right: 35px', 'left: 510px', 'right: 510px'];
 const cameraVerticalPosition = ['bottom: 170px','top: 60px','top: 350px', 'top: 350px'];
 
-
-const Root = styled.div`
-
-`
 
 const CameraLinkWrapper = styled.div`
     ${(props: { show: boolean ,index: number}) => props.show ? null : `display:none;`}
@@ -36,8 +32,6 @@ const CameraLinkWrapper = styled.div`
     z-order: 1;
 `
 
-// ${(props: { key: number}) => cameraWrapperWidth[props.key]};
-// ${(props: { key: number}) => cameraWrapperHeight[props.key]};
 const CameraLinkDiv = styled.div`
     width: ${(props: {index: number}) =>cameraWrapperWidth[props.index]};
     height: ${(props: {index: number}) =>cameraWrapperHeight[props.index]};
@@ -46,8 +40,7 @@ const CameraLinkDiv = styled.div`
     left: 0px;
     top: 0px;
 `
-///* ${(props: { key:number}) => cameraHeight[props.key]}; *
-// ${(props: { key: number}) => cameraWidth[props.key]};
+
 const CameraLink = styled.iframe`
     height: ${(props: {index: number}) => cameraHeight[props.index]};
     width: ${(props: {index: number}) => cameraWidth[props.index]};
@@ -55,22 +48,6 @@ const CameraLink = styled.iframe`
     position: relative;
     left: ${(props: {index: number}) => cameraHorizontalOffset[props.index]};
     top: ${(props: {index: number}) => cameraVerticalOffset[props.index]};
-`
-const Name = styled.span`
-    font-size: 80px;
-    font-family: 'Avenir LT Std';
-    font-weight: normal;
-    font-style: normal;
-    margin: 40px 20px;
-    color: ${Theme.primary};
-    background-color: ${Theme.primary};//#f3ec78;
-    // background-image: linear-gradient(70deg, #F52F95, ${Theme.secondary});
-    background-size: 100%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; 
-    -moz-background-clip: text;
-    -moz-text-fill-color: transparent;
 `
 
 type CameraProps = {
@@ -85,7 +62,7 @@ export default class Camera extends React.Component<CameraProps, {}> {
 
     render() {
         const smallCamera = this.props.smallCamera;
-        const { name,cameraLink } = this.props.presenter;
+        const { cameraLink } = this.props.presenter;
         const namePlace = this.props.namePlace ? this.props.namePlace : 'center';
         const show = this.props.show
 

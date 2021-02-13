@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { GameState } from '../../models/GameState';
-import Camera from '../../components/Camera';
 import styled from 'styled-components';
 import { TalkingRoundState } from '../../models/Rounds/TalkingRoundState';
 import { Title } from '../../components/Title';
 import { Theme } from '../../Theme';
-import Presenters from '../../components/Presenters';
+
 
 type TalkingRoundProps = {
     gameState: GameState,

@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { GameState } from '../../models/GameState';
-import Camera from '../../components/Camera';
 import styled from 'styled-components';
 import { TextRoundState } from '../../models/Rounds/TextRoundState';
 import { Title } from '../../components/Title';
 import { Theme } from '../../Theme';
 import { Timer } from '../../components/Timer';
-import Presenters from '../../components/Presenters';
 
 type TextRoundProps = {
     gameState: GameState,
@@ -58,7 +56,7 @@ export default class TextRound extends React.Component<TextRoundProps, {}> {
 
     render() {
         const { gameState, roundState } = this.props;
-        const { presenters, questionDuration } = gameState;
+        const { questionDuration } = gameState;
         const { roundName, questions, currentQuestionIndex, roundNumber } = roundState;
 
         let question = ""
@@ -66,6 +64,7 @@ export default class TextRound extends React.Component<TextRoundProps, {}> {
         if (currentQuestionIndex >= 0 && currentQuestionIndex < questions.length) {
             question = questions[currentQuestionIndex];
         }
+
 
         return (
             <Root>

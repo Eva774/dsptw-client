@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { GameState } from '../../models/GameState';
-import SmallCamera from '../../components/SmallCamera';
 import styled from 'styled-components';
 import { MediaRoundState } from '../../models/Rounds/MediaRoundState';
 import { Theme } from '../../Theme';
 import { MediaRoundType } from '../../models/Rounds/MediaRoundType';
 import { Timer } from '../../components/Timer';
 import { getPlayVideoStream, getBaseUrl } from '../../api/localServer';
-import { transpileModule } from 'typescript';
-import Presenters from '../../components/Presenters';
+
 
 type MediaRoundProps = {
     gameState: GameState,
@@ -20,18 +18,6 @@ type MediaRoundComponentState = {
 }
 
 const Root = styled.div`
-`
-
-const Presenter1 = styled.div`
-    position: absolute;
-    left: 35px;
-    bottom: 170px;
-`
-
-const Presenter2 = styled.div`
-    position: absolute;
-    top: 60px;
-    right: 35px;
 `
 
 const Title = styled.h1`
@@ -149,7 +135,6 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
             console.log("Video start")
             const { questions, currentQuestionIndex } = this.props.roundState;
             if (currentQuestionIndex >= 0 && currentQuestionIndex < questions.length) {
-
                 this.startVideo();
             }
         });
@@ -176,7 +161,7 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
     }
 
     render() {
-        const { presenters, questionDuration } = this.props.gameState;
+        const { questionDuration } = this.props.gameState;
         const { roundName, questions, currentQuestionIndex, roundNumber,mediaRoundType, displayQuestion } = this.props.roundState;
 
         let question = ""
@@ -184,19 +169,19 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
         let showTimer = false
         const showQuestion = currentQuestionIndex >= 0 && currentQuestionIndex < questions.length;
 
-        if (showQuestion && mediaRoundType == MediaRoundType.Picture) {
+        if (showQuestion && mediaRoundType === MediaRoundType.Picture) {
             question = questions[currentQuestionIndex];
             questionNumber = "Vraag " + (currentQuestionIndex + 1).toString() +": ";
             showTimer = true
         }
 
-        if (showQuestion && roundNumber == 5 && displayQuestion) {
+        if (showQuestion && roundNumber === 5 && displayQuestion) {
             question = questions[currentQuestionIndex];
             questionNumber = "Vraag " + (currentQuestionIndex + 1).toString() +": ";
             showTimer = true
         }
 
-        if (showQuestion && roundNumber != 5 && MediaRoundType.Movie) {
+        if (showQuestion && roundNumber !== 5 && MediaRoundType.Movie) {
             question = questions[currentQuestionIndex];
             questionNumber = "Vraag " + (currentQuestionIndex + 1).toString() +": ";
             showTimer = true

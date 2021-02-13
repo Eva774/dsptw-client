@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { GameState } from '../../models/GameState';
-import Camera from '../../components/Camera';
 import styled from 'styled-components';
 import { MixRoundState } from '../../models/Rounds/MixRoundState';
 import { Title } from '../../components/Title';
@@ -100,8 +99,12 @@ export default class MixRound extends React.Component<MixRoundProps, {}> {
         
     render() {
         const { gameState, roundState } = this.props;
-        const { presenters, questionDuration } = gameState;
+        let questionDuration = gameState.questionDuration;
         const { roundName, questions, currentQuestionIndex, roundNumber } = roundState;
+
+        if (roundNumber === 6 && currentQuestionIndex === 9){
+            questionDuration = 120;
+        }
 
         let question = Object()
         const showQuestion = currentQuestionIndex >= 0 && currentQuestionIndex < questions.length;
@@ -112,8 +115,7 @@ export default class MixRound extends React.Component<MixRoundProps, {}> {
         
         let toShow = null;
         let media = false;
-        const smallCamera = false;
-        if (currentQuestionIndex > 0 && currentQuestionIndex < questions.length && question.image != "" ) { 
+        if (currentQuestionIndex > 0 && currentQuestionIndex < questions.length && question.image !== "" ) { 
 
             const image = `//${getBaseUrl()}/static/${roundName}/${question.image}.jpg`;
             media = true;

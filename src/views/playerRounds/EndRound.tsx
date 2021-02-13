@@ -45,17 +45,6 @@ const Title1 = styled.div`
     text-align: left;
     color: ${Theme.primaryAccent}
 `
-const Title2 = styled.div`
-    width: 400px;
-    font-family: 'Futura';
-    font-size: 45px;
-    position: absolute;
-    top: 390px;
-    left: 1100px;
-    text-align: left;
-    color: ${Theme.primaryAccent}
-    `
-
 
 const Kolom1 = styled.span`
     display: table;
@@ -80,28 +69,6 @@ const Kolom2 = styled.span`
     color: ${Theme.primary}
 `
 
-const Kolom3 = styled.span`
-    display: table;
-    width: 800px;
-    font-family: 'Avenir LT Std';
-    font-size: 40px;
-    position: absolute;
-    top: 450px;
-    left: 1100px;
-    text-align: left;
-    color: ${Theme.primary}
-`
-const Kolom4 = styled.span`
-    display: table;
-    width: 300px;
-    font-family: 'Avenir LT Std';
-    font-size: 40px;
-    position: absolute;
-    top: 450px;
-    left: 1500px;
-    text-align: left;
-    color: ${Theme.primary}
-`
 
 const Laatste = styled.div`
     width: 1700px;
@@ -128,31 +95,28 @@ export default class EndRound extends React.Component<{}, {}> {
                 <StartTimeWrapper>We zien/horen jullie in #babbelen met z'n allen</StartTimeWrapper>
                 <Title1>Met dank aan: </Title1>
                 <Kolom1>
-                Schermkerstbal links <br />
-                Schermkerstbal West <br />
-                    Redactielampie<br/>
-                    Redactiecadeautje<br />
-                    Redactiester<br />
-                    Redactieslinger<br />
-                    Redactiesneeuw<br />
-                    Redactiespar<br />
-                    Redactiepiek<br />
-                    TechniekklaAaAs <br />
-                    
+                    Don Juan links <br/>
+                    Casanova West <br/>
+                    Redactie Freya <br/>
+                    Redactie Venus <br/>
+                    Redactie Aphrodite <br/>
+                    Redactie Cupido <br/>
+                    Redactie Aphrodike <br/>
+                    Redactie Eros <br/>
+                    Redactie Cherubijntje <br/>
+                    Techniekengeltje <br/>                    
                 </Kolom1>
                 <Kolom2>
-                    Kwimmel<br />
-                    Vobtex<br />
-                    Bobvdv<br />
-                    Fibo<br/>
-                    Flammable<br/>
-                    Jelmen<br/>
+                    Bob <br/>
+                    Bart <br/>
+                    Fibo <br/>
+                    Flammable <br/>
+                    Jelmen <br/>
+                    Kwimmel <br/>
                     Lizalzia <br/>
-                    Maart3n<br/>
-                    Slider <br/>
+                    Maart3n <br/>
+                    Vobtex <br/>
                     Eva <br/>
-
-
                 </Kolom2>
                 <Laatste>En uiteraard ook de Nerdland crew en alle Nerdland inwoners om dit mogelijk te maken! </Laatste>
             </Root>
