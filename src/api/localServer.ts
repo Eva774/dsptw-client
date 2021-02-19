@@ -79,7 +79,8 @@ export function setPauseTargetTime(targetTime: string) { sendCommand(SocketComma
 export function setWelcomeTargetTime(targetTime: string) { sendCommand(SocketCommand.SetWelcomeTargetTime, { targetTime }) };
 export function setInputRanking(inputRanking: string) { sendCommand(SocketCommand.SetInputRanking, { inputRanking })};
 export function playVideo() { sendCommand(SocketCommand.PlayVideo) };
-export function displayQuestion() {sendCommand(SocketCommand.DisplayQuestion) }
+export function displayQuestion() {sendCommand(SocketCommand.DisplayQuestion) };
+export function hideQuestion() {sendCommand(SocketCommand.HideQuestion) }
 
 function sendCommand(command: string, extraData = {}) {
     if (socket) {

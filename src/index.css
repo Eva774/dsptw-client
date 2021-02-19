@@ -53,14 +53,14 @@ button {
   font-display: swap;
 }
 
-@font-face {
+/* @font-face {
   font-family: 'Phosphate';
   src: url('./fonts/PhosphateInline.woff2') format('woff2'),
       url('./fonts/PhosphateInline.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-}
+} */
 @font-face {
   font-family: 'Futura';
   src: url('./fonts/Futura_Medium.woff2') format('woff2'),
@@ -71,6 +71,18 @@ button {
 }
 
 
+@font-face {
+  font-family: 'Phosphate';
+  src: url('./fonts/bauerbodoni-roman-webfont.woff2') format('woff2'),
+      url('./fonts/bauerbodoni-roman-webfont.woff') format('woff');
 
-
-@font-face {font-family: "Avenir Medium"; src: url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.eot"); src: url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.woff") format("woff"), url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/2090551770be22b09600a40b0b4673b7.svg#Avenir Medium") format("svg"); } 
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Avenir Book';
+  src: url('./fonts/AvenirLTStd-Book.woff2') format('woff2'),
+      url('./fonts/AvenirLTStd-Book.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

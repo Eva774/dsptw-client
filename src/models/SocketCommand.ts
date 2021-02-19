@@ -9,5 +9,6 @@ export enum SocketCommand {
     SetPauseTargetTime = 'setPauseTargetTime',
     SetWelcomeTargetTime = 'setWelcomeTargetTime',
     DisplayQuestion = 'displayQuestion',
+    HideQuestion = 'hideQuestion',
     SetInputRanking = 'setInputRanking',
 }

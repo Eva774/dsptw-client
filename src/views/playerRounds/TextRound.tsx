@@ -20,7 +20,7 @@ const Question = styled.div`
     color: ${Theme.primary};
     font-size: 65px;
     width: 1300px;
-    font-family: 'Avenir LT Std';
+    font-family: 'Avenir Book';
     font-weight: normal;
     font-style: normal;
     position: absolute;
@@ -35,7 +35,7 @@ const QuestionNumber = styled.span`
 
 const RoundName = styled.h1`
     color: ${Theme.primaryAccent};
-    font-family: 'Futura';
+    font-family: 'Avenir Book';
     font-weight: normal;
     font-style: normal;
     font-size: 85px;
@@ -47,7 +47,7 @@ const TimerWrapper = styled.div`
     position: absolute;
     width: 80px;
     height: 400px;
-    border: 5px solid ${Theme.primary};
+    border: 5px solid ${Theme.secondary};
     left: 915px;
     top: 350px;
 `

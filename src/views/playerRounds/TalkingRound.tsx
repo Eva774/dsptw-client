@@ -18,9 +18,7 @@ const Root = styled.div`
 
 const RoundName = styled.h1`
     color: ${Theme.primaryAccent};
-    font-family: 'Futura';
-    font-weight: normal;
-    font-style: normal;
+    font-family: 'Avenir Book';
     font-size: 85px;
     text-transform: uppercase;
     margin: 22px 0;
@@ -33,9 +31,7 @@ const NameLeft = styled.div`
     width: 350px;
     text-align: center;
     font-size: 70px;
-    font-family: 'Avenir LT Std';
-    font-weight: normal;
-    font-style: normal;
+    font-family: 'Avenir Book';
     margin: 30px 20px;
     color: ${Theme.primary};
 `
@@ -46,9 +42,7 @@ const NameRight = styled.div`
     width: 350px;
     text-align: center;
     font-size: 70px;
-    font-family: 'Avenir LT Std';
-    font-weight: normal;
-    font-style: normal;
+    font-family: 'Avenir Book';
     margin: 30px 20px;
     color: ${Theme.primary};
 `

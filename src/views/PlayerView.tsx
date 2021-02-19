@@ -34,7 +34,7 @@ const Root = styled.div`
     width: 100vw;
     height: 100vh;
     background-color: #cccccc;
-    background-image: url('/imgs/background${(props: { backgroundType: string }) => props.backgroundType}.png');
+    background-image: url('/imgs/background${(props: { backgroundType: string }) => props.backgroundType}.jpg');
     background-size: contain;
 `
 
@@ -91,8 +91,16 @@ export default class PlayerView extends React.Component<PlayerViewProps, {}> {
 
         }
 
+        let backgroundType = '3'
 
-        const backgroundType = roundType === RoundType.WelcomeRound || roundType === RoundType.PauseRound ? '2' : '1';
+        if (roundType === RoundType.TextRound || roundType === RoundType.MixRound){
+            backgroundType = '1'
+
+        }
+        else if (roundType === RoundType.WelcomeRound || roundType === RoundType.PauseRound ){
+            backgroundType = '2'
+        }
+       
         const presenterCameras = <Presenters smallCamera = {smallCamera} gameState = {gameState} show = {showCamera}/>;
 
         return (

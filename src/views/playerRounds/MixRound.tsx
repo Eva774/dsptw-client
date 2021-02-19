@@ -21,9 +21,7 @@ const Question = styled.div`
     color: ${Theme.primary};
     font-size: 65px;
     width: 1300px;
-    font-family: 'Avenir LT Std';
-    font-weight: normal;
-    font-style: normal;
+    font-family: 'Avenir Book';
     position: absolute;
     top: 800px;
     left: 310px;    
@@ -36,7 +34,7 @@ const QuestionNumber = styled.span`
 
 const RoundName = styled.h1`
     color: ${Theme.primaryAccent};
-    font-family: 'Futura';
+    font-family: 'Avenir Book';
     font-weight: normal;
     font-style: normal;
     font-size: 85px;
@@ -48,7 +46,7 @@ const TimerWrapper = styled.div`
     position: absolute;
     width: 80px;
     height: 400px;
-    border: 5px solid ${Theme.primary};
+    border: 5px solid ${Theme.secondary};
     right: ${(props: {isMedia: boolean}) => props.isMedia ? '370px' : '915px'};
     top: 350px;
     z-index: 3;
@@ -89,7 +87,7 @@ const MediaWrapper = styled.div`
     max-width: 900px;
     max-height: 410px;
     padding: 1rem;
-    background: linear-gradient(80deg, ${Theme.primary}, ${Theme.primaryAccent});
+    background:${Theme.secondary};
     padding: 5px;
     z-index: 3;
 `
@@ -117,7 +115,7 @@ export default class MixRound extends React.Component<MixRoundProps, {}> {
         let media = false;
         if (currentQuestionIndex > 0 && currentQuestionIndex < questions.length && question.image !== "" ) { 
 
-            const image = `//${getBaseUrl()}/static/${roundName}/${question.image}.jpg`;
+            const image = `//${getBaseUrl()}/static/images/${question.image}.jpg`;
             media = true;
             toShow =      
             <Root>

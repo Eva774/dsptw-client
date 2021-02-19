@@ -7,7 +7,7 @@ bottom: 0;
 left: 0;
 width: 100%;
 height: 0%;
-background-image: linear-gradient(${Theme.primaryAccent}, ${Theme.primary});
+background-image: linear-gradient(${Theme.secondaryAccent}, ${Theme.secondaryAccent});
 animation : drop ${(props: { duration: number }) => props.duration}s infinite,
             pulse ${(props: { duration: number }) => props.duration}s infinite;
 animation-iteration-count: 1;

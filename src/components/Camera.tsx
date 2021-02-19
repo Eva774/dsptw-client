@@ -23,7 +23,7 @@ const CameraLinkWrapper = styled.div`
     padding: 1rem;
     position: absolute;
     overflow: hidden;
-    background: linear-gradient(80deg, ${Theme.primary}, ${Theme.primaryAccent});
+    background: ${Theme.secondary};
     padding: 5px;
     width: ${(props: { show: boolean ,index: number}) => cameraWrapperWidth[props.index]};
     height: ${(props: { show: boolean ,index: number}) => cameraWrapperHeight[props.index]};

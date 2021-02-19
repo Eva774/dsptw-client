@@ -20,7 +20,7 @@ const MediaWrapper = styled.div`
     max-height: 720px;
     padding: 1rem;
     position: relative;
-    background: linear-gradient(80deg, ${Theme.primary}, ${Theme.primaryAccent});
+    background: ${Theme.secondary};
     padding: 3px;
 `
 const Media = styled.div`
@@ -42,28 +42,26 @@ const Headers = styled.div`
 const Title = styled.h1`
     position: absolute;
     top: 50px;
-    left: 62px;
+    left: 35px;
     max-width: 215px;
     text-align: left;
     color: ${Theme.primaryAccent};
     font-family: 'Phosphate';
     font-size: 60px;
-    font-weight: normal;
-    font-style: normal;
     margin: 0;
 `
 
 const Kolom1 = styled.span`
     display: table;
     width: 190px;
-    font-family: 'Avenir LT Std';
+    font-family: 'Avenir Book';
     font-size: 24px;
     text-align: center;
     color: ${Theme.primary}
 `
 const Header1 = styled.div`
     width: 190px;
-    font-family: 'Futura';
+    font-family: 'Avenir Book';
     font-size: 45px;
     text-align: center;
     color: ${Theme.primaryAccent}
@@ -72,14 +70,14 @@ const Header1 = styled.div`
 const Kolom2 = styled.span`
     display: table;
     width: 250px;
-    font-family: 'Avenir LT Std';
+    font-family: 'Avenir Book';
     font-size: 24px;
     text-align: center;
     color: ${Theme.primary}
 `
 const Header2 = styled.div`
     width: 250px;
-    font-family: 'Futura';
+    font-family: 'Avenir Book';
     font-size: 45px;
     text-align: center;
     color: ${Theme.primaryAccent}
@@ -87,7 +85,7 @@ const Header2 = styled.div`
 const Kolom3 = styled.span`
     display: table;
     width: 600px;
-    font-family: 'Avenir LT Std';
+    font-family: 'Avenir Book';
     font-size: 24px;
     text-align: left;
     color: ${Theme.primary}
@@ -95,7 +93,7 @@ const Kolom3 = styled.span`
 
 const Header3 = styled.div`
     width: 600px;
-    font-family: 'Futura';
+    font-family: 'Avenir Book';
     font-size: 45px;
     text-align: left;
     color: ${Theme.primaryAccent}
@@ -104,7 +102,7 @@ const Header3 = styled.div`
 const Kolom4 = styled.span`
     display: table;
     width: 200px;
-    font-family: 'Avenir LT Std';
+    font-family: 'Avenir Book';
     font-size: 24px;
     text-align: center;
     color: ${Theme.primary}
@@ -112,7 +110,7 @@ const Kolom4 = styled.span`
 
 const Header4 = styled.div`
     width: 200px;
-    font-family: 'Futura';
+    font-family: 'Avenir Book';
     font-size: 45px;
     text-align: center;
     color: ${Theme.primaryAccent}   

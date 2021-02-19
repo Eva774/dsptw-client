@@ -31,13 +31,13 @@ const StartTimeWrapper = styled.h2`
     color: ${Theme.primary};
     font-size: 55px;
     text-transform: uppercase;
-    font-family: 'Futura';
+    font-family: 'Avenir Book';
     font-weight: normal;
     font-style: normal;
 ` 
 const Title1 = styled.div`
     width: 400px;
-    font-family: 'Futura';
+    font-family: 'Avenir Book';
     font-size: 45px;
     position: absolute;
     top: 300px;
@@ -49,7 +49,7 @@ const Title1 = styled.div`
 const Kolom1 = styled.span`
     display: table;
     width: 500px;
-    font-family: 'Avenir LT Std';
+    font-family: 'Avenir Book';
     font-size: 40px;
     position: absolute;
     top: 380px;
@@ -60,7 +60,7 @@ const Kolom1 = styled.span`
 const Kolom2 = styled.span`
     display: table;
     width: 600px;
-    font-family: 'Avenir LT Std';
+    font-family: 'Avenir Book';
     font-size: 40px;
     position: absolute;
     top: 380px;
@@ -76,7 +76,7 @@ const Laatste = styled.div`
     left: 180px;
     top: 960px;
     text-align: left;
-    font-family: 'Futura';
+    font-family: 'Avenir Book';
     font-size: 40px;
     color:  ${Theme.primaryAccent}
 

@@ -15,44 +15,36 @@ const Root = styled.div`
     text-align: center;
 `
 const Clock = styled.p`
-    position: absolute;
-    bottom: 150px;
-    left: 1200px;
-    max-width: 215px;
-    text-align: left;
+    margin-top: 550px;
     color: ${Theme.primaryAccent};
     font-family: 'Phosphate';
-    font-size: 140px;
-    font-weight: normal;
-    font-style: normal;
+    font-size: 180px;
 `
 const Titel = styled.h2`
     position: absolute;
-    top: 450px;
+    top: 120px;
     left: 200px;
     max-width: 800px;
     text-align: left;
     font-size: 65px;
     color: ${Theme.primary};
     text-transform: uppercase;
-    font-family: 'Avenir LT Std';
+    font-family: 'Avenir Book';
     font-weight: normal;
-    font-style: normal;
 `
 
 const StartTimeWrapper = styled.h2`
     position: absolute;
-    max-width: 900px;
+    max-width: 1000px;
     text-align: left;
-    bottom: 250px;
+    top: 350px;
     left: 200px;
     color: ${Theme.primary};
     font-size: 65px;
     text-transform: uppercase;
-    font-family: 'Avenir LT Std';
-    font-weight: normal;
-    font-style: normal;
+    font-family: 'Avenir Book';
     text-align: right;
+    font-weight: normal;
 `
 function prefix(input: number) {
     return input < 10 ? "0" + input.toString() : input.toString();

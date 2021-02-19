@@ -15,6 +15,7 @@ type MediaRoundProps = {
 
 type MediaRoundComponentState = {
     videoDuration: number,
+    videoDone: boolean,
 }
 
 const Root = styled.div`
@@ -23,27 +24,25 @@ const Root = styled.div`
 const Title = styled.h1`
     position: absolute;
     top: 50px;
-    left: 62px;
+    left: 35px;
     max-width: 215px;
     text-align: left;
-    color: ${Theme.primaryAccent};
+    color: ${Theme.primary};
     font-family: 'Phosphate';
     font-size: 60px;
-    font-weight: normal;
-    font-style: normal;
     margin: 0;
 `
 
 const RoundName = styled.h2`
     position: absolute;
-    top: 410px;
-    left: 62px;
+    top: 350px;
+    left: 35px;
     max-width: 215px;
     margin: 0;
     font-size 50px;
     color: ${Theme.primaryAccent};
     text-transform: uppercase;
-    font-family: 'Futura';
+    font-family: 'Avenir Book';
     font-weight: normal;
     font-style: normal;
 `
@@ -90,20 +89,17 @@ const MediaWrapper = styled.div`
     max-height: 720px;
     padding: 1rem;
     position: relative;
-    background: linear-gradient(80deg, ${Theme.primary}, ${Theme.primaryAccent});
-    padding: 3px;
+    background: ${Theme.secondary};
+    padding: 5px;
 `
 const Question = styled.div`
     position: absolute;
     right: 50px;
-    bottom: 20px;
+    bottom: 140px;
     color: ${Theme.primary};
     font-size: 85px;
     width: 1400px;
-    font-family: 'Avenir LT Std';
-    font-weight: normal;
-    font-style: normal;
-    text-align: right;
+    font-family: 'Avenir Book';
 `
 
 const QuestionNumber = styled.span`
@@ -113,11 +109,11 @@ const QuestionNumber = styled.span`
 
 const TimerWrapper = styled.div`
     position: absolute;
-    bottom: 243px;
+    bottom: 363px;
     right: 135px;
     width: 80px;
     height: 440px;
-    border: 5px solid ${Theme.primary};
+    border: 5px solid ${Theme.secondary};
     margin: 0 50px;
     
 `
@@ -128,6 +124,7 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
 
     state = {
         videoDuration: 0,
+        videoDone: false,
     }
 
     componentDidMount() {
@@ -148,6 +145,7 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
             });
             this.videoRef.addEventListener('ended', () => {
                 this.videoRef.load();
+                this.setState({videoDone: true})
             }, false);
         }
     };
@@ -161,6 +159,7 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
     }
 
     render() {
+        const { videoDuration, videoDone } = this.state
         const { questionDuration } = this.props.gameState;
         const { roundName, questions, currentQuestionIndex, roundNumber,mediaRoundType, displayQuestion } = this.props.roundState;
 
@@ -175,31 +174,29 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
             showTimer = true
         }
 
-        if (showQuestion && roundNumber === 5 && displayQuestion) {
+        if (showQuestion && roundNumber === 2 && videoDone && displayQuestion ) {
             question = questions[currentQuestionIndex];
             questionNumber = "Vraag " + (currentQuestionIndex + 1).toString() +": ";
             showTimer = true
         }
 
-        if (showQuestion && roundNumber !== 5 && MediaRoundType.Movie) {
+        if (showQuestion && roundNumber !== 2 && MediaRoundType.Movie) {
             question = questions[currentQuestionIndex];
             questionNumber = "Vraag " + (currentQuestionIndex + 1).toString() +": ";
             showTimer = true
         }
+
         let media = null;
-        let duration = 0;
         if (showQuestion) {
             if (mediaRoundType === MediaRoundType.Picture) {
                 const image = `//${getBaseUrl()}/static/${roundNumber}/${currentQuestionIndex + 1}.jpg`;
                 media = <><BackgroundImage backgroundImage={image} /><Image src={image} /></>;
-                duration = questionDuration;
             } else {
                 media = <Video
                     ref={this.handleRef}
                     poster={`/imgs/blank.png`}
-                    src={`//${getBaseUrl()}/static/videos/${roundNumber}_${currentQuestionIndex + 1}.mp4`}
+                    src={`//${getBaseUrl()}/static/videos/${roundNumber}_${currentQuestionIndex + 1}.webm`}
                 />
-                duration = questionDuration;
             }
         }
         // const showTimer = showQuestion && roundNumber !=5
@@ -210,7 +207,7 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
                 <MediaWrapper>
                     <Media>{media}</Media>
                 </MediaWrapper>
-                {showTimer && <TimerWrapper><Timer key={"mediaquestion" + currentQuestionIndex} duration={duration} /></TimerWrapper>}
+                {showTimer && <TimerWrapper><Timer key={"mediaquestion" + currentQuestionIndex} duration={questionDuration} /></TimerWrapper>}
                 {showQuestion && <Question><QuestionNumber> {questionNumber}</QuestionNumber>{question}</Question>}
             </Root>
         );

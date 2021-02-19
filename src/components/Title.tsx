@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Theme } from '../Theme';
 
 export const Title = styled.h1`
-    color: ${Theme.primaryAccent};
+    color: ${Theme.primary};
     font-family: 'Phosphate';
     font-size: 140px;
     font-weight: normal;
