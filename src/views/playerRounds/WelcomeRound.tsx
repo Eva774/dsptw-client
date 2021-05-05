@@ -17,9 +17,7 @@ const Root = styled.div`
     text-align: center;
 `
 const Clock = styled.p`
-
     margin-top:550px;
-
     color: ${Theme.primary};
     font-family: 'Phosphate';
     font-size: 180px;
@@ -84,7 +82,7 @@ export default class WelcomeRound extends React.Component<WelcomeRoundProps, Wel
             this.setState({
                 timeLeft
             });
-        }, 1000)
+        }, 1000);
     }
 
     componentWillUnmount() {

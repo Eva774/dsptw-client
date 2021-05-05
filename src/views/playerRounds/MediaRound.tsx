@@ -132,6 +132,7 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
             console.log("Video start")
             const { questions, currentQuestionIndex } = this.props.roundState;
             if (currentQuestionIndex >= 0 && currentQuestionIndex < questions.length) {
+                this.setState({videoDone: false})
                 this.startVideo();
             }
         });
@@ -189,7 +190,7 @@ export default class MediaRound extends React.Component<MediaRoundProps, MediaRo
         let media = null;
         if (showQuestion) {
             if (mediaRoundType === MediaRoundType.Picture) {
-                const image = `//${getBaseUrl()}/static/${roundNumber}/${currentQuestionIndex + 1}.jpg`;
+                const image = `//${getBaseUrl()}/static/images/${roundNumber}_${currentQuestionIndex + 1}.jpg`;
                 media = <><BackgroundImage backgroundImage={image} /><Image src={image} /></>;
             } else {
                 media = <Video
