@@ -40,7 +40,7 @@ const RoundName = styled.h1`
     font-style: normal;
     font-size: 85px;
     text-transform: uppercase;
-    margin: 22px 0;
+    margin: -10px 0;
 `
 
 const TimerWrapper = styled.div`

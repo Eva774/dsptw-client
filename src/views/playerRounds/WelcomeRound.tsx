@@ -14,7 +14,36 @@ type WelcomeRoundInternalState = {
 }
 
 const Root = styled.div`
+`
+
+const ClockWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 700px;
+    margin: 400px auto 0 auto;
+`
+
+const Minutes = styled.p`
+    color: ${Theme.primary};
+    font-family: 'Phosphate';
+    font-size: 180px;
+    width:300px;
+    text-align: left;
+`
+const Dubbelpunt = styled.p`
+    color: ${Theme.primary};
+    font-family: 'Phosphate';
+    font-size: 180px;
+    width:100px;
     text-align: center;
+`
+
+const Hours = styled.p`
+    color: ${Theme.primary};
+    font-family: 'Phosphate';
+    font-size: 180px;
+    width:300px;
+    text-align:right;
 `
 const Clock = styled.p`
     margin-top:550px;
@@ -100,9 +129,14 @@ export default class WelcomeRound extends React.Component<WelcomeRoundProps, Wel
         let clock = prefix(minutesLeft) + ':' + prefix(secondsLeft);
 
         const printTime = `${prefix(targetTime.getHours())}:${prefix(targetTime.getMinutes())}`;
-
+        let minutes = `${prefix(minutesLeft)}`;
+        let seconds = `${prefix(secondsLeft)}`;
+        let dubbelpunt = `:`;
         if (timeLeft <= 0) {
             clock = 'NU'
+            minutes = ``;
+            seconds = `NU`;
+            dubbelpunt = ``;
         }
 
         return (
@@ -110,9 +144,11 @@ export default class WelcomeRound extends React.Component<WelcomeRoundProps, Wel
                 <Titel>Zet u nu ne keer klaar voor diene quiz</Titel>
                 <StartTimeWrapper>Startuur {printTime}</StartTimeWrapper>
                 <Text>Het begint over ...</Text>
-                <Clock>
-                    {clock}
-                </Clock>
+                <ClockWrapper>
+                    <Hours>{minutes}</Hours>
+                    <Dubbelpunt> {dubbelpunt} </Dubbelpunt>
+                    <Minutes>{seconds}</Minutes>
+                </ClockWrapper>
 
             </Root>
         );

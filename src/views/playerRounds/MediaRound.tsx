@@ -23,23 +23,24 @@ const Root = styled.div`
 
 const Title = styled.h1`
     position: absolute;
-    top: 50px;
-    left: 35px;
+    top: 69px;
+    left: 30px;
     max-width: 215px;
     text-align: left;
     color: ${Theme.primary};
     font-family: 'Phosphate';
     font-size: 60px;
-    margin: 0;
+    font-weight: 150;
+    line-height: 100%;
 `
 
 const RoundName = styled.h2`
     position: absolute;
-    top: 350px;
-    left: 35px;
+    top: 370px;
+    left: 30px;
     max-width: 215px;
     margin: 0;
-    font-size 50px;
+    font-size: 50px;
     color: ${Theme.primaryAccent};
     text-transform: uppercase;
     font-family: 'Avenir Book';
@@ -50,7 +51,8 @@ const RoundName = styled.h2`
 const Media = styled.div`
     width: 1280px;
     height: 720px;
-    background-color: #201d2c;
+    top: 180px;
+    background-color: #000000;
     display: flex;
     justify-content: center;
     align-items: center;

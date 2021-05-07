@@ -29,7 +29,7 @@ const RoundName = styled.h2`
     top: 280px;
     left: 35px;
     max-width: 215px;
-    margin: 0;
+    margin: -10px 0;
     font-size 50px;
     color: ${Theme.primaryAccent};
     text-transform: uppercase;
@@ -41,7 +41,7 @@ const RoundName = styled.h2`
 const Media = styled.div`
     width: 1280px;
     height: 720px;
-    background-color: #201d2c;
+    background-color: #000000;
     display: flex;
     justify-content: center;
     align-items: center;

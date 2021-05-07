@@ -2,7 +2,7 @@
 
 export const Theme = {
     primary: '#ffffff',
-    primaryAccent: '#fedee3',
-    secondary: '#780034',
-    secondaryAccent: '#ff6f78',
+    primaryAccent: '#ffffff',
+    secondary: '#ffffff',
+    secondaryAccent: '#ffffff',
 }
